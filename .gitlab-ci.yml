@@ -1,0 +1,13 @@
+image: prantlf/alpine-make-gcc:latest
+
+stages:
+  - build
+
+build_app:
+  stage: build
+  script: 
+    - mkdir build
+    - make
+  artifacts:
+    paths:
+      - build/
