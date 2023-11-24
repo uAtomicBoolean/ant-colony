@@ -30,7 +30,7 @@
             "name": "Make et Debug (lldb)",
 			"type": "lldb",
 			"request": "launch",
-			"program": "${workspaceFolder}/bin/labyrinth",
+			"program": "${workspaceFolder}/bin/ant_colony",
 			"args": [],
 			"cwd": "${workspaceFolder}",
 			"preLaunchTask": "make",
