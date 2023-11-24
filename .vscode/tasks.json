@@ -1,32 +1,5 @@
 {
     "tasks": [
-        /* {
-            "type": "cppbuild",
-            "label": "C/C++: gcc générer le fichier actif",
-            "command": "/usr/bin/gcc",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
-                "-Wall",
-                "-Wextra",
-                "-ansi",
-                "-pedantic",
-                "-lm"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "Tâche générée par le débogueur."
-        }, */ // Truc de base de VS Code non nécessaire pour le debugger avec make et tout
         {
             "type": "shell",
             "label": "make",

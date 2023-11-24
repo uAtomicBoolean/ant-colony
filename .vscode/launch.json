@@ -24,6 +24,16 @@
             ],
             "preLaunchTask": "make",
             "miDebuggerPath": "/usr/bin/gdb"
-        }
+        },
+		// You'll need to install vadimcn.vscode-lldb extension for this to work
+		{
+            "name": "Make et Debug (lldb)",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/bin/labyrinth",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "make",
+		}
     ]
 }
