@@ -1,0 +1,37 @@
+{
+    "makefile.configurations": [
+        {
+            "name": "ant_colony",
+            "makeArgs": [],
+
+        }
+    ],
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "${workspaceFolder}/bin",
+            "binaryPath": "${workspaceFolder}/bin/ant_colony",
+            "binaryArgs": []
+        },
+        {
+            "cwd": "${workspaceFolder}/bin",
+            "binaryPath": "${workspaceFolder}/ant_colony",
+            "binaryArgs": []
+        }
+    ],
+    "files.associations": {
+        "stdio.h": "c",
+        "ant_colony.h": "c",
+        "typeinfo": "c",
+        "utils.h": "c",
+        "time.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
+
+// dans makeArgs on peut ajouter : "ARG=vos_arguments_a_ajouter"
+
+/* Il n'y a besoin de ce fichier que pour l'extension MakeFile Tool de Microsoft
+ * mais n'est en aucun cas nécessaire au fonctionnement du débuggeur qui appelera make dans un shell.
+ */
