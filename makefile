@@ -6,7 +6,7 @@ SOURCES=$(wildcard ./app/*.cpp ./app/src/*.cpp)
 EXECUTABLE=./bin/ant_colony
 
 
-all: create_folders $(EXECUTABLE)
+all: create_folders doxygen $(EXECUTABLE)
 
 
 $(EXECUTABLE): $(SOURCES)
@@ -17,3 +17,6 @@ create_folders:
 
 clean:
 	rm -rf $(EXECUTABLE)
+
+doxygen:
+	$@ doxyconfig.cfg
