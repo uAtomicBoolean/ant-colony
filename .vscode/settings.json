@@ -27,7 +27,7 @@
         "string.h": "c",
         "stdlib.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "disabled"
 }
 
 // dans makeArgs on peut ajouter : "ARG=vos_arguments_a_ajouter"
