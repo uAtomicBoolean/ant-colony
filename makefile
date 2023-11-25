@@ -6,7 +6,7 @@ SOURCES=$(wildcard ./app/*.cpp ./app/src/*.cpp)
 EXECUTABLE=./bin/ant_colony
 
 
-all: create_folders doxygen $(EXECUTABLE)
+all: create_folders $(EXECUTABLE)
 
 
 $(EXECUTABLE): $(SOURCES)
