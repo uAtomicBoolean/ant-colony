@@ -1,4 +1,4 @@
-#include "../include/ant_colony.h"
+#include "../include/ant_colony.hpp"
 
 
 int test_ac() {
