@@ -1,0 +1,43 @@
+@startuml Diagramme de classes
+namespace simulateur {
+	namespace carte {
+		class case {}
+	}
+
+	namespace colonie {
+		namespace fourmi {
+			class fourmi {
+				+ fourmi()
+				+ deplacer() : void
+			}
+			class reine {
+				+ pondre() : void
+			}
+			class ouvriere {
+				+ cherchernourriture() : void
+				+ construire() : void
+				+ nourrirlarve() : void
+				+ pheromone() : void
+			}
+			class eclaireur {
+				+ explorer() : void
+			}
+			class soldat {
+				+ attaquer() : void
+			}
+			class esclavagiste {
+				+ voler() : void
+			}
+
+			reine <|-- fourmi
+			ouvriere <|-- fourmi
+			eclaireur <|-- fourmi
+			soldat <|-- fourmi
+			esclavagiste <|-- fourmi
+
+		}
+	}
+
+}
+
+@enduml

@@ -51,6 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-
+# Custom
 bin
 files
+.DS_Store
