@@ -1,10 +1,49 @@
 @startuml Diagramme de classes
 namespace simulateur {
 	namespace carte {
-		class case {}
+		class carte {
+			+ taille : int
+			+ cases : case[][]
+			+ carte()
+			+ get_taille() : int
+			+ get_cases() : case
+			+ get_case(int x, int y) : case
+		}
+		class case {
+			+ type : typeCase
+			+ position : position
+			+ est_explore : bool
+			+ case()
+			+ get_type() : typeCase
+			+ get_position() : position
+		}
+		enum typeCase {
+			VIDE
+			NOURRITURE
+			OBSTACLE
+			COLONIE
+		}
+
+		carte "1" *-- "1..*" case
 	}
 
 	namespace colonie {
+		class colonie {
+			+ colonie(nourriture : float, position : position)
+			+ position : position
+			+ nourriture : float
+			+ fourmis : fourmi[]
+			+ get_position() : position
+			+ get_nourriture() : int
+			+ get_fourmis() : fourmi[]
+			+ get_fourmi(int i) : fourmi
+			+ ajouter_fourmi(fourmi f) : void
+			+ supprimer_fourmi(int i) : void
+			+ supprimer_fourmi(fourmi f) : void
+			+ ajouter_nourriture(int n) : void
+			+ supprimer_nourriture(int n) : void
+		}
+
 		namespace fourmi {
 			class fourmi {
 				+ fourmi()
