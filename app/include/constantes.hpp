@@ -1,6 +1,7 @@
-#ifndef H_CONSTANTES
-#define H_CONSTANTES
+#pragma once
 
 // Parametres de la simulation.
+namespace constantes {
+	int test();
 
-#endif
+}
