@@ -3,12 +3,12 @@
 - [ ] Références
 - [ ] Constance
 - [ ] Opérateur de résolution de portée
-- [ ] Espaces de noms
-- [ ] Fichiers d’en-têtes et espaces de noms
+- [x] Espaces de noms
+- [x] Fichiers d’en-têtes et espaces de noms
 - [ ] Portée
 - [ ] Gestion mémoire : Allocation
 - [ ] Gestion mémoire : Libération
-- [ ] Classes et objets
+- [x] Classes et objets
 - [ ] Membres & partage
 - [ ] Accès aux Membres & Portée
 - [ ] Membres & Protection
@@ -26,7 +26,7 @@
 - [ ] Héritage et constructeur
 - [ ] Conversion classes de base <-> classes dérivées
 - [ ] Dérivation et protection
-- [ ] Vers le polymorphisme
+- [x] Vers le polymorphisme
 - [ ] Liaison retardée, fonctions virtuelles
 - [ ] Classes abstraites et fonctions virtuelles pures
 - [ ] Type des objets et conversion explicite
