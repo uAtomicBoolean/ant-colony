@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-g -Wall -Wextra -ansi -pedantic -std=c++23
+CFLAGS=-g -Wall -Wextra -ansi -pedantic -std=c++11
 CPPFLAGS=-I ./app/include
 
 SOURCES=$(wildcard ./app/*.cpp ./app/src/*.cpp)
