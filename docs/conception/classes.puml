@@ -1,7 +1,7 @@
-@startuml Diagramme de classes
+@startuml Diagramme de classeS
 
 namespace simulateur {
-	class constantes {
+	class Constantes {
 		DIMENSION_CARTE_X = 211 // 211 cases
 		DIMENSION_CARTE_Y = 201 // 201 cases
 		NOURRITURE_DEPART = 2 // 2 unités de nourriture
@@ -46,7 +46,7 @@ namespace simulateur {
 		PROBA_FOURMI_ESCLAVAGISTE_MAX = 10 // 10 jours
 	}
 	namespace carte {
-		class carte {
+		class Carte {
 			+ taille : int
 			+ cases : case[][]
 			+ carte()
@@ -54,7 +54,7 @@ namespace simulateur {
 			+ get_cases() : case
 			+ get_case(int x, int y) : case
 		}
-		class case {
+		class Case {
 			+ type : typeCase
 			+ position : position
 			+ est_explore : bool
@@ -69,11 +69,11 @@ namespace simulateur {
 			COLONIE
 		}
 
-		carte "1" *-- "1..*" case
+		Carte "1" *-- "1..*" Case
 	}
 
 	namespace colonie {
-		class colonie {
+		class Colonie {
 			+ colonie(nourriture : float, position : position)
 			+ position : position
 			+ nourriture : float
@@ -92,15 +92,15 @@ namespace simulateur {
 		}
 
 		namespace fourmi {
-			class fourmi {
+			class Fourmi {
 				+ age : int
 				+ position : position
 				~ deplacer() : void (virtual)
 			}
-			class reine {
+			class Reine {
 				+ pondre() : void
 			}
-			class ouvriere {
+			class Ouvriere {
 				+ chemin_colonie : position[]
 				+ reserve_pheromone : float
 				+ est_chargee : bool
@@ -109,27 +109,27 @@ namespace simulateur {
 				+ prendre_nourriture() : void
 				+ deposer_nourriture() : void
 			}
-			class eclaireur {
+			class Eclaireur {
 				+ explorer() : void
 			}
-			class soldat {
+			class Soldat {
 				+ retour_colonie : bool
 				+ protege_reine : bool
 				+ attaquer() : void
 				+ verifier_duree_ronde() : void
 				// Elles doivent retourner à la colonie tous les 100 jours
 			}
-			class esclavagiste {
+			class Esclavagiste {
 				+ transport_nourriture : int
 				+ transport_larve : int
 				+ voler() : void
 			}
 
-			reine <|-- fourmi
-			ouvriere <|-- fourmi
-			eclaireur <|-- fourmi
-			soldat <|-- fourmi
-			esclavagiste <|-- fourmi
+			Reine <|-- Fourmi
+			Ouvriere <|-- Fourmi
+			Eclaireur <|-- Fourmi
+			Soldat <|-- Fourmi
+			Esclavagiste <|-- Fourmi
 
 		}
 	}
