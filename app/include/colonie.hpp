@@ -3,4 +3,10 @@
 
 int test_ac();
 
+namespace simulateur {
+namespace colonie {
+
+}
+}
+
 #endif
