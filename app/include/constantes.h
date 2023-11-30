@@ -23,7 +23,7 @@ namespace simulateur::constantes {
     const int NOURRITURE_DISPO = 10; // 10 unités de nourriture
 
     const int BIG_STOCK_NOURRITURE = 2;
-    // Nombre de; stocks de nourriture de 20k * 5 cases pour former 100k unités de nourriture
+    // Nombre de stocks de nourriture de 20k * 5 cases pour former 100k unités de nourriture
 
     const int PROBA_OBSTACLE = 30; // 30% de la surface totale de la carte
     const int PROBA_OBSTACLE_TAILLE_1 = 50; // 50% de chances de tomber sur un obstacle de taille 1
