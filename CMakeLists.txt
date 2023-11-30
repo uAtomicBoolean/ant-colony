@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(ant_colony)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 

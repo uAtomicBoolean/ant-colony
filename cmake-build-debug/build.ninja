@@ -51,25 +51,25 @@ build cmake_object_order_depends_target_ant_colony: phony || CMakeFiles/ant_colo
 
 build CMakeFiles/ant_colony.dir/app/main.cpp.o: CXX_COMPILER__ant_colony_unscanned_Debug /home/benjos/cours/s7/cpp/ant-colony/app/main.cpp || cmake_object_order_depends_target_ant_colony
   DEP_FILE = CMakeFiles/ant_colony.dir/app/main.cpp.o.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/ant_colony.dir
   OBJECT_FILE_DIR = CMakeFiles/ant_colony.dir/app
 
 build CMakeFiles/ant_colony.dir/app/src/simulateur/colonie.cpp.o: CXX_COMPILER__ant_colony_unscanned_Debug /home/benjos/cours/s7/cpp/ant-colony/app/src/simulateur/colonie.cpp || cmake_object_order_depends_target_ant_colony
   DEP_FILE = CMakeFiles/ant_colony.dir/app/src/simulateur/colonie.cpp.o.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/ant_colony.dir
   OBJECT_FILE_DIR = CMakeFiles/ant_colony.dir/app/src/simulateur
 
 build CMakeFiles/ant_colony.dir/app/src/gui/gui.cpp.o: CXX_COMPILER__ant_colony_unscanned_Debug /home/benjos/cours/s7/cpp/ant-colony/app/src/gui/gui.cpp || cmake_object_order_depends_target_ant_colony
   DEP_FILE = CMakeFiles/ant_colony.dir/app/src/gui/gui.cpp.o.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/ant_colony.dir
   OBJECT_FILE_DIR = CMakeFiles/ant_colony.dir/app/src/gui
 
 build CMakeFiles/ant_colony.dir/app/src/simulateur/fourmi/fourmi.cpp.o: CXX_COMPILER__ant_colony_unscanned_Debug /home/benjos/cours/s7/cpp/ant-colony/app/src/simulateur/fourmi/fourmi.cpp || cmake_object_order_depends_target_ant_colony
   DEP_FILE = CMakeFiles/ant_colony.dir/app/src/simulateur/fourmi/fourmi.cpp.o.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/ant_colony.dir
   OBJECT_FILE_DIR = CMakeFiles/ant_colony.dir/app/src/simulateur/fourmi
 
