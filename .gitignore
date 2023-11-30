@@ -55,4 +55,3 @@ dkms.conf
 bin
 files
 .DS_Store
-/cmake-build-debug/
