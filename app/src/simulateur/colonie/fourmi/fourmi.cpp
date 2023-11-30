@@ -1,5 +1,5 @@
 #include <iostream>
-#include "fourmi.h"
+#include "simulateur/colonie/fourmi/fourmi.h"
 
 
 namespace simulateur::colonie::fourmi {

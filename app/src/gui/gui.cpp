@@ -1,5 +1,4 @@
-#include "../../include/gui.h"
-
+#include "gui/gui.h"
 
 namespace gui {
     int test_gui() {

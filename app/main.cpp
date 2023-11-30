@@ -1,7 +1,3 @@
-#include <iostream>
-#include "include/colonie.h"
-#include "include/gui.h"
-
 #include <SFML/Graphics.hpp>
 
 int main()

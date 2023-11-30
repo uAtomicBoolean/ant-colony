@@ -6,13 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 
 add_executable(ant_colony app/main.cpp
-        app/src/simulateur/colonie.cpp
-        app/include/colonie.h
+        app/src/simulateur/simulateur.cpp
         app/src/gui/gui.cpp
-        app/include/gui.h
-        app/src/simulateur/fourmi/fourmi.cpp
-        app/include/fourmi.h
-        app/include/constantes.h
+        app/src/simulateur/colonie/colonie.cpp
+        app/src/simulateur/colonie/fourmi/fourmi.cpp
 )
 
 target_include_directories(ant_colony PUBLIC app/include)
