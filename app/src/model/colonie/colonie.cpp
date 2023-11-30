@@ -1,4 +1,5 @@
-#include "../../../include/model/colonie/colonie.hpp"
+#include "../../../include/colonie.hpp"
+
 
 namespace simulateur {
 namespace colonie {
@@ -6,4 +7,5 @@ namespace colonie {
 int test_ac() {
 	return 42;
 }
+
 }}
