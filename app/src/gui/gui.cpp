@@ -1,8 +1,12 @@
+#include "../../include/gui.h"
+
+
 namespace simulateur {
-namespace gui {
+    namespace gui {
 
-int test_gui() {
-	return 0;
+        int test_gui() {
+            return 0;
+        }
+
+    }
 }
-
-}}
