@@ -1,7 +1,3 @@
 # ninja log v5
-1	13	1701349283179820614	CMakeFiles/ant_colony_clion.dir/app/src/simulateur/colonie.cpp.o	e46dab329e291d38
-0	18	1701350618635671862	build.ninja	e6b23eab09eb4331
-1	246	1701349569327144616	CMakeFiles/ant_colony_clion.dir/app/main.cpp.o	f0d4295f0a8b966c
+0	18	1701350795237318910	build.ninja	e6b23eab09eb4331
 247	297	1701349569375144335	ant_colony_clion	b403449f5d2e13a1
-1	13	1701349283179820614	CMakeFiles/ant_colony_clion.dir/app/src/gui/gui.cpp.o	640e5fb137b4af8e
-1	10	1701349283176820632	CMakeFiles/ant_colony_clion.dir/app/src/simulateur/fourmi/fourmi.cpp.o	d816347d35637999
