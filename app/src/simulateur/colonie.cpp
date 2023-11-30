@@ -1,4 +1,4 @@
-#include "../../include/colonie.h"
+#include "colonie.h"
 
 namespace simulateur::colonie {
     int test_ac() {

@@ -227,15 +227,6 @@ ant_colony_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 ant_colony_SOURCE_DIR:STATIC=/home/benjos/cours/s7/cpp/ant-colony
 
-//Value Computed by CMake
-ant_colony_clion_BINARY_DIR:STATIC=/home/benjos/cours/s7/cpp/ant-colony/cmake-build-debug
-
-//Value Computed by CMake
-ant_colony_clion_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-ant_colony_clion_SOURCE_DIR:STATIC=/home/benjos/cours/s7/cpp/ant-colony
-
 
 ########################
 # INTERNAL cache entries

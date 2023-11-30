@@ -15,4 +15,5 @@ add_executable(ant_colony app/main.cpp
         app/include/constantes.h
 )
 
+target_include_directories(ant_colony PUBLIC app/include)
 target_link_libraries(ant_colony sfml-graphics sfml-window sfml-system)

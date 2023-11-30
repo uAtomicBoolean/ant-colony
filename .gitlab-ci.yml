@@ -1,13 +1,13 @@
-image: prantlf/alpine-make-gcc:latest
+image: gcc
 
 stages:
   - build
 
+before_script:
+  - apt-get update --yes
+  - apt-get install --yes cmake
+
 build_app:
   stage: build
-  script: 
-    - mkdir build
-    - make
-  artifacts:
-    paths:
-      - build/
+  script:
+    - cmake CMakeList.txt
