@@ -1,13 +1,15 @@
-image: gcc
-
 stages:
   - build
 
-before_script:
-  - apt-get update --yes
-  - apt-get install --yes cmake
+variables:
+  CMAKE_BUILD_TYPE: "Release"
 
-build_app:
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+
+compile:
   stage: build
   script:
-    - cmake CMakeList.txt
+    - make
