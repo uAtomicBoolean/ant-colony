@@ -49,4 +49,4 @@ namespace simulateur::constantes {
     const int PROBA_FOURMI_ESCLAVAGISTE_MAX = 10; // 10 jours
 }
 
-#endif //ANT_COLONY_CLION_CONSTANTES_H
+#endif //ANT_COLONY_CONSTANTES_H
