@@ -1,11 +1,11 @@
-#ifndef ANT_COLONY_CLION_FOURMI_H
-#define ANT_COLONY_CLION_FOURMI_H
+#ifndef ANT_COLONY_FOURMI_H
+#define ANT_COLONY_FOURMI_H
 
-namespace simulateur::colonie::fourmi {
+namespace simulateur::fourmi {
     class Fourmi {
     public:
         void displayFourmi();
     };
 }
 
-#endif //ANT_COLONY_CLION_FOURMI_H
+#endif //ANT_COLONY_FOURMI_H

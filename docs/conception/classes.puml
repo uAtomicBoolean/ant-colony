@@ -75,6 +75,7 @@ namespace simulateur {
 			+ type : typeCase
 			+ position : position
 			+ est_explore : bool
+			+ fourmis: *fourmi[]
 			+ case()
 			+ get_type() : typeCase
 			+ get_position() : position
@@ -112,6 +113,7 @@ namespace simulateur {
 			class Fourmi {
 				+ age : int
 				+ position : position
+				+ case: *case
 				~ deplacer() : void (virtual)
 			}
 			class Reine {

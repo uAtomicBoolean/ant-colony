@@ -1,5 +1,5 @@
-#ifndef ANT_COLONY_CLION_CONSTANTES_H
-#define ANT_COLONY_CLION_CONSTANTES_H
+#ifndef ANT_COLONY_CONSTANTES_H
+#define ANT_COLONY_CONSTANTES_H
 
 
 namespace simulateur::constantes {

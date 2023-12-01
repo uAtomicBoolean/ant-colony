@@ -10,7 +10,14 @@ add_executable(ant_colony app/main.cpp
         app/src/gui/gui.cpp
         app/src/simulateur/colonie/colonie.cpp
         app/src/simulateur/colonie/fourmi/fourmi.cpp
+        app/src/simulateur/carte/carte.cpp
+        app/src/simulateur/colonie/colonie.cpp
+        app/include/simulateur/colonie/colonie.h
 )
+
+include_directories(app/include/simulateur)
+include_directories(app/include/simulateur/colonie)
+include_directories(app/include/simulateur/colonie/fourmi)
 
 target_include_directories(ant_colony PUBLIC app/include)
 target_link_libraries(ant_colony sfml-graphics sfml-window sfml-system)

@@ -1,8 +1,12 @@
-#ifndef ANT_COLONY_CLION_COLONIE_H
-#define ANT_COLONY_CLION_COLONIE_H
+#ifndef ANT_COLONY_COLONIE_H
+#define ANT_COLONY_COLONIE_H
+
 
 namespace simulateur::colonie {
-    int test_ac();
+    class Colonie {
+    public:
+        void displayFourmi();
+    };
 }
 
-#endif //ANT_COLONY_CLION_COLONIE_H
+#endif //ANT_COLONY_COLONIE_H

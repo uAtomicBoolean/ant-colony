@@ -2,7 +2,7 @@
 #include "simulateur/colonie/fourmi/fourmi.h"
 
 
-namespace simulateur::colonie::fourmi {
+namespace simulateur::fourmi {
     void Fourmi::displayFourmi() {
         std::cout << "Encore une fourmi ?" << std::endl;
     }
