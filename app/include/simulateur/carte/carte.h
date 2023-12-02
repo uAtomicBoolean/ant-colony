@@ -18,9 +18,14 @@ namespace simulateur::carte {
     class Case {
     private:
         TypeCase type;
-        simulateur::types::position_t position;
         bool est_explore;
+        simulateur::types::position_t position;
         simulateur::fourmi::Fourmi *fourmis[];
+
+    public:
+        TypeCase get_type();
+
+        simulateur::types::position_t get_position();
     };
 
 
@@ -33,6 +38,8 @@ namespace simulateur::carte {
         int get_taille_x();
 
         int get_taille_y();
+
+        Case **get_cases();
 
         Case get_case(int x, int y);
     };
