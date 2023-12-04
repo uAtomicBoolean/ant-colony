@@ -9,7 +9,7 @@ namespace simulateur::fourmi {
     class Fourmi {
     private:
         int age;
-        // TODO erreur lors de la declaration de l'attribut.
+        // TODO erreur lors de la declaration de l'attribut. Probablement une dépendance cyclique.
         // simulateur::carte::Case *case;
         simulateur::types::position_t position;
 

@@ -23,6 +23,8 @@ add_executable(ant_colony app/main.cpp
         app/src/simulateur/colonie/fourmi/fourmi_ouvriere.cpp
         app/src/simulateur/colonie/fourmi/fourmi_esclavagiste.cpp
         app/src/simulateur/colonie/fourmi/fourmi_eclaireur.cpp
+        app/src/simulateur/carte/case.cpp
+        app/include/simulateur/carte/case.h
 )
 
 include_directories(app/include/simulateur)

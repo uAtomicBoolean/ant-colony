@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include "simulateur/simulateur.h"
 #include "gui/gui.h"
 
