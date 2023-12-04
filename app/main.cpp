@@ -1,4 +1,4 @@
-#include "simulateur/simulateur.h"
+#include "simulateur.h"
 #include "gui/gui.h"
 
 int main() {

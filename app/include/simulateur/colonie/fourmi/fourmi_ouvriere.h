@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "types.h"
-#include "simulateur/colonie/fourmi/fourmi.h"
+#include "fourmi.h"
 
 
 namespace simulateur::fourmi {

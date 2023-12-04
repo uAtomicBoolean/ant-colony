@@ -1,5 +1,5 @@
-#ifndef ANT_COLONY_TAMERE_H
-#define ANT_COLONY_TAMERE_H
+#ifndef ANT_COLONY_COLONIE_H
+#define ANT_COLONY_COLONIE_H
 
 
 namespace simulateur::colonie {

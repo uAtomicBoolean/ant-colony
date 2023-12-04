@@ -1,4 +1,4 @@
-#include "simulateur/carte/case.h"
+#include "case.h"
 
 
 namespace simulateur::carte {

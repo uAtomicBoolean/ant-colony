@@ -2,6 +2,7 @@
 #define ANT_COLONY_CASE_H
 
 #include "types.h"
+#include "fourmi.h"
 
 
 namespace simulateur::carte {
@@ -18,7 +19,7 @@ namespace simulateur::carte {
         TypeCase type;
         bool est_explore;
         simulateur::types::position_t position;
-//        simulateur::fourmi::Fourmi *fourmi; // /ant-colony/app/include/simulateur/carte/carte.h:23:21: error: no member named 'fourmi' in namespace 'simulateur'
+        simulateur::fourmi::Fourmi *fourmi;
 
     public:
         TypeCase get_type();

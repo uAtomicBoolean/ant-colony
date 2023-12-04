@@ -1,5 +1,5 @@
 #include <iostream>
-#include "simulateur/carte/carte.h"
+#include "carte.h"
 
 namespace simulateur::carte {
     void Carte::genere_carte() {

@@ -3,8 +3,8 @@
 
 #include "types.h"
 #include "constantes.h"
-#include "simulateur/colonie/fourmi/fourmi.h"
-#include "simulateur/carte/case.h"
+#include "fourmi.h"
+#include "case.h"
 
 
 namespace simulateur::carte {

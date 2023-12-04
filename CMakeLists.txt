@@ -28,6 +28,7 @@ add_executable(ant_colony app/main.cpp
 )
 
 include_directories(app/include/simulateur)
+include_directories(app/include/simulateur/carte)
 include_directories(app/include/simulateur/colonie)
 include_directories(app/include/simulateur/colonie/fourmi)
 
