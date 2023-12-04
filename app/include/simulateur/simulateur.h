@@ -11,7 +11,10 @@ namespace simulateur {
         simulateur::colonie::Colonie colonie;
         simulateur::carte::Carte carte;
     public:
+        simulateur::carte::Carte *get_carte();
+
         void genere_carte();
+
         void creer_colonie();
     };
 
