@@ -1,4 +1,4 @@
-#include "simulateur/simulateur.h"
+#include "simulateur.h"
 
 namespace simulateur {
     simulateur::carte::Carte *Simulateur::get_carte() {

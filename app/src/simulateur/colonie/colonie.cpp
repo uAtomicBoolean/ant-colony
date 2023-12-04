@@ -1,5 +1,5 @@
 #include <iostream>
-#include "simulateur/colonie/colonie.h"
+#include "colonie.h"
 
 namespace simulateur::colonie {
 

@@ -1,7 +1,7 @@
 #ifndef ANT_COLONY_FOURMI_SOLDAT_H
 #define ANT_COLONY_FOURMI_SOLDAT_H
 
-#include "simulateur/colonie/fourmi/fourmi.h"
+#include "fourmi.h"
 
 
 namespace simulateur::fourmi {

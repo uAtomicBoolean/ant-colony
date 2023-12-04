@@ -1,8 +1,8 @@
-#ifndef ANT_COLONY_TAMERE_H
-#define ANT_COLONY_COLONIE_H
+#ifndef ANT_COLONY_SIMULATEUR_H
+#define ANT_COLONY_SIMULATEUR_H
 
-#include "simulateur/carte/carte.h"
-#include "simulateur/colonie/colonie.h"
+#include "carte.h"
+#include "colonie.h"
 
 
 namespace simulateur {
@@ -20,4 +20,4 @@ namespace simulateur {
 
 }
 
-#endif //ANT_COLONY_COLONIE_H
+#endif //ANT_COLONY_SIMULATEUR_H
