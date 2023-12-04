@@ -20,7 +20,7 @@ namespace simulateur::carte {
         TypeCase type;
         bool est_explore;
         simulateur::types::position_t position;
-        simulateur::fourmi::Fourmi *fourmis[];
+//        simulateur::fourmi::Fourmi *fourmi; // /ant-colony/app/include/simulateur/carte/carte.h:23:21: error: no member named 'fourmi' in namespace 'simulateur'
 
     public:
         TypeCase get_type();
@@ -42,6 +42,8 @@ namespace simulateur::carte {
         Case **get_cases();
 
         Case get_case(int x, int y);
+
+        void genere_carte();
     };
 }
 

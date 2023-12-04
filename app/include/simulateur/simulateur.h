@@ -12,10 +12,7 @@ namespace simulateur {
         simulateur::carte::Carte carte;
     public:
         void genere_carte();
-
         void creer_colonie();
-
-        void update();
     };
 
 }

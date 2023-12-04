@@ -15,6 +15,8 @@ namespace simulateur::fourmi {
 
     public:
         virtual void deplacer();
+
+        void displayFourmi();
     };
 }
 

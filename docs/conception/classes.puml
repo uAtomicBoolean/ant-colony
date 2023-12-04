@@ -4,11 +4,12 @@ class Main {
     + Simulateur simulateur
     + GUI gui
     + main() : void
+	+ update() // Envoi this à gui.window.render(*simulateur)
 }
 
 namespace gui {
     class GUI {
-        + render(simulateur s) : void
+        + render(simulateur *s) : void
     }
 }
 
@@ -16,7 +17,6 @@ namespace simulateur {
     class Simulateur {
         + Colonie colonie
         + Carte carte
-        + update() // Envoi this à gui.window.render()
     }
 '	class Constantes {
 '		DIMENSION_CARTE_X = 211 // 211 cases
