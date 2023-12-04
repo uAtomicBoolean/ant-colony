@@ -108,53 +108,54 @@ namespace simulateur {
 			+ nourrir_colonie() : void			
 			// Nourrir les fourmis chaque jour, nourrir la reine en premier
 		}
+	}
 
-		namespace fourmi {
-			class Fourmi {
-				+ age : int
-				+ position : position
-				+ case: *case
-				~ deplacer() : void (virtual)
-			}
-			class Reine {
-				+ pondre() : void
-			}
-			class Ouvriere {
-				+ chemin_colonie : position[]
-				+ reserve_pheromone : float
-				+ est_chargee : bool
-				+ chercher_nourriture() : void
-				+ depose_pheromone() : void
-				+ prendre_nourriture() : void
-				+ deposer_nourriture() : void
-			}
-			class Eclaireur {
-				+ explorer() : void
-			}
-			class Soldat {
-				+ retour_colonie : bool
-				+ protege_reine : bool
-				+ attaquer() : void
-				+ verifier_duree_ronde() : void
-				// Elles doivent retourner à la colonie tous les 100 jours
-			}
-			class Esclavagiste {
-				+ transport_nourriture : int
-				+ transport_larve : int
-				+ voler() : void
-			}
-
-			Reine <|-- Fourmi
-			Ouvriere <|-- Fourmi
-			Eclaireur <|-- Fourmi
-			Soldat <|-- Fourmi
-			Esclavagiste <|-- Fourmi
-
+	namespace fourmi {
+		class Fourmi {
+			+ age : int
+			+ position : position
+			+ case: *case
+			~ deplacer() : void (virtual)
 		}
-		Colonie "1" *-- "1..*" fourmi.Fourmi
+		class Reine {
+			+ pondre() : void
+		}
+		class Ouvriere {
+			+ chemin_colonie : position[]
+			+ reserve_pheromone : float
+			+ est_chargee : bool
+			+ chercher_nourriture() : void
+			+ depose_pheromone() : void
+			+ prendre_nourriture() : void
+			+ deposer_nourriture() : void
+		}
+		class Eclaireur {
+			+ explorer() : void
+		}
+		class Soldat {
+			+ retour_colonie : bool
+			+ protege_reine : bool
+			+ attaquer() : void
+			+ verifier_duree_ronde() : void
+			// Elles doivent retourner à la colonie tous les 100 jours
+		}
+		class Esclavagiste {
+			+ transport_nourriture : int
+			+ transport_larve : int
+			+ voler() : void
+		}
+
+		Reine <|-- Fourmi
+		Ouvriere <|-- Fourmi
+		Eclaireur <|-- Fourmi
+		Soldat <|-- Fourmi
+		Esclavagiste <|-- Fourmi
+
 	}
 	Simulateur "1" *-- "1" simulateur.colonie.Colonie
 	Simulateur "1" *-- "1" simulateur.carte.Carte
+	simulateur.colonie.Colonie "1" *-- "1..*" simulateur.fourmi.Fourmi
+	simulateur.carte.Case "1" *-- "1..*" simulateur.fourmi.Fourmi
 }
 
 Main "1" *-- "1" simulateur.Simulateur
