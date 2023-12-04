@@ -5,8 +5,6 @@
 namespace simulateur::colonie {
     class Colonie {
     public:
-        void displayFourmi();
-
         void creer_colonie();
     };
 }
