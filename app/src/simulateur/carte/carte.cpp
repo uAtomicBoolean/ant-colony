@@ -32,7 +32,6 @@ namespace sim::carte {
     }
 
     void Carte::genere_carte() {
-        std::cout << "test";
         std::mt19937 gen(std::random_device{}());
         std::uniform_real_distribution<float> distribution(0.f, 100.f);
 
