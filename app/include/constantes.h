@@ -2,6 +2,8 @@
 #define ANT_COLONY_CONSTANTES_H
 
 
+#include <map>
+
 namespace sim::consts {
     // Les taux et proba sont tous en % (ex: 50 = 50%).
 
@@ -20,18 +22,23 @@ namespace sim::consts {
     const int PONDAGE = 2; // 2 par jour
 
     const double PROBA_NOURRITURE = .02f;
-    const int NOURRITURE_DISPO = 10; // 10 unités de nourriture
+    /**
+     * Nourriture disponible de base sur une case de nourriture.
+     */
+    const int NOURRITURE_DISPO = 10;
 
     const int BIG_STOCK_NOURRITURE = 2;
     // Nombre de stocks de nourriture de 20k * 5 cases pour former 100k unités de nourriture
 
     const int PROBA_OBSTACLE = 30.f; // 30% de la surface totale de la carte
-    const int PROBA_OBSTACLE_TAILLE_1 = 50.f; // 50% de chances de tomber sur un obstacle de taille 1
-    const int PROBA_OBSTACLE_TAILLE_2 = 30.f;
-    const int PROBA_OBSTACLE_TAILLE_3 = 10.f;
-    const int PROBA_OBSTACLE_TAILLE_4 = 5.f;
-    const int PROBA_OBSTACLE_TAILLE_5 = 4.f;
-    const int PROBA_OBSTACLE_TAILLE_6 = 1.f;
+    const std::map<int, int> PROBA_TAILLE_OBSTACLE = {
+            {49.f, 1},
+            {79.f, 2},
+            {89.f, 3},
+            {94.f, 4},
+            {98.f, 5},
+            {99.f, 6},
+    };
 
     const int PROBA_REINE_POND_OUVRIERE = 80.f; // 80% de chances de pondre une ouvrière
     const int PROBA_REINE_POND_SOLDAT = 15.f;

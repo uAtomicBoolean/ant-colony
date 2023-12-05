@@ -2,10 +2,8 @@
 
 
 namespace sim::carte {
-    Case::Case(TypeCase type, sim::types::position_t position) {
-        this->type = type;
-        this->position = position;
-        this->est_explore = false;
+    Case::Case() {
+        this->type = TypeCase::VIDE;
     }
 
     TypeCase Case::get_type() {
@@ -15,5 +13,20 @@ namespace sim::carte {
 
     sim::types::position_t Case::get_position() {
         return this->position;
+    }
+
+    void Case::set_type(TypeCase type_case) {
+        this->type = type_case;
+        if (type == TypeCase::NOURRITURE) {
+            this->quant_nourriture = 10;
+        }
+    }
+
+    void Case::set_position(sim::types::position_t pos) {
+        this->position = pos;
+    }
+
+    void Case::set_quant_nourriture(double quant_nour) {
+        this->quant_nourriture = quant_nour;
     }
 }

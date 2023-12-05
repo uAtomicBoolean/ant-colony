@@ -18,18 +18,23 @@ namespace sim::carte {
     class Case {
     private:
         TypeCase type{};
+        double quant_nourriture{};
         bool est_explore{};
         sim::types::position_t position{};
         std::vector<sim::fourmi::Fourmi> *fourmi{};
 
     public:
-        Case(TypeCase type, sim::types::position_t position);
+        Case();
+
+        void set_type(TypeCase type);
+
+        void set_position(sim::types::position_t pos);
+
+        void set_quant_nourriture(double quant_nour);
 
         TypeCase get_type();
 
         sim::types::position_t get_position();
-
-        Case(Case *pCase);
     };
 };
 
