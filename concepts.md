@@ -1,7 +1,7 @@
 - [ ] Surcharge des fonctions
 - [ ] Entrées / Sorties
-- [ ] Références
-- [ ] Constance
+- [x] Références
+- [x] Constance
 - [ ] Opérateur de résolution de portée
 - [x] Espaces de noms
 - [x] Fichiers d’en-têtes et espaces de noms
@@ -9,26 +9,26 @@
 - [ ] Gestion mémoire : Allocation
 - [ ] Gestion mémoire : Libération
 - [x] Classes et objets
-- [ ] Membres & partage
-- [ ] Accès aux Membres & Portée
-- [ ] Membres & Protection
-- [ ] Fonction membre : accès & pointeur this
+- [x] Membres & partage
+- [x] Accès aux Membres & Portée
+- [x] Membres & Protection
+- [x] Fonction membre : accès & pointeur this
 - [ ] Membres amis : friend
-- [ ] Constructeur
+- [x] Constructeur
 - [ ] Destructeur
 - [ ] Surcharge d’opérateurs
 - [ ] Conversion utilisateur
 - [ ] Fonctions amies versus fonctions membres
 - [ ] Fonctions inline
-- [ ] Constructeur, initialisation, affectation
+- [x] Constructeur, initialisation, affectation
 - [ ] Constructeur, initialisation, affectation et allocation dynamique
 - [ ] Classes dérivées – Héritage simple
-- [ ] Héritage et constructeur
+- [x] Héritage et constructeur
 - [ ] Conversion classes de base <-> classes dérivées
 - [ ] Dérivation et protection
 - [x] Vers le polymorphisme
 - [ ] Liaison retardée, fonctions virtuelles
-- [ ] Classes abstraites et fonctions virtuelles pures
+- [x] Classes abstraites et fonctions virtuelles pures
 - [ ] Type des objets et conversion explicite
 - [ ] Héritage multiple
 - [ ] Généricité : Patrons de fonction
