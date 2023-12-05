@@ -1,4 +1,4 @@
-namespace simulateur::fourmi {
+namespace sim::fourmi {
     void attaquer() {
 
     }

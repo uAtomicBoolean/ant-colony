@@ -1,7 +1,7 @@
 #ifndef ANT_COLONY_TYPES_H
 #define ANT_COLONY_TYPES_H
 
-namespace simulateur::types {
+namespace sim::types {
     typedef struct {
         int x;
         int y;

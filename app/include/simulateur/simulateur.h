@@ -5,13 +5,13 @@
 #include "colonie.h"
 
 
-namespace simulateur {
+namespace sim {
     class Simulateur {
     private:
-        simulateur::colonie::Colonie colonie;
-        simulateur::carte::Carte carte;
+        sim::colonie::Colonie colonie{};
+        sim::carte::Carte carte{};
     public:
-        simulateur::carte::Carte *get_carte();
+        sim::carte::Carte *get_carte();
 
         void genere_carte();
 

@@ -1,4 +1,4 @@
-namespace simulateur::fourmi {
+namespace sim::fourmi {
     void depose_pheromone() {
 
     }
@@ -12,6 +12,6 @@ namespace simulateur::fourmi {
     }
 
     void depose_nourriture() {
-        
+
     }
 }

@@ -6,7 +6,7 @@
 #include "fourmi.h"
 
 
-namespace simulateur::carte {
+namespace sim::carte {
     enum TypeCase {
         VIDE,
         NOURRITURE,
@@ -17,17 +17,19 @@ namespace simulateur::carte {
 
     class Case {
     private:
-        TypeCase type;
-        bool est_explore;
-        simulateur::types::position_t position;
-        std::vector<simulateur::fourmi::Fourmi> *fourmi;
+        TypeCase type{};
+        bool est_explore{};
+        sim::types::position_t position{};
+        std::vector<sim::fourmi::Fourmi> *fourmi{};
 
     public:
-        Case(TypeCase type, simulateur::types::position_t position);
+        Case(TypeCase type, sim::types::position_t position);
 
         TypeCase get_type();
 
-        simulateur::types::position_t get_position();
+        sim::types::position_t get_position();
+
+        Case(Case *pCase);
     };
 };
 

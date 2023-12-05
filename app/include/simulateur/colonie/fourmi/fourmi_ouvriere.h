@@ -6,13 +6,13 @@
 #include "fourmi.h"
 
 
-namespace simulateur::fourmi {
-    class FourmiOuvriere : public simulateur::fourmi::Fourmi {
+namespace sim::fourmi {
+    class FourmiOuvriere : public sim::fourmi::Fourmi {
     private:
-        bool est_chargee;
-        float reserve_pheromone;
+        bool est_chargee{};
+        float reserve_pheromone{};
         // Sans doute plus interessant de garder une liste de pointeur sur les cases parcourues.
-        std::vector<simulateur::types::position_t> chemin_colonie;
+        std::vector<sim::types::position_t> chemin_colonie{};
 
     public:
         void depose_pheromone();

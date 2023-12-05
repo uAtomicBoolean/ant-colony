@@ -2,7 +2,7 @@
 #include "fourmi.h"
 
 
-namespace simulateur::fourmi {
+namespace sim::fourmi {
     void Fourmi::deplacer() {
         std::cout << "Je me déplace, popolo..." << std::endl;
     }

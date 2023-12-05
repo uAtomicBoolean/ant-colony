@@ -4,7 +4,7 @@
 #include "simulateur/simulateur.h"
 
 namespace gui {
-    void render(simulateur::Simulateur *s);
+    void render(sim::Simulateur *s);
 }
 
 #endif //ANT_COLONY_GUI_H

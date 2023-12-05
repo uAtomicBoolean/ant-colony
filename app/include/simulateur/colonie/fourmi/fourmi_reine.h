@@ -4,8 +4,8 @@
 #include "fourmi.h"
 
 
-namespace simulateur::fourmi {
-    class FourmiReine : public simulateur::fourmi::Fourmi {
+namespace sim::fourmi {
+    class FourmiReine : public sim::fourmi::Fourmi {
     public:
         void pondre();
     };

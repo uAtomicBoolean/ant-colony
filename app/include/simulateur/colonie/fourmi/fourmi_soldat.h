@@ -4,11 +4,11 @@
 #include "fourmi.h"
 
 
-namespace simulateur::fourmi {
-    class FourmiSoldat : public simulateur::fourmi::Fourmi {
+namespace sim::fourmi {
+    class FourmiSoldat : public sim::fourmi::Fourmi {
     private:
-        bool retour_colonie;
-        bool protege_reine;
+        bool retour_colonie{};
+        bool protege_reine{};
 
     public:
         // Faut-il passer la fourmi esclavagiste a attaquer en parametre.

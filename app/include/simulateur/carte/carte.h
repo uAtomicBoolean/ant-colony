@@ -8,19 +8,21 @@
 #include "case.h"
 
 
-namespace simulateur::carte {
+namespace sim::carte {
 
 
     class Carte {
     private:
-        std::vector<std::vector<simulateur::carte::Case>> cases;
+        std::vector<std::vector<sim::carte::Case>> cases{};
+
+        void placer_obstacle(const sim::types::position_t &pos_start);
 
     public:
         Carte();
 
-        simulateur::carte::Case **get_cases();
+        sim::carte::Case **get_cases();
 
-        simulateur::carte::Case *get_case(int x, int y);
+        sim::carte::Case *get_case(int x, int y);
 
         void genere_carte();
     };

@@ -1,7 +1,7 @@
 #include "simulateur.h"
 
-namespace simulateur {
-    simulateur::carte::Carte *Simulateur::get_carte() {
+namespace sim {
+    sim::carte::Carte *Simulateur::get_carte() {
         return &this->carte;
     }
 

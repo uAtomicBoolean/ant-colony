@@ -4,11 +4,11 @@
 #include "types.h"
 
 
-namespace simulateur::fourmi {
+namespace sim::fourmi {
     class Fourmi {
     private:
         int age;
-        simulateur::types::position_t position;
+        sim::types::position_t position{};
 
     public:
         virtual void deplacer();

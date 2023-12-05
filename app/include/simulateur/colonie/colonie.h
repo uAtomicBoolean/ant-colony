@@ -2,7 +2,7 @@
 #define ANT_COLONY_COLONIE_H
 
 
-namespace simulateur::colonie {
+namespace sim::colonie {
     class Colonie {
     public:
         void creer_colonie();

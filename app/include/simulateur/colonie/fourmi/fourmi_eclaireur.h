@@ -4,8 +4,8 @@
 #include "fourmi.h"
 
 
-namespace simulateur::fourmi {
-    class FourmiEclaireur : public simulateur::fourmi::Fourmi {
+namespace sim::fourmi {
+    class FourmiEclaireur : public sim::fourmi::Fourmi {
     public:
         void explorer();
     };

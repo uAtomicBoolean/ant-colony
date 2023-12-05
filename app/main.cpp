@@ -3,7 +3,7 @@
 
 int main() {
 
-    simulateur::Simulateur simulateur = simulateur::Simulateur();
+    sim::Simulateur simulateur = sim::Simulateur();
     simulateur.genere_carte();
     simulateur.creer_colonie();
 

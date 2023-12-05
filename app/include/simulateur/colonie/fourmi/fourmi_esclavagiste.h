@@ -4,11 +4,11 @@
 #include "fourmi.h"
 
 
-namespace simulateur::fourmi {
-    class FourmiEsclavagiste : public simulateur::fourmi::Fourmi {
+namespace sim::fourmi {
+    class FourmiEsclavagiste : public sim::fourmi::Fourmi {
     private:
-        int transport_nourriture;
-        int transport_larve;
+        int transport_nourriture{};
+        int transport_larve{};
 
     public:
         void voler();
