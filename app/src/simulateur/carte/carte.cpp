@@ -54,6 +54,11 @@ namespace sim::carte {
                 }
             }
         }
+
+        // Ajout de la colonie.
+        this->cases[sim::consts::DIMENSION_CARTE_Y / 2][sim::consts::DIMENSION_CARTE_X / 2].set_type(TypeCase::COLONIE);
+
+        // Ajout des deux stocks massifs de nourriture.
     }
 
     sim::carte::Case **Carte::get_cases() {
