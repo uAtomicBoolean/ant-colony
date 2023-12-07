@@ -1,6 +1,16 @@
 #include "simulateur.h"
 
 namespace sim {
+    // Initialisation en pointeur null pour le Singleton.
+    Simulateur *Simulateur::pointeur_sim = nullptr;
+
+    Simulateur *Simulateur::get_simulateur() {
+        if (Simulateur::pointeur_sim == nullptr) {
+            Simulateur::pointeur_sim = new Simulateur();
+        }
+        return Simulateur::pointeur_sim;
+    }
+
     sim::carte::Carte *Simulateur::get_carte() {
         return &this->carte;
     }

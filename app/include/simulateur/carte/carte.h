@@ -9,8 +9,6 @@
 
 
 namespace sim::carte {
-
-
     class Carte {
     private:
         std::array<std::array<sim::carte::Case, sim::consts::DIMENSION_CARTE_Y>, sim::consts::DIMENSION_CARTE_X> cases{};

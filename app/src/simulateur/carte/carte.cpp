@@ -12,6 +12,11 @@ namespace sim::carte {
         // 2 ou 4 -> axe Y ; 1 ou 3 -> axe X.
         sim::carte::Case current_case{this->cases[pos_start.y][pos_start.x]};
         for (int k{1}; k <= taille_obstacle; ++k) {
+            // Vérifie si on ne va pas hors limite lorsqu'on place les obstacles.
+            if (pos_start.x - k < 0 || pos_start.x + k >= sim::consts::DIMENSION_CARTE_X || pos_start.y - k < 0 ||
+                pos_start.y + k >= sim::consts::DIMENSION_CARTE_Y)
+                return;
+
             current_case.set_type(TypeCase::OBSTACLE);
             switch (direction) {
                 case 1:

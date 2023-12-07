@@ -10,10 +10,10 @@ int main() {
     std::ofstream file(cwd.string());
     file.close();
 
-    sim::Simulateur simulateur = sim::Simulateur();
-    simulateur.genere_carte();
+    sim::Simulateur *simulateur{sim::Simulateur::get_simulateur()};
+    simulateur->genere_carte();
 
-    gui::init(&simulateur);
+    gui::init(simulateur);
 
     return 0;
 }

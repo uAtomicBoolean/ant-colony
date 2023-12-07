@@ -21,7 +21,7 @@ namespace sim::carte {
         double quant_nourriture{};
         bool est_explore{};
         sim::types::position_t position{};
-        std::vector<sim::fourmi::Fourmi> *fourmi{};
+        std::vector<sim::fourmi::Fourmi> *fourmi{new std::vector<fourmi::Fourmi>};
 
     public:
         Case();
