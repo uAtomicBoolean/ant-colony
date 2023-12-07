@@ -3,12 +3,27 @@
 #include <SFML/Graphics.hpp>
 
 namespace gui {
-    void render(sim::Simulateur *s) {
+    void init(sim::Simulateur *s) {
+
+        // Objects
+        std::vector<sf::Sprite> boxShapeList;
+
+        // Textures
+        sf::Texture textureFourmiOuvriere;
+        sf::Texture textureFourmiSoldat;
+        sf::Texture textureFourmiEclaireur;
+        sf::Texture textureFourmiReine;
+        sf::Texture textureFourmiEsclavagiste;
+        sf::Texture textureVide;
+        sf::Texture textureObstacle;
+        sf::Texture textureColonie;
+        sf::Texture textureNourriture;
+
+        // Constants
         int component_size = 600;
         int sprite_size = component_size / sim::consts::DIMENSION_CARTE_X;
 
         sf::RenderWindow window(sf::VideoMode(component_size * 2, component_size), "Ant Colony!");
-
         sf::View view = window.getDefaultView();
         view.setCenter(sf::Vector2f(component_size / 2.99f, component_size / 2.85f));
         view.zoom(0.05f);
@@ -19,56 +34,16 @@ namespace gui {
         sideMenu.setSize(sf::Vector2f(component_size, component_size));
         sideMenu.setPosition(sf::Vector2f(component_size, 0));
 
-
-//        sf::Texture textureGrass;
-//        if (!textureGrass.loadFromFile("grass.png")) {
-//            // erreur...
-//        }
-//
-//        sf::Texture textureRock;
-//        if (!textureRock.loadFromFile("rock.png")) {
-//            // erreur...
-//        }
-//
-//        sf::Texture textureFood;
-//        if (!textureFood.loadFromFile("food.png")) {
-//            // erreur...
-//        }
-//
-//        sf::Texture textureColony;
-//        if (!textureColony.loadFromFile("colony.png")) {
-//            // erreur...
-//        }
-
-
-        sf::Texture textureFourmiOuvriere;
         textureFourmiOuvriere.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/ouvriere.png");
-
-        sf::Texture textureFourmiSoldat;
         textureFourmiSoldat.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/soldat.png");
-
-        sf::Texture textureFourmiEclaireur;
         textureFourmiEclaireur.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/eclaireur.png");
-
-        sf::Texture textureFourmiReine;
         textureFourmiReine.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/reine.png");
-
-        sf::Texture textureFourmiEsclavagiste;
         textureFourmiEsclavagiste.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/esclavagiste.png");
-
-        sf::Texture textureVide;
         textureVide.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/vide.png");
-
-        sf::Texture textureObstacle;
         textureObstacle.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/obstacle.png");
-
-        sf::Texture textureColonie;
         textureColonie.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/colonie.png");
-
-        sf::Texture textureNourriture;
         textureNourriture.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/nourriture.png");
 
-        std::vector<sf::Sprite> boxShapeList;
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
                 sim::carte::TypeCase c = s->get_carte()->get_case(i, j)->get_type();
@@ -111,7 +86,7 @@ namespace gui {
             for (auto &boxShape : boxShapeList) {
                 window.draw(boxShape);
             }
-            // sf::Mouse::Wheel::VerticalWheel
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 view.zoom(1.01f);
                 window.setView(view);
@@ -139,5 +114,9 @@ namespace gui {
             }
             window.display();
         }
+    }
+
+    void render(sim::Simulateur *s) {
+
     }
 }

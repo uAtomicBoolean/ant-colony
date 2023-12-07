@@ -2,8 +2,11 @@
 #define ANT_COLONY_GUI_H
 
 #include "simulateur/simulateur.h"
+#include <SFML/Graphics.hpp>
 
 namespace gui {
+    // Functions
+    void init(sim::Simulateur *s);
     void render(sim::Simulateur *s);
 }
 
