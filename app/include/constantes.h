@@ -31,7 +31,7 @@ namespace sim::consts {
     const int BIG_STOCK_NOURRITURE = 2;
     // Nombre de stocks de nourriture de 20k * 5 cases pour former 100k unités de nourriture
 
-    const int PROBA_OBSTACLE = 30.f; // 30% de la surface totale de la carte
+    const float PROBA_OBSTACLE = 15.f; // 30% de la surface totale de la carte
     const std::map<int, int> PROBA_TAILLE_OBSTACLE = {
             {49.f, 1},
             {79.f, 2},

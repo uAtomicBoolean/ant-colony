@@ -23,6 +23,8 @@ namespace sim {
 
         sim::carte::Carte *get_carte();
 
+        sim::colonie::Colonie *get_colonie();
+
         void genere_carte();
     };
 }

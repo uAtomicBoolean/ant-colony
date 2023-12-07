@@ -9,11 +9,13 @@
 namespace sim::colonie {
     class Colonie {
     private:
-        sim::fourmi::FourmiReine reine;
-        std::vector<sim::fourmi::Fourmi> fourmis;
+        sim::fourmi::FourmiReine *reine{};
+        std::vector<sim::fourmi::Fourmi> fourmis{};
         std::vector<sim::carte::Case> cases_colonie{};
     public:
         Colonie();
+
+        void add_case_colonie(const sim::carte::Case &col_case);
     };
 }
 

@@ -1,6 +1,7 @@
 #include <random>
 #include "carte.h"
 #include "case.h"
+#include "simulateur.h"
 
 
 namespace sim::carte {
@@ -83,7 +84,13 @@ namespace sim::carte {
             }
         }
 
+
+        int case_col_x = sim::consts::DIMENSION_CARTE_X;
+        int case_col_y = sim::consts::DIMENSION_CARTE_Y;
         this->cases[sim::consts::DIMENSION_CARTE_Y / 2][sim::consts::DIMENSION_CARTE_X / 2].set_type(TypeCase::COLONIE);
+        sim::Simulateur::get_simulateur()->get_colonie()
+                ->add_case_colonie(*this->get_case(case_col_x, case_col_y));
+
         this->placer_gros_stock_nourriture();
         this->placer_gros_stock_nourriture();
     }

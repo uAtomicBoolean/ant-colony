@@ -18,4 +18,8 @@ namespace sim {
     void Simulateur::genere_carte() {
         carte.genere_carte();
     }
+
+    sim::colonie::Colonie *Simulateur::get_colonie() {
+        return &this->colonie;
+    }
 }
