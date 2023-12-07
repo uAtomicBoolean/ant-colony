@@ -14,7 +14,7 @@ int main() {
     simulateur->genere_carte();
 
     gui::GUI gui = gui::GUI();
-    gui.init(&gui);
+    gui.init();
 
     return 0;
 }

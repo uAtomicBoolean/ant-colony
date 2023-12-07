@@ -5,8 +5,7 @@
 namespace gui {
     GUI::GUI() = default;
 
-    void GUI::init(gui::GUI *gui) {
-        sim::Simulateur *s{sim::Simulateur::get_simulateur()};
+    void GUI::init() {
         sf::RenderWindow window(sf::VideoMode(gui::GUI::COMPONENT_SIZE * 2, gui::GUI::COMPONENT_SIZE), "Ant Colony!");
         sf::View view = window.getDefaultView();
         view.setCenter(sf::Vector2f(gui::GUI::COMPONENT_SIZE / 2.99f, gui::GUI::COMPONENT_SIZE / 2.85f));

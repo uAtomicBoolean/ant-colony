@@ -28,7 +28,7 @@ namespace gui {
         sf::Texture textureNourriture{};
 
         // Functions
-        void init(gui::GUI *gui);
+        void init();
         void render();
     };
 }
