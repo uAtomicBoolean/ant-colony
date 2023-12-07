@@ -26,6 +26,7 @@ namespace sim::consts {
      * Nourriture disponible de base sur une case de nourriture.
      */
     const int NOURRITURE_DISPO = 10;
+    const int NOURRITURE_DISPO_GROS_STOCK = 20000;
 
     const int BIG_STOCK_NOURRITURE = 2;
     // Nombre de stocks de nourriture de 20k * 5 cases pour former 100k unités de nourriture

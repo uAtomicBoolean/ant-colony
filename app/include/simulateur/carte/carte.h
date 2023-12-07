@@ -17,6 +17,8 @@ namespace sim::carte {
 
         void placer_obstacle(const sim::types::position_t &pos_start, int taille_obstacle);
 
+        void placer_gros_stock_nourriture();
+
     public:
         sim::carte::Case **get_cases();
 
