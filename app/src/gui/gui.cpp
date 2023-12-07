@@ -1,5 +1,4 @@
 #include "gui/gui.h"
-#include <iostream>
 #include <SFML/Graphics.hpp>
 
 namespace gui {

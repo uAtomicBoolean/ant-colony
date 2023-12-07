@@ -1,5 +1,4 @@
 #include <random>
-#include <iostream>
 #include "carte.h"
 #include "case.h"
 
@@ -80,7 +79,6 @@ namespace sim::carte {
                     this->get_case(x, y)->set_type(TypeCase::NOURRITURE);
                     this->get_case(x, y)->set_position(pos_case);
                     this->get_case(x, y)->set_quant_nourriture(sim::consts::NOURRITURE_DISPO);
-                    std::cout << "position nourriture simple :" << pos_case.x << " " << pos_case.y << std::endl;
                 }
             }
         }

@@ -1,7 +1,6 @@
 #include "simulateur.h"
 #include "gui/gui.h"
 #include <filesystem>
-#include <iostream>
 #include <fstream>
 
 int main() {
@@ -15,7 +14,7 @@ int main() {
 
     for (int y = 0; y < sim::consts::DIMENSION_CARTE_Y; ++y) {
         for (int x = 0; x < sim::consts::DIMENSION_CARTE_X; ++x) {
-            
+
         }
     }
 
