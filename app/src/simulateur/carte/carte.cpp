@@ -12,6 +12,7 @@ namespace sim::carte {
 
         // 2 ou 4 -> axe Y ; 1 ou 3 -> axe X.
         sim::carte::Case current_case{this->cases[pos_start.y][pos_start.x]};
+        current_case.set_type(TypeCase::OBSTACLE);
         for (int k{1}; k <= taille_obstacle; ++k) {
             current_case.set_type(TypeCase::OBSTACLE);
             switch (direction) {

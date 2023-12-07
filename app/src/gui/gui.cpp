@@ -10,8 +10,8 @@ namespace gui {
         sf::RenderWindow window(sf::VideoMode(component_size * 2, component_size), "Ant Colony!");
 
         sf::View view = window.getDefaultView();
+        view.setCenter(sf::Vector2f(component_size / 2.99f, component_size / 2.85f));
         view.zoom(0.05f);
-        view.setCenter(sf::Vector2f(component_size / 2, component_size / 2));
         window.setView(view);
 
         sf::RectangleShape sideMenu;
@@ -41,38 +41,55 @@ namespace gui {
 //        }
 
 
-        sf::Texture textureFourmi;
-        textureFourmi.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/fourmi.png");
+        sf::Texture textureFourmiOuvriere;
+        textureFourmiOuvriere.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/ouvriere.png");
+
+        sf::Texture textureFourmiSoldat;
+        textureFourmiSoldat.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/soldat.png");
+
+        sf::Texture textureFourmiEclaireur;
+        textureFourmiEclaireur.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/eclaireur.png");
+
+        sf::Texture textureFourmiReine;
+        textureFourmiReine.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/reine.png");
+
+        sf::Texture textureFourmiEsclavagiste;
+        textureFourmiEsclavagiste.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/esclavagiste.png");
+
+        sf::Texture textureVide;
+        textureVide.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/vide.png");
+
+        sf::Texture textureObstacle;
+        textureObstacle.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/obstacle.png");
+
+        sf::Texture textureColonie;
+        textureColonie.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/colonie.png");
+
+        sf::Texture textureNourriture;
+        textureNourriture.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/nourriture.png");
 
         std::vector<sf::Sprite> boxShapeList;
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
-//                simulateur::carte::TypeCase c = s->get_carte().get_case(i, j).get_type();
+                sim::carte::TypeCase c = s->get_carte()->get_case(i, j)->get_type();
                 sf::Sprite sprite;
                 // set color
-                if(i % 2 == 0) {
-                    sprite.setTexture(textureFourmi);
-                    std::cout << "fourmi" << std::endl;
+//                sprite.setTexture(textureVide);
+                std::cout << c << std::endl;
+                switch (c) {
+                    case sim::carte::VIDE:
+                        sprite.setTexture(textureVide);
+                        break;
+                    case sim::carte::OBSTACLE:
+                        sprite.setTexture(textureObstacle);
+                        break;
+                    case sim::carte::COLONIE:
+                        sprite.setTexture(textureColonie);
+                        break;
+                    case sim::carte::NOURRITURE:
+                        sprite.setTexture(textureNourriture);
+                        break;
                 }
-                else if(i % 2 == 1) {
-                    sprite.setColor(sf::Color::White);
-                    std::cout << "white" << std::endl;
-
-                }
-//                switch (c) {
-//                    case simulateur::carte::VIDE:
-//                        sprite.setTexture(textureRock);
-//                        break;
-//                    case simulateur::carte::OBSTACLE:
-//                        sprite.setTexture(textureGrass);
-//                        break;
-//                    case simulateur::carte::COLONIE:
-//                        sprite.setTexture(textureColony);
-//                        break;
-//                    case simulateur::carte::NOURRITURE:
-//                        sprite.setTexture(textureFood);
-//                        break;
-//                }
 
                 // set position
                 sprite.setPosition(sf::Vector2f(i * sprite_size, j * sprite_size));
@@ -105,19 +122,19 @@ namespace gui {
             }
 
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-                view.move(0, -1);
+                view.move(0, -0.5);
                 window.setView(view);
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                view.move(0, 1);
+                view.move(0, 0.5);
                 window.setView(view);
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-                view.move(-1, 0);
+                view.move(-0.5, 0);
                 window.setView(view);
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                view.move(1, 0);
+                view.move(0.5, 0);
                 window.setView(view);
             }
             window.display();
