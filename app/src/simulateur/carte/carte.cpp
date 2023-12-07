@@ -1,4 +1,5 @@
 #include <random>
+#include <iostream>
 #include "carte.h"
 #include "case.h"
 
@@ -10,26 +11,28 @@ namespace sim::carte {
         int direction = distrib(gen);
 
         // 2 ou 4 -> axe Y ; 1 ou 3 -> axe X.
-        sim::carte::Case current_case{this->cases[pos_start.y][pos_start.x]};
+        sim::carte::Case *current_case{this->get_case(pos_start.x, pos_start.y)};
         for (int k{1}; k <= taille_obstacle; ++k) {
             // Vérifie si on ne va pas hors limite lorsqu'on place les obstacles.
             if (pos_start.x - k < 0 || pos_start.x + k >= sim::consts::DIMENSION_CARTE_X || pos_start.y - k < 0 ||
                 pos_start.y + k >= sim::consts::DIMENSION_CARTE_Y)
                 return;
 
-            current_case.set_type(TypeCase::OBSTACLE);
+            if (current_case->get_type() == TypeCase::VIDE) {
+                current_case->set_type(TypeCase::OBSTACLE);
+            }
             switch (direction) {
                 case 1:
-                    current_case = this->cases[pos_start.y][pos_start.x - k];
+                    current_case = this->get_case(pos_start.x - k, pos_start.y);
                     break;
                 case 2:
-                    current_case = this->cases[pos_start.y - k][pos_start.x];
+                    current_case = this->get_case(pos_start.x, pos_start.y - k);
                     break;
                 case 3:
-                    current_case = this->cases[pos_start.y][pos_start.x + k];
+                    current_case = this->get_case(pos_start.x + k, pos_start.y);
                     break;
                 case 4:
-                    current_case = this->cases[pos_start.y + k][pos_start.x];
+                    current_case = this->get_case(pos_start.x, pos_start.y + k);
                     break;
             }
         }
@@ -61,7 +64,7 @@ namespace sim::carte {
 
         for (int y{0}; y < sim::consts::DIMENSION_CARTE_Y; ++y) {
             for (int x{0}; x < sim::consts::DIMENSION_CARTE_X; ++x) {
-                if (this->cases[y][x].get_type() != TypeCase::VIDE) continue;
+                if (this->get_case(x, y)->get_type() != TypeCase::VIDE) continue;
 
                 sim::types::position_t pos_case{x, y};
                 float proba{distribution(gen)};
@@ -72,9 +75,12 @@ namespace sim::carte {
                     if (iterator != sim::consts::PROBA_TAILLE_OBSTACLE.end())
                         this->placer_obstacle(pos_case, iterator->second);
 
-                } else if (proba >= sim::consts::PROBA_OBSTACLE && proba < sim::consts::PROBA_NOURRITURE) {
-                    this->cases[y][x].set_type(TypeCase::NOURRITURE);
-                    this->cases[y][x].set_position(pos_case);
+                } else if (proba >= sim::consts::PROBA_OBSTACLE &&
+                           proba < sim::consts::PROBA_OBSTACLE + sim::consts::PROBA_NOURRITURE) {
+                    this->get_case(x, y)->set_type(TypeCase::NOURRITURE);
+                    this->get_case(x, y)->set_position(pos_case);
+                    this->get_case(x, y)->set_quant_nourriture(sim::consts::NOURRITURE_DISPO);
+                    std::cout << "position nourriture simple :" << pos_case.x << " " << pos_case.y << std::endl;
                 }
             }
         }

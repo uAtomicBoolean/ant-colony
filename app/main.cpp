@@ -13,6 +13,12 @@ int main() {
     sim::Simulateur *simulateur{sim::Simulateur::get_simulateur()};
     simulateur->genere_carte();
 
+    for (int y = 0; y < sim::consts::DIMENSION_CARTE_Y; ++y) {
+        for (int x = 0; x < sim::consts::DIMENSION_CARTE_X; ++x) {
+            
+        }
+    }
+
     gui::GUI gui = gui::GUI();
     gui.init();
 

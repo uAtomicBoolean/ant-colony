@@ -17,9 +17,6 @@ namespace sim::carte {
 
     void Case::set_type(TypeCase type_case) {
         this->type = type_case;
-        if (type == TypeCase::NOURRITURE) {
-            this->quant_nourriture = 10;
-        }
     }
 
     void Case::set_position(sim::types::position_t pos) {

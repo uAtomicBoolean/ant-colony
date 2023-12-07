@@ -30,7 +30,6 @@ namespace gui {
         this->render();
 
         while (window.isOpen()) {
-            std::cout << "render" << std::endl;
             sf::Event event{};
             while (window.pollEvent(event)) {
                 if (event.type == sf::Event::Closed)
@@ -38,7 +37,7 @@ namespace gui {
             }
 
             window.clear();
-            for (auto &boxShape : this->boxShapeList) {
+            for (auto &boxShape: this->boxShapeList) {
                 window.draw(boxShape);
             }
 
@@ -51,19 +50,19 @@ namespace gui {
                 window.setView(view);
             }
 
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
                 view.move(0, -0.5);
                 window.setView(view);
             }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
                 view.move(0, 0.5);
                 window.setView(view);
             }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
                 view.move(-0.5, 0);
                 window.setView(view);
             }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
                 view.move(0.5, 0);
                 window.setView(view);
             }
@@ -79,7 +78,7 @@ namespace gui {
                 sf::Sprite sprite;
                 // set color
 //                sprite.setTexture(textureVide);
-                std::cout << c << std::endl;
+//              //std::cout << c << std::endl;
                 switch (c) {
                     case sim::carte::VIDE:
                         sprite.setTexture(this->textureVide);
