@@ -13,7 +13,8 @@ int main() {
     sim::Simulateur *simulateur{sim::Simulateur::get_simulateur()};
     simulateur->genere_carte();
 
-    gui::init(simulateur);
+    gui::GUI gui = gui::GUI();
+    gui.init(&gui);
 
     return 0;
 }
