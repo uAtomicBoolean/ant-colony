@@ -17,15 +17,15 @@ namespace gui {
         sideMenu.setSize(sf::Vector2f(gui::GUI::COMPONENT_SIZE, gui::GUI::COMPONENT_SIZE));
         sideMenu.setPosition(sf::Vector2f(gui::GUI::COMPONENT_SIZE, 0));
 
-        this->textureFourmiOuvriere.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/ouvriere.png");
-        this->textureFourmiSoldat.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/soldat.png");
-        this->textureFourmiEclaireur.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/eclaireur.png");
-        this->textureFourmiReine.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/reine.png");
-        this->textureFourmiEsclavagiste.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/esclavagiste.png");
-        this->textureVide.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/vide.png");
-        this->textureObstacle.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/obstacle.png");
-        this->textureColonie.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/colonie.png");
-        this->textureNourriture.loadFromFile("/Users/lothaireguee/Documents/ENSI/S7/CPP/ant-colony/app/assets/nourriture.png");
+        this->textureFourmiOuvriere.loadFromFile("../app/assets/ouvriere.png");
+        this->textureFourmiSoldat.loadFromFile("../app/assets/soldat.png");
+        this->textureFourmiEclaireur.loadFromFile("../app/assets/eclaireur.png");
+        this->textureFourmiReine.loadFromFile("../app/assets/reine.png");
+        this->textureFourmiEsclavagiste.loadFromFile("../app/assets/esclavagiste.png");
+        this->textureVide.loadFromFile("../app/assets/vide.png");
+        this->textureObstacle.loadFromFile("../app/assets/obstacle.png");
+        this->textureColonie.loadFromFile("../app/assets/colonie.png");
+        this->textureNourriture.loadFromFile("../app/assets/nourriture.png");
 
         this->render();
 
