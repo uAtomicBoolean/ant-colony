@@ -1,5 +1,8 @@
+
+#include "fourmi_reine.h"
+
 namespace sim::fourmi {
-    void pondre() {
+    void fourmi::FourmiReine::pondre() {
 
     }
 }

@@ -7,13 +7,15 @@
 namespace sim::fourmi {
     class Fourmi {
     private:
-        int age;
+        int age{};
         sim::types::position_t position{};
 
     public:
-        virtual void deplacer();
+        Fourmi();
 
-        void displayFourmi();
+        explicit Fourmi(sim::types::position_t pos);
+
+        virtual void deplacer();
     };
 }
 

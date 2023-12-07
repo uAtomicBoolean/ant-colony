@@ -3,11 +3,13 @@
 
 
 namespace sim::fourmi {
-    void Fourmi::deplacer() {
-        std::cout << "Je me déplace, popolo..." << std::endl;
+    Fourmi::Fourmi() = default;
+
+    Fourmi::Fourmi(const sim::types::position_t pos) {
+        this->position = pos;
     }
 
-    void Fourmi::displayFourmi() {
-        std::cout << "Encore une fourmi ?" << std::endl;
+    void Fourmi::deplacer() {
+        std::cout << "Je me déplace, popolo..." << std::endl;
     }
 }

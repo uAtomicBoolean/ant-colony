@@ -3,14 +3,17 @@
 
 #include <vector>
 #include "case.h"
+#include "fourmi_reine.h"
 
 
 namespace sim::colonie {
     class Colonie {
     private:
-        std::vector<sim::carte::Case> cases_colonie;
+        sim::fourmi::FourmiReine reine;
+        std::vector<sim::fourmi::Fourmi> fourmis;
+        std::vector<sim::carte::Case> cases_colonie{};
     public:
-        void creer_colonie();
+        Colonie();
     };
 }
 

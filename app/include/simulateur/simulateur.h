@@ -10,12 +10,11 @@ namespace sim {
     private:
         sim::colonie::Colonie colonie{};
         sim::carte::Carte carte{};
+
     public:
         sim::carte::Carte *get_carte();
 
         void genere_carte();
-
-        void creer_colonie();
     };
 
 }
