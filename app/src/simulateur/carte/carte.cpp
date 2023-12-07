@@ -14,8 +14,8 @@ namespace sim::carte {
         sim::carte::Case *current_case{this->get_case(pos_start.x, pos_start.y)};
         for (int k{1}; k <= taille_obstacle; ++k) {
             // Vérifie si on ne va pas hors limite lorsqu'on place les obstacles.
-            if (pos_start.x - k < 0 || pos_start.x + k >= sim::consts::DIMENSION_CARTE_X || pos_start.y - k < 0 ||
-                pos_start.y + k >= sim::consts::DIMENSION_CARTE_Y)
+            if (pos_start.x - k < -1 || pos_start.x + k > sim::consts::DIMENSION_CARTE_X || pos_start.y - k < -1 ||
+                pos_start.y + k > sim::consts::DIMENSION_CARTE_Y)
                 return;
 
             if (current_case->get_type() == TypeCase::VIDE) {
