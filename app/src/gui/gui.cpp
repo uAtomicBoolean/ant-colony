@@ -75,13 +75,7 @@ namespace gui {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
                 sim::carte::TypeCase c = s->get_carte()->get_case(i, j)->get_type();
                 sf::Sprite sprite;
-                // set color
-//                sprite.setTexture(textureVide);
-//              //std::cout << c << std::endl;
                 switch (c) {
-                    case sim::carte::VIDE:
-                        sprite.setTexture(this->textureVide);
-                        break;
                     case sim::carte::OBSTACLE:
                         sprite.setTexture(this->textureObstacle);
                         break;
@@ -93,10 +87,12 @@ namespace gui {
                         break;
                 }
 
-                // set position
-                sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
-                sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                this->boxShapeList.push_back(sprite);
+                if (c != sim::carte::TypeCase::VIDE) {
+                    sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
+                    sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
+                    this->boxShapeList.push_back(sprite);
+                }
+
 
             }
         }
