@@ -15,6 +15,8 @@ namespace sim::fourmi {
         std::vector<sim::types::position_t> chemin_colonie{};
 
     public:
+        void deplacer() override;
+
         void depose_pheromone();
 
         void chercher_nourriture();

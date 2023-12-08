@@ -15,6 +15,10 @@ namespace sim::carte {
         return this->position;
     }
 
+    bool Case::is_explore() {
+        return this->est_explore;
+    }
+
     void Case::set_type(TypeCase type_case) {
         this->type = type_case;
     }

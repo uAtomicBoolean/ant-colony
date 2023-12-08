@@ -11,6 +11,7 @@ namespace sim::fourmi {
         int transport_larve{};
 
     public:
+        void deplacer() override;
         void voler();
     };
 }

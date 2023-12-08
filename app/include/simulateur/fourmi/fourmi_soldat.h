@@ -11,6 +11,8 @@ namespace sim::fourmi {
         bool protege_reine{};
 
     public:
+        void deplacer() override;
+
         // Faut-il passer la fourmi esclavagiste a attaquer en parametre.
         void attaquer();
 

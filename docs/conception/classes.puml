@@ -9,8 +9,9 @@ class Main {
 
 namespace gui {
     class GUI {
-        + render(simulateur *s) : void
-    }
+		+ init() : void
+        + render : void
+	}
 }
 
 namespace simulateur {
@@ -155,7 +156,7 @@ namespace simulateur {
 	Simulateur "1" *-- "1" simulateur.colonie.Colonie
 	Simulateur "1" *-- "1" simulateur.carte.Carte
 	simulateur.colonie.Colonie "1" *-- "1..*" simulateur.fourmi.Fourmi
-	simulateur.carte.Case "1" *-- "1..*" simulateur.fourmi.Fourmi
+	simulateur.fourmi.Fourmi "1" -- "1" simulateur.carte.Case
 }
 
 Main "1" *-- "1" simulateur.Simulateur

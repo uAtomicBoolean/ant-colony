@@ -1,17 +1,23 @@
+#include "fourmi_ouvriere.h"
+
 namespace sim::fourmi {
-    void depose_pheromone() {
+    void FourmiOuvriere::deplacer() {
+        // TODO
+    }
+
+    void FourmiOuvriere::depose_pheromone() {
 
     }
 
-    void chercher_nourriture() {
+    void FourmiOuvriere::chercher_nourriture() {
 
     }
 
-    void prendre_nourriture() {
+    void FourmiOuvriere::prendre_nourriture() {
 
     }
 
-    void depose_nourriture() {
+    void FourmiOuvriere::depose_nourriture() {
 
     }
 }

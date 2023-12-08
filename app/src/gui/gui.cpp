@@ -90,6 +90,8 @@ namespace gui {
                     case sim::carte::NOURRITURE:
                         sprite.setTexture(this->textureNourriture);
                         break;
+                    default:
+                        break;
                 }
 
                 if (c != sim::carte::TypeCase::VIDE) {

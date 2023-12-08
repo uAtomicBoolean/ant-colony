@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "types.h"
-#include "fourmi.h"
 
 
 namespace sim::carte {
@@ -21,10 +20,12 @@ namespace sim::carte {
         double quant_nourriture{};
         bool est_explore{};
         sim::types::position_t position{};
-        std::vector<sim::fourmi::Fourmi> *fourmi{new std::vector<fourmi::Fourmi>};
+        int nb_fourmis{};
 
     public:
         Case();
+
+        bool is_explore();
 
         void set_type(TypeCase type);
 

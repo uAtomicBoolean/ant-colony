@@ -1,9 +1,15 @@
+#include "fourmi_soldat.h"
+
 namespace sim::fourmi {
-    void attaquer() {
+    void FourmiSoldat::deplacer() {
+        // TODO
+    }
+
+    void FourmiSoldat::attaquer() {
 
     }
 
-    void verifier_duree_ronde() {
+    void FourmiSoldat::verifier_duree_ronde() {
 
     }
 }
