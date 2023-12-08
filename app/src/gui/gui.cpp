@@ -99,8 +99,6 @@ namespace gui {
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     this->boxShapeList.push_back(sprite);
                 }
-
-
             }
         }
     }

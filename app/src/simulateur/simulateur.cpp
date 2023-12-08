@@ -1,6 +1,5 @@
 #include "simulateur.h"
 #include <thread>
-#include <iostream>
 
 
 namespace sim {
@@ -77,6 +76,13 @@ namespace sim {
 
     template<typename T>
     void Simulateur::gere_fourmis_pas_simu(T *fourmis) {
+        for (auto fourmi: *fourmis) {
+            if (fourmi.get_age() > sim::consts::AGE_MAX) {
+                sim::carte::Case *cur_case = fourmi.get_case_actuelle();
+                cur_case->update_nb_fourmis(-1);
+                // TODO supprimer la fourmis du vecteur.
+            }
+        }
         // Gestion de l'âge des fourmis
         //      Incrementation de l'age.
         //      Tue les fourmis trop vieille.

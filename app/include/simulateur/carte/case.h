@@ -16,16 +16,25 @@ namespace sim::carte {
 
     class Case {
     private:
-        TypeCase type{};
-        double quant_nourriture{};
+        int nb_fourmis{0};
         bool est_explore{};
+        double quant_nourriture{};
+
+        TypeCase type{};
         sim::types::position_t position{};
-        int nb_fourmis{};
 
     public:
         Case();
 
-        bool is_explore();
+        int get_nb_fourmis() const;
+
+        /**
+         * Met a jour le nombre de fourmis actuellement dans la case.
+         * @param increment Un entier egal a 1 ou -1 indiquant si une fourmi arrive ou part de la case.
+         */
+        void update_nb_fourmis(int increment);
+
+        bool is_explore() const;
 
         void set_type(TypeCase type);
 

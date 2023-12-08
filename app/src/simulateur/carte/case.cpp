@@ -6,16 +6,15 @@ namespace sim::carte {
         this->type = TypeCase::VIDE;
     }
 
-    TypeCase Case::get_type() {
-        return this->type;
+    int Case::get_nb_fourmis() const {
+        return this->nb_fourmis;
     }
 
-
-    sim::types::position_t Case::get_position() {
-        return this->position;
+    void Case::update_nb_fourmis(int increment) {
+        this->nb_fourmis += increment;
     }
 
-    bool Case::is_explore() {
+    bool Case::is_explore() const {
         return this->est_explore;
     }
 
@@ -29,5 +28,14 @@ namespace sim::carte {
 
     void Case::set_quant_nourriture(double quant_nour) {
         this->quant_nourriture = quant_nour;
+    }
+
+    TypeCase Case::get_type() {
+        return this->type;
+    }
+
+
+    sim::types::position_t Case::get_position() {
+        return this->position;
     }
 }
