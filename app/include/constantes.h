@@ -17,9 +17,12 @@ namespace sim::consts {
 
     const int AGE_MAX = 1; // 1 an
     const int AGE_MAX_REINE = 10; // 10 ans
-    const double CONSOMMATION_NOURRITURE = .1; // 0.1% par jour
-    const int CONSOMMATION_NOURRITURE_REINE = 1; // 1% par jour
-    const int PONDAGE = 2; // 2 par jour
+    const int TAILLE_UNITE_NOURRITURE = 1; // Donc la reine consomme 0.01 par tour.
+    const double POURCEN_CONSO_NOURRITURE = .001f; // 0.1% par jour
+    const double POURCENT_CONSO_NOURRITURE_REINE = .01f; // 1% par jour
+    const double CONSO_NOURRITURE = TAILLE_UNITE_NOURRITURE * POURCEN_CONSO_NOURRITURE;
+    const double CONSO_NOURRITURE_REINE = TAILLE_UNITE_NOURRITURE * POURCENT_CONSO_NOURRITURE_REINE;
+    const int PONTE = 2; // 2 par jour
 
     const double PROBA_NOURRITURE = .02f;
     /**

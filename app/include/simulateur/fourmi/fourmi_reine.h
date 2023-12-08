@@ -6,8 +6,18 @@
 
 namespace sim::fourmi {
     class FourmiReine : public sim::fourmi::Fourmi {
+    private:
+        /**
+         * Pond une fourmi choisie aleatoirement.
+         */
+        void pondre_fourmi();
+
     public:
-        void pondre();
+        /**
+         * Pond deux fourmis.
+         * @param premiere_ponte Si premiere ponte, alors la premiere fourmi est une eclaireuse.
+         */
+        void pondre(bool premiere_ponte);
     };
 }
 

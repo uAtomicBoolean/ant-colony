@@ -5,18 +5,22 @@ namespace sim::fourmi {
     Fourmi::Fourmi() = default;
 
     Fourmi::Fourmi(sim::carte::Case *case_actuelle) {
-        this->case_actuelle = case_actuelle;
+        this->chemin.push_back(case_actuelle);
+    }
+
+    int Fourmi::get_age() const {
+        return this->age;
+    }
+
+    void Fourmi::vieillir() {
+        ++this->age;
     }
 
     void Fourmi::deplacer() {
-        
-    }
 
-    void Fourmi::set_case_actuelle(sim::carte::Case *case_actuelle) {
-        this->case_actuelle = case_actuelle;
     }
 
     sim::carte::Case *Fourmi::get_case_actuelle() {
-        return this->case_actuelle;
+        return this->chemin.back();
     }
 }

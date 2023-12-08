@@ -15,6 +15,8 @@ namespace sim {
         sim::carte::Carte carte{};
         sim::colonie::Colonie colonie{};
 
+        int nb_heures{0};
+
         Simulateur();
 
     public:
@@ -36,6 +38,9 @@ namespace sim {
         void genere_carte();
 
         void simulation();
+
+        template<typename T>
+        void gere_fourmis_pas_simu(T *fourmis);
     };
 }
 
