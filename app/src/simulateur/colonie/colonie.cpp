@@ -1,5 +1,6 @@
 #include <iostream>
 #include "colonie.h"
+#include "fourmi_reine.h"
 
 namespace sim::colonie {
     Colonie::Colonie() {
