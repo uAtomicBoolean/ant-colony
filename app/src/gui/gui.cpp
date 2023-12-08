@@ -28,6 +28,9 @@ namespace gui {
 
         this->render();
 
+        sim::Simulateur *s{sim::Simulateur::get_simulateur()};
+        s->switch_gui_pret();
+
         while (window.isOpen()) {
             sf::Event event{};
             while (window.pollEvent(event)) {
