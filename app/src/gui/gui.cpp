@@ -34,8 +34,10 @@ namespace gui {
         while (window.isOpen()) {
             sf::Event event{};
             while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed)
+                if (event.type == sf::Event::Closed) {
+                    sim::Simulateur::get_simulateur()->set_simu_active(false);
                     window.close();
+                }
             }
 
             window.clear();

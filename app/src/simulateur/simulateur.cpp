@@ -32,6 +32,10 @@ namespace sim {
         this->gui_pret = !this->gui_pret;
     }
 
+    void Simulateur::set_simu_active(bool active) {
+        this->simu_active = active;
+    }
+
     void Simulateur::genere_carte() {
         carte.genere_carte();
     }
@@ -45,7 +49,6 @@ namespace sim {
 
         while (this->simu_active) {
             if (!this->gui_pret) {
-                std::cout << "Wait for GUI" << std::endl;
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 continue;
             }

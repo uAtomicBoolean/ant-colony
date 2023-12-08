@@ -31,6 +31,8 @@ namespace sim {
 
         void switch_gui_pret();
 
+        void set_simu_active(bool active);
+
         void genere_carte();
 
         void simulation();
