@@ -23,6 +23,8 @@ namespace sim {
 
         static Simulateur *get_simulateur();
 
+        static void demarre_simulation();
+
         sim::carte::Carte *get_carte();
 
         sim::colonie::Colonie *get_colonie();
@@ -31,7 +33,7 @@ namespace sim {
 
         void genere_carte();
 
-        void demarre_simulation();
+        void simulation();
     };
 }
 

@@ -1,5 +1,6 @@
 #include "simulateur.h"
 #include <thread>
+#include <iostream>
 
 
 namespace sim {
@@ -19,6 +20,10 @@ namespace sim {
         return Simulateur::pointeur_sim;
     }
 
+    void Simulateur::demarre_simulation() {
+        Simulateur::get_simulateur()->simulation();
+    }
+
     sim::carte::Carte *Simulateur::get_carte() {
         return &this->carte;
     }
@@ -35,11 +40,12 @@ namespace sim {
         return &this->colonie;
     }
 
-    void Simulateur::demarre_simulation() {
+    void Simulateur::simulation() {
         this->simu_active = true;
 
         while (this->simu_active) {
             if (!this->gui_pret) {
+                std::cout << "Wait for GUI" << std::endl;
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 continue;
             }
