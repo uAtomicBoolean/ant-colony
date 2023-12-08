@@ -102,4 +102,54 @@ namespace sim::carte {
     sim::carte::Case *Carte::get_case(int x, int y) {
         return &this->cases[x][y];
     }
+
+    bool Carte::check_case(sim::carte::Case *case_to_check) {
+        if (case_to_check->get_type() == TypeCase::VIDE) {
+            return true;
+        }
+        else if (case_to_check->get_type() == TypeCase::OBSTACLE) {
+            return false;
+        }
+        return false;
+    }
+
+    sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check, int direction){
+        switch (direction) {
+            case 1:
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y);
+            case 2:
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x, case_to_check->get_position().y - 1);
+            case 3:
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y);
+            case 4:
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x, case_to_check->get_position().y + 1);
+            default:
+                return nullptr;
+        }
+    }
+
+
+    sim::carte::Case *Carte::get_case_voisine8d(sim::carte::Case *case_to_check, int direction){
+        Carte *carte = sim::Simulateur::get_simulateur()->get_carte();
+        switch (direction) {
+            case 1:
+                return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y);
+            case 2:
+                return carte->get_case(case_to_check->get_position().x, case_to_check->get_position().y - 1);
+            case 3:
+                return carte->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y);
+            case 4:
+                return carte->get_case(case_to_check->get_position().x, case_to_check->get_position().y + 1);
+            case 5:
+                return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y - 1);
+            case 6:
+                return carte->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y - 1);
+            case 7:
+                return carte->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y + 1);
+            case 8:
+                return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y + 1);
+            default:
+                return nullptr;
+        }
+    }
 };
