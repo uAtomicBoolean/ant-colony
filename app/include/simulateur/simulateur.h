@@ -10,10 +10,12 @@ namespace sim {
     private:
         static Simulateur *pointeur_sim;
 
-        Simulateur() {}
-
-        sim::colonie::Colonie colonie{};
+        bool simu_active{};
+        bool gui_pret{};
         sim::carte::Carte carte{};
+        sim::colonie::Colonie colonie{};
+
+        Simulateur();
 
     public:
         // Suppression du constructeur de copie.
@@ -25,7 +27,11 @@ namespace sim {
 
         sim::colonie::Colonie *get_colonie();
 
+        void switch_gui_pret();
+
         void genere_carte();
+
+        void demarre_simulation();
     };
 }
 

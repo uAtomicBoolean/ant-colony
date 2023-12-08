@@ -1,8 +1,16 @@
 #include "simulateur.h"
+#include <thread>
+
 
 namespace sim {
     // Initialisation en pointeur null pour le Singleton.
     Simulateur *Simulateur::pointeur_sim = nullptr;
+
+    Simulateur::Simulateur() {
+        this->simu_active = false;
+        this->gui_pret = false;
+    }
+
 
     Simulateur *Simulateur::get_simulateur() {
         if (Simulateur::pointeur_sim == nullptr) {
@@ -15,11 +23,28 @@ namespace sim {
         return &this->carte;
     }
 
+    void Simulateur::switch_gui_pret() {
+        this->gui_pret = !this->gui_pret;
+    }
+
     void Simulateur::genere_carte() {
         carte.genere_carte();
     }
 
     sim::colonie::Colonie *Simulateur::get_colonie() {
         return &this->colonie;
+    }
+
+    void Simulateur::demarre_simulation() {
+        this->simu_active = true;
+
+        while (this->simu_active) {
+            if (!this->gui_pret) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                continue;
+            }
+
+            // TODO Un pas de simulation.
+        }
     }
 }
