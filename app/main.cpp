@@ -1,12 +1,11 @@
 #include "simulateur.h"
-#include "gui/gui.h"
+#include "gui.h"
 #include <filesystem>
 #include <fstream>
 #include <thread>
 
 
 int main() {
-
     std::filesystem::path cwd = std::filesystem::current_path() / "filename.txt";
     std::ofstream file(cwd.string());
     file.close();
@@ -20,6 +19,6 @@ int main() {
     gui.init();
 
     thread_simu.join();
-    
+
     return 0;
 }

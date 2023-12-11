@@ -31,6 +31,7 @@ include_directories(app/include/simulateur)
 include_directories(app/include/simulateur/carte)
 include_directories(app/include/simulateur/colonie)
 include_directories(app/include/simulateur/fourmi)
+include_directories(app/include/gui)
 
 target_include_directories(ant_colony PUBLIC app/include)
 target_link_libraries(ant_colony sfml-graphics sfml-window sfml-system)
