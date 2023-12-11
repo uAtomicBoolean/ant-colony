@@ -23,4 +23,8 @@ namespace sim::fourmi {
     sim::carte::Case *Fourmi::get_case_actuelle() {
         return this->chemin.back();
     }
+
+    int Fourmi::get_duree_juvenile() const {
+        return this->duree_juvenile;
+    }
 }

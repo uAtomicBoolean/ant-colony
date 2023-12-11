@@ -4,11 +4,14 @@
 #include <vector>
 #include "types.h"
 #include "fourmi.h"
+#include "constantes.h"
 
 
 namespace sim::fourmi {
     class FourmiOuvriere : public sim::fourmi::Fourmi {
     private:
+        const int duree_juvenile{sim::consts::DUREE_JUVENILE_OUVRIERE};
+
         bool est_chargee{};
         float reserve_pheromone{};
         // Sans doute plus interessant de garder une liste de pointeur sur les cases parcourues.

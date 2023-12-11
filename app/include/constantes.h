@@ -44,6 +44,9 @@ namespace sim::consts {
             {99.f, 6},
     };
 
+    const int DUREE_JUVENILE_OUVRIERE = 15;
+    const int DUREE_JUVENILE_ECLAIREUR = 2;
+
     const int PROBA_REINE_POND_OUVRIERE = 80.f; // 80% de chances de pondre une ouvrière
     const int PROBA_REINE_POND_SOLDAT = 15.f;
     const int PROBA_REINE_POND_ECLAIREUR = 5.f;
