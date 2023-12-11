@@ -99,7 +99,7 @@ namespace sim {
             }
             this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE);
 
-            // TODO déplacer la fourmis.
+            fourmi->deplacer();
         }
     }
 }
