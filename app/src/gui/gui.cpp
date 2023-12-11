@@ -2,7 +2,6 @@
 #include "gui.h"
 #include "case.h"
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 namespace gui {
     GUI::GUI() = default;
@@ -180,7 +179,6 @@ namespace gui {
                 }
 
                 if (caseXY->is_explore()) {
-                    std::cout << "explore" << std::endl;
                     sprite.setTexture(this->textureExplore);
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
