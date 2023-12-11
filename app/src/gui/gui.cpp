@@ -44,11 +44,6 @@ namespace gui {
                 }
             }
 
-            window.clear();
-            for (auto &boxShape: this->boxShapeList) {
-                window.draw(boxShape);
-            }
-
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 view.zoom(1.01f);
                 window.setView(view);
@@ -74,7 +69,13 @@ namespace gui {
                 view.move(0.5, 0);
                 window.setView(view);
             }
+
+            window.clear();
+            for (auto &boxShape: this->boxShapeList) {
+                window.draw(boxShape);
+            }
             window.display();
+            window.setFramerateLimit(120);
         }
     }
 
@@ -130,8 +131,7 @@ namespace gui {
                                 sprite_fourmi.setTexture(this->textureFourmiEsclavagiste);
                                 break;
                         }
-                    }
-                    else {
+                    } else {
                         sprite_fourmi.setTexture(this->textureGroupe);
                     }
 
