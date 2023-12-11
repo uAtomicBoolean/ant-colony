@@ -27,15 +27,7 @@ namespace sim::colonie {
         return this->reine;
     }
 
-    std::vector<sim::fourmi::FourmiOuvriere> *Colonie::get_ouvrieres() {
-        return &this->ouvrieres;
-    }
-
-    std::vector<sim::fourmi::FourmiEclaireur> *Colonie::get_eclaireuses() {
-        return &this->eclaireuses;
-    }
-
-    std::vector<sim::fourmi::FourmiSoldat> *Colonie::get_soldat() {
-        return &this->soldats;
+    std::vector<sim::fourmi::Fourmi *> *Colonie::get_fourmis() {
+        return &this->fourmis;
     }
 }

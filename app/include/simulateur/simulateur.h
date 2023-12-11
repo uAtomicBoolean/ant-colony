@@ -39,8 +39,7 @@ namespace sim {
 
         void simulation();
 
-        template<typename T>
-        void gere_fourmis_pas_simu(T *fourmis);
+        void gere_fourmis_pas_simu(std::vector<sim::fourmi::Fourmi *> *fourmis);
     };
 }
 

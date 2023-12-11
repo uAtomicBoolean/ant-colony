@@ -68,21 +68,26 @@ namespace sim {
             this->colonie.get_reine()->pondre(premier_pas);
             if (premier_pas) premier_pas = false;
 
-            this->gere_fourmis_pas_simu(this->colonie.get_ouvrieres());
-            this->gere_fourmis_pas_simu(this->colonie.get_eclaireuses());
-            this->gere_fourmis_pas_simu(this->colonie.get_soldat());
+            this->gere_fourmis_pas_simu(this->colonie.get_fourmis());
         }
     }
 
-    template<typename T>
-    void Simulateur::gere_fourmis_pas_simu(T *fourmis) {
-        for (auto fourmi: *fourmis) {
+    void Simulateur::gere_fourmis_pas_simu(std::vector<sim::fourmi::Fourmi *> *fourmis) {
+        for (int k{0}; k < fourmis->size(); ++k) {
+            auto fourmi = fourmis->at(k);
+
+            if (fourmi->get_age() > sim::consts::AGE_MAX) {
+
+            }
+        }
+
+        /*for (auto fourmi: *fourmis) {
             if (fourmi.get_age() > sim::consts::AGE_MAX) {
                 sim::carte::Case *cur_case = fourmi.get_case_actuelle();
                 cur_case->update_nb_fourmis(-1);
                 // TODO supprimer la fourmis du vecteur.
             }
-        }
+        }*/
         // Gestion de l'âge des fourmis
         //      Incrementation de l'age.
         //      Tue les fourmis trop vieille.

@@ -20,6 +20,8 @@ namespace sim::colonie {
         std::vector<sim::fourmi::FourmiSoldat> soldats{};
         std::vector<sim::carte::Case> cases_colonie{};
 
+        std::vector<sim::fourmi::Fourmi *> fourmis{};
+
     public:
         void add_case_colonie(const sim::carte::Case &col_case);
 
@@ -31,11 +33,7 @@ namespace sim::colonie {
 
         sim::fourmi::FourmiReine *get_reine();
 
-        std::vector<sim::fourmi::FourmiOuvriere> *get_ouvrieres();
-
-        std::vector<sim::fourmi::FourmiEclaireur> *get_eclaireuses();
-
-        std::vector<sim::fourmi::FourmiSoldat> *get_soldat();
+        std::vector<sim::fourmi::Fourmi *> *get_fourmis();
     };
 }
 
