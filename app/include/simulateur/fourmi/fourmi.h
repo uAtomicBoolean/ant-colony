@@ -27,13 +27,13 @@ namespace sim::fourmi {
 
         explicit Fourmi(sim::carte::Case *case_actuelle, TypeFourmi type);
 
-        Fourmi(sim::carte::Case *case_actuelle, TypeFourmi type, int dur_juvenile);
-
         int get_duree_juvenile() const;
 
-        virtual void deplacer();
-
         int get_age() const;
+
+        TypeFourmi get_type() const;
+
+        virtual void deplacer();
 
         void vieillir();
 

@@ -110,7 +110,31 @@ namespace gui {
                 }
 
                 if (nb_fourmis != 0 && c != sim::carte::TypeCase::COLONIE) {
-                    sf::Sprite sprite_fourmi;
+                    sf::Sprite sprite_fourmi{};
+
+                    auto pos = sim::types::position_t{i, j};
+                    auto fourmi = s->get_colonie()->get_fourmi(pos);
+                    if (nb_fourmis == 1) {
+                        // On ignore la reine car elle n'est jamais affichee.
+                        switch (fourmi->get_type()) {
+                            case sim::fourmi::OUVRIERE:
+                                sprite_fourmi.setTexture(this->textureFourmiOuvriere);
+                                break;
+                            case sim::fourmi::SOLDAT:
+                                sprite_fourmi.setTexture(this->textureFourmiSoldat);
+                                break;
+                            case sim::fourmi::ECLAIREUR:
+                                sprite_fourmi.setTexture(this->textureFourmiEclaireur);
+                                break;
+                            case sim::fourmi::ESCLAVAGISTE:
+                                sprite_fourmi.setTexture(this->textureFourmiEsclavagiste);
+                                break;
+                        }
+                    }
+                    else {
+                        sprite_fourmi.setTexture(this->textureGroupe);
+                    }
+
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     sprite_fourmi.setTexture(this->textureFourmiEclaireur);

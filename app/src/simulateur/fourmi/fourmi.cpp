@@ -25,12 +25,8 @@ namespace sim::fourmi {
         return this->age;
     }
 
-    void Fourmi::vieillir() {
-        ++this->age;
-    }
-
-    void Fourmi::deplacer() {
-        // To override
+    TypeFourmi Fourmi::get_type() const {
+        return this->type;
     }
 
     sim::carte::Case *Fourmi::get_case_actuelle() {
@@ -39,5 +35,13 @@ namespace sim::fourmi {
 
     int Fourmi::get_duree_juvenile() const {
         return this->duree_juvenile;
+    }
+
+    void Fourmi::vieillir() {
+        ++this->age;
+    }
+
+    void Fourmi::deplacer() {
+        // To override
     }
 }
