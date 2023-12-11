@@ -30,4 +30,14 @@ namespace sim::colonie {
     std::vector<sim::fourmi::Fourmi *> *Colonie::get_fourmis() {
         return &this->fourmis;
     }
+
+    sim::fourmi::Fourmi *Colonie::get_fourmi(sim::types::position_t position) {
+        for (auto &fourmi: this->fourmis) {
+            if (fourmi->get_case_actuelle()->get_position().x == position.x &&
+                fourmi->get_case_actuelle()->get_position().y == position.y) {
+                return fourmi;
+            }
+        }
+        return nullptr;
+    }
 }

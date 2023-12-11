@@ -34,6 +34,8 @@ namespace sim::colonie {
         sim::fourmi::FourmiReine *get_reine();
 
         std::vector<sim::fourmi::Fourmi *> *get_fourmis();
+
+        sim::fourmi::Fourmi *get_fourmi(sim::types::position_t position);
     };
 }
 
