@@ -73,7 +73,7 @@ namespace gui {
                 window.setView(view);
             }
 
-            window.setFramerateLimit(120);
+            window.setFramerateLimit(30);
 //            nanosleep((const struct timespec[]){{0, 1000000000000000000L / 60}}, nullptr);
 //            usleep(1000000 / 60);
             if(is_rendering) continue;
