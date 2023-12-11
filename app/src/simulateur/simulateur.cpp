@@ -54,8 +54,6 @@ namespace sim {
                 continue;
             }
 
-            ++nb_heures;
-
             // GESTION DE LA REINE.
             // On verifie que la reine est encore en vie.
             if (this->colonie.get_reine()->get_age() > sim::consts::AGE_MAX_REINE ||
@@ -67,15 +65,19 @@ namespace sim {
             if (nb_heures % sim::consts::NB_TOURS_PAR_JOUR == 0) {
                 this->colonie.get_reine()->vieillir();
                 this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE_REINE);
-            }
 
-            // La toute premiere fourmis pondue par la reine est forcement une eclaireuse.
-            this->colonie.get_reine()->pondre(premier_pas);
-            if (premier_pas) premier_pas = false;
+                // La toute premiere fourmis pondue par la reine est forcement une eclaireuse.
+                this->colonie.get_reine()->pondre(premier_pas);
+                if (premier_pas) premier_pas = false;
+            }
 
             // GESTION DES AUTRES FOURMIS.
             this->gere_fourmis_pas_simu(nb_heures);
             this->gere_pheromones();
+
+            ++nb_heures;
+
+            std::cout << "Nombre de fourmis : " << this->colonie.get_fourmis()->size() << std::endl;
 
             this->gui->render();
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
