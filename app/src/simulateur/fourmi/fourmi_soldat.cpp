@@ -22,10 +22,6 @@ namespace sim::fourmi {
                 this->chemin.push_back(case_voisine);
                 a_fini = true;
                 std::cout << "case valide" << std::endl;
-            } else {
-                // Sinon on reste sur la case actuelle
-                this->chemin.push_back(case_actuelle);
-                std::cout << "case non valide" << std::endl;
             }
         }
     }
