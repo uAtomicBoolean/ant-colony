@@ -45,6 +45,8 @@ namespace sim::carte {
         TypeCase get_type();
 
         sim::types::position_t get_position();
+
+        void set_explore(bool b);
     };
 };
 

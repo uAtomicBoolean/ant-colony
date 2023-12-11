@@ -1,7 +1,9 @@
 #include <random>
+#include <iostream>
 #include "carte.h"
 #include "case.h"
 #include "simulateur.h"
+
 
 
 namespace sim::carte {
@@ -114,7 +116,13 @@ namespace sim::carte {
         return false;
     }
 
-    sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check, int direction) {
+    sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check) {
+        Carte *carte = sim::Simulateur::get_simulateur()->get_carte();
+        // random from 1 to 8
+        std::mt19937 gen(std::random_device{}());
+        std::uniform_int_distribution<> distrib(1, 4);
+        int direction = distrib(gen);
+        std::cout << "direction : " << direction << std::endl;
         switch (direction) {
             case 1:
                 return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x - 1,
@@ -134,8 +142,13 @@ namespace sim::carte {
     }
 
 
-    sim::carte::Case *Carte::get_case_voisine8d(sim::carte::Case *case_to_check, int direction) {
+    sim::carte::Case *Carte::get_case_voisine8d(sim::carte::Case *case_to_check) {
         Carte *carte = sim::Simulateur::get_simulateur()->get_carte();
+        // random from 1 to 8
+        std::mt19937 gen(std::random_device{}());
+        std::uniform_int_distribution<> distrib(1, 8);
+        int direction = distrib(gen);
+        std::cout << "direction : " << direction << std::endl;
         switch (direction) {
             case 1:
                 return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y);

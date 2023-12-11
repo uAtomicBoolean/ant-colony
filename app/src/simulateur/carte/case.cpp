@@ -38,4 +38,8 @@ namespace sim::carte {
     sim::types::position_t Case::get_position() {
         return this->position;
     }
+
+    void Case::set_explore(bool b) {
+        this->est_explore = b;
+    }
 }
