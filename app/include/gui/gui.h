@@ -15,6 +15,7 @@ namespace gui {
 
         // Objects
         std::vector<sf::Sprite> boxShapeList{};
+        std::vector<sf::Text> boxTextList{};
 
         // Textures
         sf::Texture textureFourmiOuvriere{};
@@ -22,6 +23,7 @@ namespace gui {
         sf::Texture textureFourmiEclaireur{};
         sf::Texture textureFourmiReine{};
         sf::Texture textureFourmiEsclavagiste{};
+        sf::Texture textureGroupe{};
         sf::Texture textureVide{};
         sf::Texture textureObstacle{};
         sf::Texture textureColonie{};

@@ -21,6 +21,7 @@ namespace gui {
         this->textureFourmiEclaireur.loadFromFile("../app/assets/eclaireur.png");
         this->textureFourmiReine.loadFromFile("../app/assets/reine.png");
         this->textureFourmiEsclavagiste.loadFromFile("../app/assets/esclavagiste.png");
+        this->textureGroupe.loadFromFile("../app/assets/groupe.png");
         this->textureVide.loadFromFile("../app/assets/vide.png");
         this->textureObstacle.loadFromFile("../app/assets/obstacle.png");
         this->textureColonie.loadFromFile("../app/assets/colonie.png");
@@ -111,12 +112,11 @@ namespace gui {
                     this->boxShapeList.push_back(sprite_fourmi);
                 }
 
-                if (nb_fourmis > 2) {
+                if (nb_fourmis >= 2) {
                     sf::Sprite sprite_fourmi;
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    sprite_fourmi.setTexture(this->textureFourmiOuvriere);
-                    // Ajouter le texte au dessus de la fourmi
+                    sprite_fourmi.setTexture(this->textureGroupe);
                     this->boxShapeList.push_back(sprite_fourmi);
                 }
             }
