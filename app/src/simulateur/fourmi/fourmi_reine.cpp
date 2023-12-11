@@ -3,14 +3,14 @@
 
 
 namespace sim::fourmi {
-    void FourmiReine::pondre_fourmi() {
-
-    }
-
     void fourmi::FourmiReine::pondre(bool premiere_ponte) {
         sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
-        if (premiere_ponte) {
-            sim->get_colonie()->get_fourmis()->push_back(new FourmiEclaireur());
+
+        for (int nb_ponte{0}; nb_ponte < sim::consts::PONTE; ++nb_ponte) {
+            if (premiere_ponte) {
+                sim->get_colonie()->get_fourmis()->push_back(new FourmiEclaireur());
+                premiere_ponte = false;
+            }
         }
     }
 }

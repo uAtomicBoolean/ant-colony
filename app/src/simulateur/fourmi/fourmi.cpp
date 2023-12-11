@@ -17,7 +17,7 @@ namespace sim::fourmi {
     }
 
     void Fourmi::deplacer() {
-
+        // To override
     }
 
     sim::carte::Case *Fourmi::get_case_actuelle() {

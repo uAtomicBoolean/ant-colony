@@ -31,7 +31,7 @@ namespace sim::consts {
     const int NOURRITURE_DISPO = 10;
     const int NOURRITURE_DISPO_GROS_STOCK = 20000;
 
-    const int BIG_STOCK_NOURRITURE = 2;
+    const int NOMBRE_GROS_STOCK_NOURRITURE = 2;
     // Nombre de stocks de nourriture de 20k * 5 cases pour former 100k unités de nourriture
 
     const float PROBA_OBSTACLE = 15.f; // 30% de la surface totale de la carte

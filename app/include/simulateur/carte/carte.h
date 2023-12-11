@@ -15,7 +15,7 @@ namespace sim::carte {
 
         void placer_obstacle(const sim::types::position_t &pos_start, int taille_obstacle);
 
-        void placer_gros_stock_nourriture();
+        void placer_gros_stocks_nourriture();
 
     public:
         sim::carte::Case **get_cases();
@@ -27,6 +27,7 @@ namespace sim::carte {
         static bool check_case(sim::carte::Case *case_to_check);
 
         static sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check, int direction);
+
         static sim::carte::Case *get_case_voisine8d(sim::carte::Case *case_to_check, int direction);
     };
 }
