@@ -80,7 +80,7 @@ namespace sim {
 
             ++nb_heures;
 
-            this->gui->render();
+            // this->gui->render();
             std::this_thread::sleep_for(std::chrono::milliseconds(20));
         }
     }
