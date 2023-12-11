@@ -15,8 +15,8 @@ namespace sim::consts {
     const int CAPACITE_FOURMI_MAX_FOURMILIERE = 100; // 100 fourmis par fourmilière
     const int CAPACITE_FOURMI_MAX_CASE = 12; // 12 fourmis par case
 
-    const int AGE_MAX = 1; // 1 an
-    const int AGE_MAX_REINE = 10; // 10 ans
+    constexpr int AGE_MAX = 1 * 365; // 1 an
+    constexpr int AGE_MAX_REINE = 10 * 365; // 10 ans
     const int TAILLE_UNITE_NOURRITURE = 1; // Donc la reine consomme 0.01 par tour.
     const double POURCEN_CONSO_NOURRITURE = .001f; // 0.1% par jour
     const double POURCENT_CONSO_NOURRITURE_REINE = .01f; // 1% par jour

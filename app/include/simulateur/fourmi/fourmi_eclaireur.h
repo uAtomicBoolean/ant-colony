@@ -7,6 +7,9 @@
 
 namespace sim::fourmi {
     class FourmiEclaireur : public sim::fourmi::Fourmi {
+        // On utilise le constructeur de Fourmi.
+        using Fourmi::Fourmi;
+
     protected:
         const int duree_juvenile{sim::consts::DUREE_JUVENILE_ECLAIREUR};
 

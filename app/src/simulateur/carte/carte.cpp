@@ -5,7 +5,6 @@
 #include "simulateur.h"
 
 
-
 namespace sim::carte {
     void Carte::placer_obstacle(const types::position_t &pos_start, int taille_obstacle) {
         std::mt19937 gen(std::random_device{}());
@@ -94,7 +93,7 @@ namespace sim::carte {
         int case_col_y = sim::consts::DIMENSION_CARTE_Y;
         this->cases[sim::consts::DIMENSION_CARTE_Y / 2][sim::consts::DIMENSION_CARTE_X / 2].set_type(TypeCase::COLONIE);
         sim::Simulateur::get_simulateur()->get_colonie()
-                ->add_case_colonie(*this->get_case(case_col_x, case_col_y));
+                ->add_case_colonie(this->get_case(case_col_x, case_col_y));
 
         this->placer_gros_stocks_nourriture();
     }

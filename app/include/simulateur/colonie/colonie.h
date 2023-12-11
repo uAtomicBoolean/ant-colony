@@ -16,15 +16,11 @@ namespace sim::colonie {
         double stock_nourriture{sim::consts::NOURRITURE_DEPART};
 
         sim::fourmi::FourmiReine *reine{};
-        std::vector<sim::fourmi::FourmiOuvriere> ouvrieres{};
-        std::vector<sim::fourmi::FourmiEclaireur> eclaireuses{};
-        std::vector<sim::fourmi::FourmiSoldat> soldats{};
-        std::vector<sim::carte::Case> cases_colonie{};
-
+        std::vector<sim::carte::Case *> cases_colonie{};
         std::vector<sim::fourmi::Fourmi *> fourmis{};
 
     public:
-        void add_case_colonie(const sim::carte::Case &col_case);
+        void add_case_colonie(sim::carte::Case *col_case);
 
         double get_stock_nourriture() const;
 
@@ -33,6 +29,8 @@ namespace sim::colonie {
         void consomme_nourriture(double conso);
 
         sim::fourmi::FourmiReine *get_reine();
+
+        std::vector<sim::carte::Case *> *get_cases_colonie();
 
         std::vector<sim::fourmi::Fourmi *> *get_fourmis();
 

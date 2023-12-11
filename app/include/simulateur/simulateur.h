@@ -15,8 +15,6 @@ namespace sim {
         sim::carte::Carte carte{};
         sim::colonie::Colonie colonie{};
 
-        int nb_heures{0};
-
         Simulateur();
 
     public:

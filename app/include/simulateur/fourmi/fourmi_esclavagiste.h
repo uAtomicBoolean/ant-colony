@@ -6,12 +6,16 @@
 
 namespace sim::fourmi {
     class FourmiEsclavagiste : public sim::fourmi::Fourmi {
+        // On utilise le constructeur de Fourmi.
+        using Fourmi::Fourmi;
+
     private:
         int transport_nourriture{};
         int transport_larve{};
 
     public:
         void deplacer() override;
+
         void voler();
     };
 }

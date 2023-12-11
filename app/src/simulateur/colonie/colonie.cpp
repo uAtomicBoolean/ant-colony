@@ -2,12 +2,12 @@
 #include "fourmi_reine.h"
 
 namespace sim::colonie {
-    void Colonie::add_case_colonie(const carte::Case &col_case) {
+    void Colonie::add_case_colonie(carte::Case *col_case) {
         this->cases_colonie.push_back(col_case);
 
         // On ajoute la reine uniquement dans la premiere case de la colonie.
         if (this->reine == nullptr) {
-            this->reine = new fourmi::FourmiReine();
+            this->reine = new fourmi::FourmiReine(col_case);
         }
     }
 
@@ -39,5 +39,9 @@ namespace sim::colonie {
             }
         }
         return nullptr;
+    }
+
+    std::vector<sim::carte::Case *> *Colonie::get_cases_colonie() {
+        return &this->cases_colonie;
     }
 }

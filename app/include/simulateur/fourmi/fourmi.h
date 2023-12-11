@@ -10,7 +10,7 @@ namespace sim::fourmi {
     class Fourmi {
     protected:
         int age{};
-        const int duree_juvenile{0};
+        const int duree_juvenile{-1};
         std::vector<sim::carte::Case *> chemin{};
 
     public:

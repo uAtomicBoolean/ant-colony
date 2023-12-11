@@ -6,6 +6,9 @@
 
 namespace sim::fourmi {
     class FourmiSoldat : public sim::fourmi::Fourmi {
+        // On utilise le constructeur de Fourmi.
+        using Fourmi::Fourmi;
+        
     private:
         bool retour_colonie{};
         bool protege_reine{};

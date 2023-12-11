@@ -47,6 +47,7 @@ namespace sim {
     void Simulateur::simulation() {
         this->simu_active = true;
 
+        int nb_heures{0};
         bool premier_pas = true;
         while (this->simu_active) {
             if (!this->gui_pret) {
@@ -54,21 +55,26 @@ namespace sim {
                 continue;
             }
 
-            ++this->nb_heures;
+            ++nb_heures;
 
+            // GESTION DE LA REINE.
             // On verifie que la reine est encore en vie.
             if (this->colonie.get_reine()->get_age() > sim::consts::AGE_MAX_REINE ||
                 this->colonie.get_stock_nourriture() < sim::consts::CONSO_NOURRITURE_REINE) {
                 this->simu_active = false;
                 break;
             }
-            this->colonie.get_reine()->vieillir();
-            this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE_REINE);
+
+            if (nb_heures % sim::consts::NB_TOURS_PAR_JOUR == 0) {
+                this->colonie.get_reine()->vieillir();
+                this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE_REINE);
+            }
 
             // La toute premiere fourmis pondue par la reine est forcement une eclaireuse.
             this->colonie.get_reine()->pondre(premier_pas);
             if (premier_pas) premier_pas = false;
 
+            // GESTION DES AUTRES FOURMIS.
             this->gere_fourmis_pas_simu(nb_heures);
             this->gere_pheromones();
         }
@@ -98,14 +104,21 @@ namespace sim {
             }
 
             // NOURRIR LES FOURMIS.
-            if (this->colonie.get_stock_nourriture() < sim::consts::CONSO_NOURRITURE) {
-                fourmis->erase(fourmis->begin() + k);
-                delete fourmi;
-                continue;
+            if (nouveau_jour) {
+                if (this->colonie.get_stock_nourriture() < sim::consts::CONSO_NOURRITURE) {
+                    fourmis->erase(fourmis->begin() + k);
+                    delete fourmi;
+                    continue;
+                }
+                this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE);
             }
-            this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE);
 
-            if (fourmi->get_duree_juvenile() < nb_jours) fourmi->deplacer();
+            std::cout << "nb jours : " << nb_jours << std::endl;
+            std::cout << "duree juvenile : " << fourmi->get_duree_juvenile() << std::endl;
+            if (fourmi->get_duree_juvenile() < nb_jours) {
+                std::cout << "Deplacer fourmis" << std::endl;
+                fourmi->deplacer();
+            }
         }
     }
 

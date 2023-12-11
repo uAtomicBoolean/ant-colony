@@ -6,6 +6,9 @@
 
 namespace sim::fourmi {
     class FourmiReine : public sim::fourmi::Fourmi {
+        // On utilise le constructeur de Fourmi.
+        using Fourmi::Fourmi;
+
     public:
         /**
          * Pond deux fourmis.
