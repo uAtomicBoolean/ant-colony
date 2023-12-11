@@ -121,4 +121,8 @@ namespace sim {
     void Simulateur::gere_pheromones() {
         // TODO
     }
+
+    std::vector<sim::fourmi::FourmiEsclavagiste *> *Simulateur::get_fourmis_esclavagistes(){
+        return &this->fourmis_esclavagistes;
+    }
 }

@@ -42,4 +42,8 @@ namespace sim::carte {
     void Case::set_explore(bool b) {
         this->est_explore = b;
     }
+
+    void Case::set_nb_fourmis(int i) {
+        this->nb_fourmis += i;
+    }
 }

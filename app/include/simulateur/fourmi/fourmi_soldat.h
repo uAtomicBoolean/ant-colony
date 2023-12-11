@@ -2,6 +2,7 @@
 #define ANT_COLONY_FOURMI_SOLDAT_H
 
 #include "fourmi.h"
+#include "fourmi_esclavagiste.h"
 
 
 namespace sim::fourmi {
@@ -11,15 +12,22 @@ namespace sim::fourmi {
         
     private:
         bool retour_colonie{};
-        bool protege_reine{};
 
     public:
         void deplacer() override;
 
-        // Faut-il passer la fourmi esclavagiste a attaquer en parametre.
-        void attaquer();
+        void attaquer(sim::fourmi::FourmiEsclavagiste *fourmi_esclavagiste);
 
-        void verifier_duree_ronde();
+        void incremente_duree_ronde();
+
+        int duree_ronde = 0;
+
+        void aller_vers_colonie();
+
+        bool get_retour_colonie();
+
+        void set_retour_colonie(bool retour);
+
     };
 }
 

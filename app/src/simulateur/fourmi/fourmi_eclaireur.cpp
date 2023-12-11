@@ -21,6 +21,8 @@ namespace sim::fourmi {
                 this->chemin.push_back(case_voisine);
                 a_fini = true;
                 this->explorer();
+                case_actuelle->set_nb_fourmis(-1);
+                case_voisine->set_nb_fourmis(1);
                 std::cout << "case valide" << std::endl;
             }
         }

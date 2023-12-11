@@ -3,6 +3,7 @@
 
 #include "carte.h"
 #include "colonie.h"
+#include "fourmi_esclavagiste.h"
 
 
 namespace sim {
@@ -14,6 +15,7 @@ namespace sim {
         bool gui_pret{};
         sim::carte::Carte carte{};
         sim::colonie::Colonie colonie{};
+        std::vector<sim::fourmi::FourmiEsclavagiste *> fourmis_esclavagistes{};
 
         Simulateur();
 
@@ -40,6 +42,8 @@ namespace sim {
         void gere_fourmis_pas_simu(int heures);
 
         void gere_pheromones();
+
+        std::vector<sim::fourmi::FourmiEsclavagiste *> *get_fourmis_esclavagistes();
     };
 }
 
