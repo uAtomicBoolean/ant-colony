@@ -1,7 +1,6 @@
 #ifndef ANT_COLONY_SIMULATEUR_H
 #define ANT_COLONY_SIMULATEUR_H
 
-#include "gui.h"
 #include "carte.h"
 #include "colonie.h"
 #include "fourmi_esclavagiste.h"
@@ -13,7 +12,6 @@ namespace sim {
         static Simulateur *pointeur_sim;
 
         bool simu_active{};
-        gui::GUI *gui{};
         sim::carte::Carte carte{};
         sim::colonie::Colonie colonie{};
         std::vector<sim::fourmi::FourmiEsclavagiste *> fourmis_esclavagistes{};
@@ -26,15 +24,11 @@ namespace sim {
 
         static Simulateur *get_simulateur();
 
-        void set_gui(gui::GUI *nouveau_gui);
-
         static void demarre_simulation();
 
         sim::carte::Carte *get_carte();
 
         sim::colonie::Colonie *get_colonie();
-
-        void switch_gui_pret();
 
         void set_simu_active(bool active);
 

@@ -19,10 +19,6 @@ namespace sim {
         return Simulateur::pointeur_sim;
     }
 
-    void Simulateur::set_gui(gui::GUI *nouveau_gui) {
-        this->gui = nouveau_gui;
-    }
-
     void Simulateur::demarre_simulation() {
         Simulateur::get_simulateur()->simulation();
     }
@@ -49,11 +45,6 @@ namespace sim {
         int nb_heures{0};
         bool premier_pas = true;
         while (this->simu_active) {
-            if (this->gui == nullptr) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                continue;
-            }
-
             // GESTION DE LA REINE.
             // On verifie que la reine est encore en vie.
             if (this->colonie.get_reine()->get_age() > sim::consts::AGE_MAX_REINE ||
@@ -80,7 +71,6 @@ namespace sim {
 
             ++nb_heures;
 
-            // this->gui->render();
             std::this_thread::sleep_for(std::chrono::milliseconds(20));
         }
     }

@@ -1,8 +1,10 @@
 #ifndef ANT_COLONY_GUI_H
 #define ANT_COLONY_GUI_H
 
-#include "constantes.h"
 #include <SFML/Graphics.hpp>
+#include "simulateur.h"
+#include "constantes.h"
+
 
 namespace gui {
     class GUI {
@@ -36,7 +38,7 @@ namespace gui {
         // Functions
         void init();
 
-        void render();
+        void render(sf::RenderWindow *win);
     };
 }
 

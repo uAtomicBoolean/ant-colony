@@ -30,12 +30,6 @@ namespace gui {
         this->textureNourriture.loadFromFile("../app/assets/nourriture.png");
         this->textureExplore.loadFromFile("../app/assets/explore.png");
 
-        this->render();
-
-        sim::Simulateur *s{sim::Simulateur::get_simulateur()};
-        s->set_gui(this);
-
-
         while (window.isOpen()) {
             sf::Event event{};
             while (window.pollEvent(event)) {
@@ -73,87 +67,17 @@ namespace gui {
 
             window.setFramerateLimit(30);
             window.clear();
-
-            for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
-                for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
-                    sim::carte::Case *caseXY = s->get_carte()->get_case(i, j);
-                    sim::carte::TypeCase c = caseXY->get_type();
-                    sf::Sprite sprite;
-                    int nb_fourmis = caseXY->get_nb_fourmis();
-
-                    switch (c) {
-                        case sim::carte::OBSTACLE:
-                            sprite.setTexture(this->textureObstacle);
-                            break;
-                        case sim::carte::COLONIE:
-                            sprite.setTexture(this->textureColonie);
-                            break;
-                        case sim::carte::NOURRITURE:
-                            sprite.setTexture(this->textureNourriture);
-                            break;
-                        default:
-                            break;
-                    }
-
-                    if (c != sim::carte::TypeCase::VIDE) {
-                        sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
-                        sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                        window.draw(sprite);
-                    } else if (caseXY->is_explore()) {
-                        sprite.setTexture(this->textureExplore);
-                        sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
-                        sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                        window.draw(sprite);
-                    }
-
-
-                    if (nb_fourmis != 0 && c != sim::carte::TypeCase::COLONIE) {
-                        sf::Sprite sprite_fourmi{};
-
-                        auto pos = sim::types::position_t{i, j};
-                        auto fourmi = s->get_colonie()->get_fourmi(pos);
-                        if (nb_fourmis == 1 && fourmi != nullptr) {
-                            // On ignore la reine car elle n'est jamais affichee.
-                            switch (fourmi->get_type()) {
-                                case sim::fourmi::OUVRIERE:
-                                    sprite_fourmi.setTexture(this->textureFourmiOuvriere);
-                                    break;
-                                case sim::fourmi::SOLDAT:
-                                    sprite_fourmi.setTexture(this->textureFourmiSoldat);
-                                    break;
-                                case sim::fourmi::ECLAIREUR:
-                                    sprite_fourmi.setTexture(this->textureFourmiEclaireur);
-                                    break;
-                                case sim::fourmi::ESCLAVAGISTE:
-                                    sprite_fourmi.setTexture(this->textureFourmiEsclavagiste);
-                                    break;
-                                case sim::fourmi::REINE:
-                                    break;
-                            }
-                        } else {
-                            sprite_fourmi.setTexture(this->textureGroupe);
-                        }
-
-                        sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
-                        sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                        sprite_fourmi.setTexture(this->textureFourmiEclaireur);
-                        window.draw(sprite_fourmi);
-                    }
-                }
-            }
+            this->render(&window);
             window.display();
         }
     }
 
-    void GUI::render() {
-        this->is_rendering = true;
-        this->boxShapeList.clear();
-
-        sim::Simulateur *s{sim::Simulateur::get_simulateur()};
-
+    void GUI::render(sf::RenderWindow *win) {
+        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+        
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
-                sim::carte::Case *caseXY = s->get_carte()->get_case(i, j);
+                sim::carte::Case *caseXY = sim->get_carte()->get_case(i, j);
                 sim::carte::TypeCase c = caseXY->get_type();
                 sf::Sprite sprite;
                 int nb_fourmis = caseXY->get_nb_fourmis();
@@ -175,14 +99,12 @@ namespace gui {
                 if (c != sim::carte::TypeCase::VIDE) {
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    this->boxShapeList.push_back(sprite);
-                }
-
-                if (caseXY->is_explore()) {
+                    win->draw(sprite);
+                } else if (caseXY->is_explore()) {
                     sprite.setTexture(this->textureExplore);
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    this->boxShapeList.push_back(sprite);
+                    win->draw(sprite);
                 }
 
 
@@ -190,7 +112,7 @@ namespace gui {
                     sf::Sprite sprite_fourmi{};
 
                     auto pos = sim::types::position_t{i, j};
-                    auto fourmi = s->get_colonie()->get_fourmi(pos);
+                    auto fourmi = sim->get_colonie()->get_fourmi(pos);
                     if (nb_fourmis == 1 && fourmi != nullptr) {
                         // On ignore la reine car elle n'est jamais affichee.
                         switch (fourmi->get_type()) {
@@ -216,10 +138,9 @@ namespace gui {
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     sprite_fourmi.setTexture(this->textureFourmiEclaireur);
-                    this->boxShapeList.push_back(sprite_fourmi);
+                    win->draw(sprite_fourmi);
                 }
             }
         }
-        this->is_rendering = false;
     }
 }
