@@ -77,8 +77,6 @@ namespace sim {
 
             ++nb_heures;
 
-            std::cout << "Nombre de fourmis : " << this->colonie.get_fourmis()->size() << std::endl;
-
             this->gui->render();
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }

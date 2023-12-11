@@ -7,7 +7,7 @@
 namespace sim::fourmi {
     void FourmiSoldat::deplacer() {
 
-        // Si la fourmi doit retourner à la colonie, on la fait revenir
+        /*// Si la fourmi doit retourner à la colonie, on la fait revenir
         if(this->get_retour_colonie()) {
             if(this->chemin.empty() || this->get_case_actuelle()->get_type() == carte::TypeCase::COLONIE) {
                 this->set_retour_colonie(false);
@@ -58,7 +58,7 @@ namespace sim::fourmi {
                 case_voisine->set_nb_fourmis(1);
                 std::cout << "case valide" << std::endl;
             }
-        }
+        }*/
     }
 
     void FourmiSoldat::attaquer(sim::fourmi::FourmiEsclavagiste *fourmi_esclavagiste) {

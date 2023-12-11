@@ -82,6 +82,7 @@ namespace gui {
         this->boxShapeList.clear();
 
         sim::Simulateur *s{sim::Simulateur::get_simulateur()};
+
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
                 sim::carte::TypeCase c = s->get_carte()->get_case(i, j)->get_type();
@@ -108,8 +109,7 @@ namespace gui {
                     this->boxShapeList.push_back(sprite);
                 }
 
-                auto pos = sim::types::position_t{i, j};
-                if (nb_fourmis != 0) {
+                if (nb_fourmis != 0 && c != sim::carte::TypeCase::COLONIE) {
                     sf::Sprite sprite_fourmi;
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
