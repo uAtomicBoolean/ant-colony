@@ -1,5 +1,4 @@
 #include <random>
-#include <iostream>
 #include "simulateur.h"
 #include "fourmi_reine.h"
 
@@ -14,7 +13,8 @@ namespace sim::fourmi {
 
         for (int nb_ponte{0}; nb_ponte < sim::consts::PONTE; ++nb_ponte) {
             if (premiere_ponte) {
-                sim->get_colonie()->get_fourmis()->push_back(new FourmiEclaireur(case_depart));
+                sim->get_colonie()->get_fourmis()->push_back(
+                        new FourmiEclaireur(case_depart, sim::consts::DUREE_JUVENILE_ECLAIREUR));
                 premiere_ponte = false;
                 continue;
             }
@@ -25,13 +25,15 @@ namespace sim::fourmi {
 
             switch (iterator->second) {
                 case 1:
-                    sim->get_colonie()->get_fourmis()->push_back(new FourmiOuvriere(case_depart));
+                    sim->get_colonie()->get_fourmis()->push_back(
+                            new FourmiOuvriere(case_depart, sim::consts::DUREE_JUVENILE_OUVRIERE));
                     break;
                 case 2:
                     sim->get_colonie()->get_fourmis()->push_back(new FourmiSoldat(case_depart));
                     break;
                 case 3:
-                    sim->get_colonie()->get_fourmis()->push_back(new FourmiEclaireur(case_depart));
+                    sim->get_colonie()->get_fourmis()->push_back(
+                            new FourmiEclaireur(case_depart, sim::consts::DUREE_JUVENILE_ECLAIREUR));
                     break;
                 default:
                     break;

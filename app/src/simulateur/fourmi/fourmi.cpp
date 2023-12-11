@@ -6,6 +6,12 @@ namespace sim::fourmi {
 
     Fourmi::Fourmi(sim::carte::Case *case_actuelle) {
         this->chemin.push_back(case_actuelle);
+        this->duree_juvenile = -1;
+    }
+
+    Fourmi::Fourmi(sim::carte::Case *case_actuelle, int dur_juvenile) {
+        this->chemin.push_back(case_actuelle);
+        this->duree_juvenile = dur_juvenile;
     }
 
     int Fourmi::get_age() const {

@@ -11,7 +11,6 @@ namespace sim::fourmi {
         using Fourmi::Fourmi;
 
     protected:
-        const int duree_juvenile{sim::consts::DUREE_JUVENILE_ECLAIREUR};
 
     public:
         void explorer();

@@ -13,7 +13,6 @@ namespace sim::fourmi {
         using Fourmi::Fourmi;
 
     private:
-        const int duree_juvenile{sim::consts::DUREE_JUVENILE_OUVRIERE};
         float reserve_pheromone{sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX};
         bool est_chargee{};
 
