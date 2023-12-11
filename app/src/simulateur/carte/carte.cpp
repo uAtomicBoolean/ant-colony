@@ -1,5 +1,4 @@
 #include <random>
-#include <iostream>
 #include "carte.h"
 #include "case.h"
 #include "simulateur.h"

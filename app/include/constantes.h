@@ -4,6 +4,7 @@
 
 #include <map>
 
+
 namespace sim::consts {
     // Les taux et proba sont tous en % (ex: 50 = 50%).
 
@@ -46,9 +47,11 @@ namespace sim::consts {
     const int DUREE_JUVENILE_OUVRIERE = 15;
     const int DUREE_JUVENILE_ECLAIREUR = 2;
 
-    const int PROBA_REINE_POND_OUVRIERE = 80.f; // 80% de chances de pondre une ouvrière
-    const int PROBA_REINE_POND_SOLDAT = 15.f;
-    const int PROBA_REINE_POND_ECLAIREUR = 5.f;
+    const std::map<int, int> PROBA_PONTE_FOURMIS = {
+            {79.f, 1},  // Ouvriere
+            {94.f, 2},  // Soldat
+            {99.f, 3},  // Eclaireur
+    };
 
     const int DUREE_RONDE_SOLDAT = 100; // 100 jours
     const int DUREE_VIE_ESCLAVAGISTE = 10; // 10 jours
