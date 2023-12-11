@@ -1,5 +1,6 @@
 #include "simulateur.h"
 #include <thread>
+#include <iostream>
 
 
 namespace sim {
@@ -8,7 +9,6 @@ namespace sim {
 
     Simulateur::Simulateur() {
         this->simu_active = false;
-        this->gui_pret = false;
     }
 
 
@@ -19,16 +19,16 @@ namespace sim {
         return Simulateur::pointeur_sim;
     }
 
+    void Simulateur::set_gui(gui::GUI *nouveau_gui) {
+        this->gui = nouveau_gui;
+    }
+
     void Simulateur::demarre_simulation() {
         Simulateur::get_simulateur()->simulation();
     }
 
     sim::carte::Carte *Simulateur::get_carte() {
         return &this->carte;
-    }
-
-    void Simulateur::switch_gui_pret() {
-        this->gui_pret = !this->gui_pret;
     }
 
     void Simulateur::set_simu_active(bool active) {
@@ -49,7 +49,8 @@ namespace sim {
         int nb_heures{0};
         bool premier_pas = true;
         while (this->simu_active) {
-            if (!this->gui_pret) {
+            if (this->gui == nullptr) {
+                std::cout << "Wait for GUI" << std::endl;
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 continue;
             }
@@ -76,6 +77,9 @@ namespace sim {
             // GESTION DES AUTRES FOURMIS.
             this->gere_fourmis_pas_simu(nb_heures);
             this->gere_pheromones();
+
+            this->gui->render();
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
     }
 

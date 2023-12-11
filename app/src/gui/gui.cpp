@@ -1,5 +1,7 @@
-#include "gui/gui.h"
+#include "simulateur.h"
+#include "gui.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 namespace gui {
     GUI::GUI() = default;
@@ -8,7 +10,7 @@ namespace gui {
         sf::RenderWindow window(sf::VideoMode(gui::GUI::COMPONENT_SIZE * 2, gui::GUI::COMPONENT_SIZE), "Ant Colony!");
         sf::View view = window.getDefaultView();
         view.setCenter(sf::Vector2f(gui::GUI::COMPONENT_SIZE / 2.99f, gui::GUI::COMPONENT_SIZE / 2.85f));
-        view.zoom(0.05f);
+        view.zoom(0.2f);
         window.setView(view);
 
         sf::RectangleShape sideMenu;
@@ -30,7 +32,8 @@ namespace gui {
         this->render();
 
         sim::Simulateur *s{sim::Simulateur::get_simulateur()};
-        s->switch_gui_pret();
+        s->set_gui(this);
+
 
         while (window.isOpen()) {
             sf::Event event{};
@@ -76,6 +79,8 @@ namespace gui {
     }
 
     void GUI::render() {
+        this->boxShapeList.clear();
+
         sim::Simulateur *s{sim::Simulateur::get_simulateur()};
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
@@ -103,7 +108,8 @@ namespace gui {
                 }
 
                 auto pos = sim::types::position_t{i, j};
-                if (nb_fourmis == 1 && s->get_colonie()->get_fourmi(pos)->get_case_actuelle()->get_position().x == pos.x &&
+                if (nb_fourmis == 1 &&
+                    s->get_colonie()->get_fourmi(pos)->get_case_actuelle()->get_position().x == pos.x &&
                     s->get_colonie()->get_fourmi(pos)->get_case_actuelle()->get_position().y == pos.y) {
                     sf::Sprite sprite_fourmi;
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));

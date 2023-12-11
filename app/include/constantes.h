@@ -12,7 +12,6 @@ namespace sim::consts {
     const int NOURRITURE_DEPART = 2; // 2 unités de nourriture
     const int NB_TOURS_PAR_JOUR = 24; // 24 tours pour faire un jour
 
-    const int CAPACITE_FOURMI_MAX_FOURMILIERE = 100; // 100 fourmis par fourmilière
     const int CAPACITE_FOURMI_MAX_CASE = 12; // 12 fourmis par case
 
     constexpr int AGE_MAX = 1 * 365; // 1 an
