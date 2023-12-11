@@ -14,11 +14,8 @@ namespace sim::fourmi {
 
     private:
         const int duree_juvenile{sim::consts::DUREE_JUVENILE_OUVRIERE};
-
+        float reserve_pheromone{sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX};
         bool est_chargee{};
-        float reserve_pheromone{};
-        // Sans doute plus interessant de garder une liste de pointeur sur les cases parcourues.
-        std::vector<sim::types::position_t> chemin_colonie{};
 
     public:
         void deplacer() override;

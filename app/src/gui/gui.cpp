@@ -87,6 +87,7 @@ namespace gui {
                 sim::carte::TypeCase c = s->get_carte()->get_case(i, j)->get_type();
                 sf::Sprite sprite;
                 int nb_fourmis = s->get_carte()->get_case(i, j)->get_nb_fourmis();
+
                 switch (c) {
                     case sim::carte::OBSTACLE:
                         sprite.setTexture(this->textureObstacle);
@@ -108,21 +109,11 @@ namespace gui {
                 }
 
                 auto pos = sim::types::position_t{i, j};
-                if (nb_fourmis == 1 &&
-                    s->get_colonie()->get_fourmi(pos)->get_case_actuelle()->get_position().x == pos.x &&
-                    s->get_colonie()->get_fourmi(pos)->get_case_actuelle()->get_position().y == pos.y) {
+                if (nb_fourmis != 0) {
                     sf::Sprite sprite_fourmi;
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     sprite_fourmi.setTexture(this->textureFourmiEclaireur);
-                    this->boxShapeList.push_back(sprite_fourmi);
-                }
-
-                if (nb_fourmis >= 2) {
-                    sf::Sprite sprite_fourmi;
-                    sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
-                    sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    sprite_fourmi.setTexture(this->textureGroupe);
                     this->boxShapeList.push_back(sprite_fourmi);
                 }
             }
