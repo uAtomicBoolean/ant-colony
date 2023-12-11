@@ -73,9 +73,10 @@ namespace gui {
                 window.setView(view);
             }
 
-            window.setFramerateLimit(60);
+            window.setFramerateLimit(120);
 //            nanosleep((const struct timespec[]){{0, 1000000000000000000L / 60}}, nullptr);
-            usleep(1000000 / 60);
+//            usleep(1000000 / 60);
+            if(is_rendering) continue;
             try {
                 window.clear();
                 for (auto &boxShape: this->boxShapeList) {
@@ -90,6 +91,7 @@ namespace gui {
     }
 
     void GUI::render() {
+        this->is_rendering = true;
         this->boxShapeList.clear();
 
         sim::Simulateur *s{sim::Simulateur::get_simulateur()};
@@ -162,5 +164,6 @@ namespace gui {
                 }
             }
         }
+        this->is_rendering = false;
     }
 }

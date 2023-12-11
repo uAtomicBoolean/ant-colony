@@ -9,6 +9,9 @@ namespace gui {
     public:
         GUI();
 
+        // Variables
+        bool is_rendering = false;
+
         // Constants
         static const int COMPONENT_SIZE = 600;
         static const int SPRITE_SIZE = COMPONENT_SIZE / sim::consts::DIMENSION_CARTE_X;
