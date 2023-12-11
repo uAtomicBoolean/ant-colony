@@ -1,5 +1,6 @@
 #include "simulateur.h"
 #include "gui.h"
+#include "case.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -28,6 +29,7 @@ namespace gui {
         this->textureObstacle.loadFromFile("../app/assets/obstacle.png");
         this->textureColonie.loadFromFile("../app/assets/colonie.png");
         this->textureNourriture.loadFromFile("../app/assets/nourriture.png");
+        this->textureExplore.loadFromFile("../app/assets/explore.png");
 
         this->render();
 
@@ -85,9 +87,10 @@ namespace gui {
 
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
-                sim::carte::TypeCase c = s->get_carte()->get_case(i, j)->get_type();
+                sim::carte::Case * caseXY = s->get_carte()->get_case(i, j);
+                sim::carte::TypeCase c = caseXY->get_type();
                 sf::Sprite sprite;
-                int nb_fourmis = s->get_carte()->get_case(i, j)->get_nb_fourmis();
+                int nb_fourmis = caseXY->get_nb_fourmis();
 
                 switch (c) {
                     case sim::carte::OBSTACLE:
@@ -106,8 +109,17 @@ namespace gui {
                 if (c != sim::carte::TypeCase::VIDE) {
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    this->boxShapeList.push_back(sprite);
                 }
+
+                if(caseXY->is_explore()){
+                    std::cout << "explore" << std::endl;
+                    sprite.setTexture(this->textureExplore);
+//                    sprite.setColor(sf::Color(0, 255, 0, 255));
+                    sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
+                    sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
+                }
+
+                this->boxShapeList.push_back(sprite);
 
                 if (nb_fourmis != 0 && c != sim::carte::TypeCase::COLONIE) {
                     sf::Sprite sprite_fourmi{};

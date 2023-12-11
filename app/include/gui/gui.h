@@ -28,6 +28,7 @@ namespace gui {
         sf::Texture textureObstacle{};
         sf::Texture textureColonie{};
         sf::Texture textureNourriture{};
+        sf::Texture textureExplore{};
 
         // Functions
         void init();
