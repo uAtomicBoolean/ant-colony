@@ -3,7 +3,6 @@
 #include "case.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <unistd.h>
 
 namespace gui {
     GUI::GUI() = default;
@@ -74,19 +73,12 @@ namespace gui {
             }
 
             window.setFramerateLimit(30);
-//            nanosleep((const struct timespec[]){{0, 1000000000000000000L / 60}}, nullptr);
-//            usleep(1000000 / 60);
-            if(is_rendering) continue;
-            try {
-                window.clear();
-                for (auto &boxShape: this->boxShapeList) {
-                    window.draw(boxShape);
-                }
-                window.display();
+            if (is_rendering) continue;
+            window.clear();
+            for (auto &boxShape: this->boxShapeList) {
+                window.draw(boxShape);
             }
-            catch (std::exception &e) {
-                std::cout << e.what() << std::endl;
-            }
+            window.display();
         }
     }
 
@@ -98,7 +90,7 @@ namespace gui {
 
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
-                sim::carte::Case * caseXY = s->get_carte()->get_case(i, j);
+                sim::carte::Case *caseXY = s->get_carte()->get_case(i, j);
                 sim::carte::TypeCase c = caseXY->get_type();
                 sf::Sprite sprite;
                 int nb_fourmis = caseXY->get_nb_fourmis();
@@ -120,24 +112,24 @@ namespace gui {
                 if (c != sim::carte::TypeCase::VIDE) {
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
+                    this->boxShapeList.push_back(sprite);
                 }
 
-                if(caseXY->is_explore()){
+                if (caseXY->is_explore()) {
                     std::cout << "explore" << std::endl;
                     sprite.setTexture(this->textureExplore);
-//                    sprite.setColor(sf::Color(0, 255, 0, 255));
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
+                    this->boxShapeList.push_back(sprite);
                 }
 
-                this->boxShapeList.push_back(sprite);
 
                 if (nb_fourmis != 0 && c != sim::carte::TypeCase::COLONIE) {
                     sf::Sprite sprite_fourmi{};
 
                     auto pos = sim::types::position_t{i, j};
                     auto fourmi = s->get_colonie()->get_fourmi(pos);
-                    if (nb_fourmis == 1) {
+                    if (nb_fourmis == 1 && fourmi != nullptr) {
                         // On ignore la reine car elle n'est jamais affichee.
                         switch (fourmi->get_type()) {
                             case sim::fourmi::OUVRIERE:
@@ -151,6 +143,8 @@ namespace gui {
                                 break;
                             case sim::fourmi::ESCLAVAGISTE:
                                 sprite_fourmi.setTexture(this->textureFourmiEsclavagiste);
+                                break;
+                            case sim::fourmi::REINE:
                                 break;
                         }
                     } else {

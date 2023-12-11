@@ -59,6 +59,9 @@ namespace sim {
             if (this->colonie.get_reine()->get_age() > sim::consts::AGE_MAX_REINE ||
                 this->colonie.get_stock_nourriture() < sim::consts::CONSO_NOURRITURE_REINE) {
                 this->simu_active = false;
+                std::cout << "Fin de la simulation, la reine est morte !" << std::endl;
+                std::cout << "Nombre de fourmis : " << this->colonie.get_fourmis()->size() << std::endl;
+                std::cout << "Nombre de jours : " << nb_heures / 24 << std::endl;
                 break;
             }
 
