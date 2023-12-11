@@ -40,6 +40,8 @@ namespace sim {
         void simulation();
 
         void gere_fourmis_pas_simu(int heures);
+
+        void gere_pheromones();
     };
 }
 

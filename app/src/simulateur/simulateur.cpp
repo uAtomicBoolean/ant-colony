@@ -70,6 +70,7 @@ namespace sim {
             if (premier_pas) premier_pas = false;
 
             this->gere_fourmis_pas_simu(nb_heures);
+            this->gere_pheromones();
         }
     }
 
@@ -106,5 +107,9 @@ namespace sim {
 
             if (fourmi->get_duree_juvenile() < nb_jours) fourmi->deplacer();
         }
+    }
+
+    void Simulateur::gere_pheromones() {
+        // TODO
     }
 }
