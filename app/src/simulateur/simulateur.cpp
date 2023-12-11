@@ -1,6 +1,5 @@
 #include "simulateur.h"
 #include <thread>
-#include <iostream>
 
 
 namespace sim {
@@ -113,10 +112,7 @@ namespace sim {
                 this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE);
             }
 
-            std::cout << "nb jours : " << nb_jours << std::endl;
-            std::cout << "duree juvenile : " << fourmi->get_duree_juvenile() << std::endl;
             if (fourmi->get_duree_juvenile() < nb_jours) {
-                std::cout << "Deplacer fourmis" << std::endl;
                 fourmi->deplacer();
             }
         }

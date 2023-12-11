@@ -1,5 +1,4 @@
 #include <random>
-#include <iostream>
 #include "carte.h"
 #include "case.h"
 #include "simulateur.h"
@@ -121,7 +120,6 @@ namespace sim::carte {
         std::mt19937 gen(std::random_device{}());
         std::uniform_int_distribution<> distrib(1, 4);
         int direction = distrib(gen);
-        std::cout << "direction : " << direction << std::endl;
         switch (direction) {
             case 1:
                 return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x - 1,
@@ -147,7 +145,6 @@ namespace sim::carte {
         std::mt19937 gen(std::random_device{}());
         std::uniform_int_distribution<> distrib(1, 8);
         int direction = distrib(gen);
-        std::cout << "direction : " << direction << std::endl;
         switch (direction) {
             case 1:
                 return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y);
