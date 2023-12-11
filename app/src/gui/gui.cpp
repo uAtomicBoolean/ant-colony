@@ -3,6 +3,7 @@
 #include "case.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <unistd.h>
 
 namespace gui {
     GUI::GUI() = default;
@@ -72,12 +73,19 @@ namespace gui {
                 window.setView(view);
             }
 
-            window.clear();
-            for (auto &boxShape: this->boxShapeList) {
-                window.draw(boxShape);
+            window.setFramerateLimit(60);
+//            nanosleep((const struct timespec[]){{0, 1000000000000000000L / 60}}, nullptr);
+            usleep(1000000 / 60);
+            try {
+                window.clear();
+                for (auto &boxShape: this->boxShapeList) {
+                    window.draw(boxShape);
+                }
+                window.display();
             }
-            window.display();
-            window.setFramerateLimit(120);
+            catch (std::exception &e) {
+                std::cout << e.what() << std::endl;
+            }
         }
     }
 
