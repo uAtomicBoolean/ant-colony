@@ -34,25 +34,29 @@ namespace sim::carte {
                 case 4:
                     current_case = this->get_case(pos_start.x, pos_start.y + k);
                     break;
+                default:
+                    break;
             }
         }
     }
 
 
-    void Carte::placer_gros_stock_nourriture() {
+    void Carte::placer_gros_stocks_nourriture() {
         std::mt19937 gen(std::random_device{}());
         std::uniform_int_distribution<int> distrib_y(1, sim::consts::DIMENSION_CARTE_Y - 1);
         std::uniform_int_distribution<int> distrib_x(1, sim::consts::DIMENSION_CARTE_X - 1);
 
-        int pos_y{distrib_y(gen)};
-        int pos_x{distrib_x(gen)};
+        for (int nb{0}; nb < sim::consts::NOMBRE_GROS_STOCK_NOURRITURE; ++nb) {
+            int pos_y{distrib_y(gen)};
+            int pos_x{distrib_x(gen)};
 
-        for (int y{-1}; y <= 1; ++y) {
-            for (int x{-1}; x <= 1; ++x) {
-                if (y % 2 == 0 || x == 0) {
-                    this->get_case(pos_x + x, pos_y + y)->set_type(TypeCase::NOURRITURE);
-                    this->get_case(pos_x + x, pos_y + y)->set_quant_nourriture(
-                            sim::consts::NOURRITURE_DISPO_GROS_STOCK);
+            for (int y{-1}; y <= 1; ++y) {
+                for (int x{-1}; x <= 1; ++x) {
+                    if (y % 2 == 0 || x == 0) {
+                        this->get_case(pos_x + x, pos_y + y)->set_type(TypeCase::NOURRITURE);
+                        this->get_case(pos_x + x, pos_y + y)->set_quant_nourriture(
+                                sim::consts::NOURRITURE_DISPO_GROS_STOCK);
+                    }
                 }
             }
         }
@@ -74,7 +78,6 @@ namespace sim::carte {
                     auto iterator = sim::consts::PROBA_TAILLE_OBSTACLE.lower_bound(proba_obstacle);
                     if (iterator != sim::consts::PROBA_TAILLE_OBSTACLE.end())
                         this->placer_obstacle(pos_case, iterator->second);
-
                 } else if (proba >= sim::consts::PROBA_OBSTACLE &&
                            proba < sim::consts::PROBA_OBSTACLE + sim::consts::PROBA_NOURRITURE) {
                     this->get_case(x, y)->set_type(TypeCase::NOURRITURE);
@@ -91,8 +94,7 @@ namespace sim::carte {
         sim::Simulateur::get_simulateur()->get_colonie()
                 ->add_case_colonie(*this->get_case(case_col_x, case_col_y));
 
-        this->placer_gros_stock_nourriture();
-        this->placer_gros_stock_nourriture();
+        this->placer_gros_stocks_nourriture();
     }
 
     sim::carte::Case **Carte::get_cases() {
@@ -106,30 +108,33 @@ namespace sim::carte {
     bool Carte::check_case(sim::carte::Case *case_to_check) {
         if (case_to_check->get_type() == TypeCase::VIDE) {
             return true;
-        }
-        else if (case_to_check->get_type() == TypeCase::OBSTACLE) {
+        } else if (case_to_check->get_type() == TypeCase::OBSTACLE) {
             return false;
         }
         return false;
     }
 
-    sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check, int direction){
+    sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check, int direction) {
         switch (direction) {
             case 1:
-                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y);
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x - 1,
+                                                                                case_to_check->get_position().y);
             case 2:
-                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x, case_to_check->get_position().y - 1);
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x,
+                                                                                case_to_check->get_position().y - 1);
             case 3:
-                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y);
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x + 1,
+                                                                                case_to_check->get_position().y);
             case 4:
-                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x, case_to_check->get_position().y + 1);
+                return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x,
+                                                                                case_to_check->get_position().y + 1);
             default:
                 return nullptr;
         }
     }
 
 
-    sim::carte::Case *Carte::get_case_voisine8d(sim::carte::Case *case_to_check, int direction){
+    sim::carte::Case *Carte::get_case_voisine8d(sim::carte::Case *case_to_check, int direction) {
         Carte *carte = sim::Simulateur::get_simulateur()->get_carte();
         switch (direction) {
             case 1:

@@ -1,5 +1,6 @@
 #include "simulateur.h"
 #include <thread>
+#include <iostream>
 
 
 namespace sim {
@@ -68,31 +69,37 @@ namespace sim {
             this->colonie.get_reine()->pondre(premier_pas);
             if (premier_pas) premier_pas = false;
 
-            this->gere_fourmis_pas_simu(this->colonie.get_fourmis());
+            this->gere_fourmis_pas_simu(nb_heures);
         }
     }
 
-    void Simulateur::gere_fourmis_pas_simu(std::vector<sim::fourmi::Fourmi *> *fourmis) {
+    void Simulateur::gere_fourmis_pas_simu(int heures) {
+        std::vector<sim::fourmi::Fourmi *> *fourmis{this->colonie.get_fourmis()};
+
         for (int k{0}; k < fourmis->size(); ++k) {
             auto fourmi = fourmis->at(k);
 
+            // GESTION DE L'AGE DES FOURMIS.
+            if (heures % sim::consts::NB_TOURS_PAR_JOUR == 0) fourmi->vieillir();
+
             if (fourmi->get_age() > sim::consts::AGE_MAX) {
-
-            }
-        }
-
-        /*for (auto fourmi: *fourmis) {
-            if (fourmi.get_age() > sim::consts::AGE_MAX) {
-                sim::carte::Case *cur_case = fourmi.get_case_actuelle();
+                sim::carte::Case *cur_case = fourmi->get_case_actuelle();
                 cur_case->update_nb_fourmis(-1);
-                // TODO supprimer la fourmis du vecteur.
+                fourmis->erase(fourmis->begin() + k);
+
+                delete fourmi;
+                continue;
             }
-        }*/
-        // Gestion de l'âge des fourmis
-        //      Incrementation de l'age.
-        //      Tue les fourmis trop vieille.
-        // Nourrir les fourmis.
-        //      Tuer les fourmis qui ne peuvent pas se nourrir.
-        // Déplacement des fourmis.
+
+            // NOURRIR LES FOURMIS.
+            if (this->colonie.get_stock_nourriture() < sim::consts::CONSO_NOURRITURE) {
+                fourmis->erase(fourmis->begin() + k);
+                delete fourmi;
+                continue;
+            }
+            this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE);
+
+            // TODO déplacer la fourmis.
+        }
     }
 }

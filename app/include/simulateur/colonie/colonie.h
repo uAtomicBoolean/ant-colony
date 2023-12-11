@@ -7,12 +7,13 @@
 #include "fourmi_ouvriere.h"
 #include "fourmi_reine.h"
 #include "fourmi_soldat.h"
+#include "constantes.h"
 
 
 namespace sim::colonie {
     class Colonie {
     private:
-        double stock_nourriture{2};
+        double stock_nourriture{sim::consts::NOURRITURE_DEPART};
 
         sim::fourmi::FourmiReine *reine{};
         std::vector<sim::fourmi::FourmiOuvriere> ouvrieres{};

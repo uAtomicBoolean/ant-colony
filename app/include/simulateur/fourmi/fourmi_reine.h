@@ -6,12 +6,6 @@
 
 namespace sim::fourmi {
     class FourmiReine : public sim::fourmi::Fourmi {
-    private:
-        /**
-         * Pond une fourmi choisie aleatoirement.
-         */
-        void pondre_fourmi();
-
     public:
         /**
          * Pond deux fourmis.
