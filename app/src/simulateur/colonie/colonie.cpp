@@ -7,7 +7,7 @@ namespace sim::colonie {
 
         // On ajoute la reine uniquement dans la premiere case de la colonie.
         if (this->reine == nullptr) {
-            this->reine = new fourmi::FourmiReine(col_case);
+            this->reine = new fourmi::FourmiReine(col_case, sim::fourmi::TypeFourmi::REINE);
         }
     }
 

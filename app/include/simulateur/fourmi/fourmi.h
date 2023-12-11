@@ -7,18 +7,27 @@
 
 
 namespace sim::fourmi {
+    enum TypeFourmi {
+        REINE,
+        OUVRIERE,
+        SOLDAT,
+        ECLAIREUR,
+        ESCLAVAGISTE,
+    };
+
     class Fourmi {
     protected:
         int age{};
         int duree_juvenile{};
+        TypeFourmi type;
         std::vector<sim::carte::Case *> chemin{};
 
     public:
         Fourmi();
 
-        explicit Fourmi(sim::carte::Case *case_actuelle);
+        explicit Fourmi(sim::carte::Case *case_actuelle, TypeFourmi type);
 
-        Fourmi(sim::carte::Case *case_actuelle, int dur_juvenile);
+        Fourmi(sim::carte::Case *case_actuelle, TypeFourmi type, int dur_juvenile);
 
         int get_duree_juvenile() const;
 
