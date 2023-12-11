@@ -50,7 +50,6 @@ namespace sim {
         bool premier_pas = true;
         while (this->simu_active) {
             if (this->gui == nullptr) {
-                std::cout << "Wait for GUI" << std::endl;
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 continue;
             }
@@ -126,7 +125,7 @@ namespace sim {
         // TODO
     }
 
-    std::vector<sim::fourmi::FourmiEsclavagiste *> *Simulateur::get_fourmis_esclavagistes(){
+    std::vector<sim::fourmi::FourmiEsclavagiste *> *Simulateur::get_fourmis_esclavagistes() {
         return &this->fourmis_esclavagistes;
     }
 }

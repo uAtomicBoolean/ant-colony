@@ -1,4 +1,5 @@
 #include <random>
+#include <iostream>
 #include "carte.h"
 #include "case.h"
 #include "simulateur.h"
@@ -70,6 +71,7 @@ namespace sim::carte {
             for (int x{0}; x < sim::consts::DIMENSION_CARTE_X; ++x) {
                 sim::carte::Case *current_case{this->get_case(x, y)};
                 current_case->set_position(sim::types::position_t{x, y});
+
                 if (current_case->get_type() != TypeCase::VIDE) continue;
 
                 sim::types::position_t pos_case{x, y};
@@ -80,6 +82,7 @@ namespace sim::carte {
                     auto iterator = sim::consts::PROBA_TAILLE_OBSTACLE.lower_bound(proba_obstacle);
                     if (iterator != sim::consts::PROBA_TAILLE_OBSTACLE.end())
                         this->placer_obstacle(pos_case, iterator->second);
+
                 } else if (proba >= sim::consts::PROBA_OBSTACLE &&
                            proba < sim::consts::PROBA_OBSTACLE + sim::consts::PROBA_NOURRITURE) {
                     current_case->set_type(TypeCase::NOURRITURE);
@@ -90,9 +93,9 @@ namespace sim::carte {
         }
 
 
-        int case_col_x = sim::consts::DIMENSION_CARTE_X;
-        int case_col_y = sim::consts::DIMENSION_CARTE_Y;
-        this->cases[sim::consts::DIMENSION_CARTE_Y / 2][sim::consts::DIMENSION_CARTE_X / 2].set_type(TypeCase::COLONIE);
+        int case_col_x = sim::consts::DIMENSION_CARTE_X / 2;
+        int case_col_y = sim::consts::DIMENSION_CARTE_Y / 2;
+        this->cases[case_col_y][case_col_x].set_type(TypeCase::COLONIE);
         sim::Simulateur::get_simulateur()->get_colonie()
                 ->add_case_colonie(this->get_case(case_col_x, case_col_y));
 
