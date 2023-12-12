@@ -10,6 +10,8 @@ namespace gui {
 
     void GUI::init() {
         sf::RenderWindow window(sf::VideoMode(gui::GUI::COMPONENT_SIZE * 2, gui::GUI::COMPONENT_SIZE), "Ant Colony!");
+        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+
 
         sf::View view_default{window.getDefaultView()};
         view_default.setCenter(sf::Vector2f(gui::GUI::COMPONENT_SIZE / 2.99f, gui::GUI::COMPONENT_SIZE / 2.85f));
@@ -19,16 +21,32 @@ namespace gui {
         sf::RectangleShape onglet_infos(sf::Vector2f(150, 90));
         onglet_infos.setFillColor(sf::Color::White);
         onglet_infos.setPosition(5, 5);
+
         sf::RectangleShape bordure_infos(sf::Vector2f(160, 100));
         bordure_infos.setFillColor(sf::Color::Black);
         bordure_infos.setPosition(0, 0);
-
 
         sf::Font font_text_infos{};
         if (!font_text_infos.loadFromFile("../app/assets/PPAgrandir-WideMedium.ttf")) {
             std::cout << "Erreur lors du chargement de la police PPAgrandir-WideMedium.ttf !\n";
             exit(1);
         }
+
+        sf::Text quant_jours{};
+        quant_jours.setFont(font_text_infos);
+        quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
+        quant_jours.setCharacterSize(20);
+        quant_jours.setPosition(sf::Vector2f(10, 10));
+        quant_jours.setFillColor(sf::Color::Black);
+        quant_jours.setScale(1.0f, 1.5f);
+
+        sf::Text quant_fourmis{};
+        quant_fourmis.setFont(font_text_infos);
+        quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
+        quant_fourmis.setCharacterSize(20);
+        quant_fourmis.setPosition(sf::Vector2f(10, 50));
+        quant_fourmis.setFillColor(sf::Color::Black);
+        quant_fourmis.setScale(1.0f, 1.5f);
 
         this->textureFourmiOuvriere.loadFromFile("../app/assets/ouvriere.png");
         this->textureFourmiSoldat.loadFromFile("../app/assets/soldat.png");
@@ -74,19 +92,19 @@ namespace gui {
             window.setFramerateLimit(30);
             window.clear();
             window.setView(view_default);
-            this->render(window);
+            this->render(window, sim);
 
             window.setView(view_infos);
             window.draw(bordure_infos);
             window.draw(onglet_infos);
-            this->affiche_infos(window, font_text_infos);
+            window.draw(quant_jours);
+            window.draw(quant_fourmis);
 
             window.display();
         }
     }
 
-    void GUI::render(sf::RenderWindow &win) const {
-        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+    void GUI::render(sf::RenderWindow &win, sim::Simulateur *sim) const {
 
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
@@ -151,31 +169,9 @@ namespace gui {
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     sprite_fourmi.setTexture(this->textureFourmiEclaireur);
-                    win.draw(sprite_fourmi);
                 }
             }
         }
     }
 
-    void GUI::affiche_infos(sf::RenderWindow &win, sf::Font &font) const {
-        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
-        sf::Text quant_jours{};
-        quant_jours.setFont(font);
-        quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
-        quant_jours.setCharacterSize(20);
-        quant_jours.setPosition(sf::Vector2f(10, 10));
-        quant_jours.setFillColor(sf::Color::Black);
-        quant_jours.setScale(1.0f, 1.5f);
-
-        sf::Text quant_fourmis{};
-        quant_fourmis.setFont(font);
-        quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
-        quant_fourmis.setCharacterSize(20);
-        quant_fourmis.setPosition(sf::Vector2f(10, 50));
-        quant_fourmis.setFillColor(sf::Color::Black);
-        quant_fourmis.setScale(1.0f, 1.5f);
-
-        win.draw(quant_jours);
-        win.draw(quant_fourmis);
-    }
 }

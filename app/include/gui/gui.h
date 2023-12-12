@@ -34,9 +34,8 @@ namespace gui {
         // Functions
         void init();
 
-        void render(sf::RenderWindow &win) const;
+        void render(sf::RenderWindow &win, sim::Simulateur *sim) const;
 
-        void affiche_infos(sf::RenderWindow &win, sf::Font &font) const;
     };
 }
 
