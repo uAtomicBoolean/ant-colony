@@ -18,10 +18,6 @@ namespace gui {
         static const int COMPONENT_SIZE = 600;
         static const int SPRITE_SIZE = COMPONENT_SIZE / sim::consts::DIMENSION_CARTE_X;
 
-        // Objects
-        std::vector<sf::Sprite> boxShapeList{};
-        std::vector<sf::Text> boxTextList{};
-
         // Textures
         sf::Texture textureFourmiOuvriere{};
         sf::Texture textureFourmiSoldat{};
@@ -38,7 +34,9 @@ namespace gui {
         // Functions
         void init();
 
-        void render(sf::RenderWindow *win);
+        void render(sf::RenderWindow &win) const;
+
+        void affiche_infos(sf::RenderWindow &win, sf::Font &font) const;
     };
 }
 

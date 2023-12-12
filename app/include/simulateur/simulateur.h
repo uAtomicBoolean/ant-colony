@@ -11,6 +11,9 @@ namespace sim {
     private:
         static Simulateur *pointeur_sim;
 
+        int nb_heures{0};
+        int nb_jours{0};
+
         bool simu_active{};
         sim::carte::Carte carte{};
         sim::colonie::Colonie colonie{};
@@ -25,6 +28,10 @@ namespace sim {
         static Simulateur *get_simulateur();
 
         static void demarre_simulation();
+
+        int get_jours() const;
+
+        int get_nombre_fourmis();
 
         sim::carte::Carte *get_carte();
 

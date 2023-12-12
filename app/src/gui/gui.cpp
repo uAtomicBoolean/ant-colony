@@ -2,21 +2,33 @@
 #include "gui.h"
 #include "case.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
 
 namespace gui {
     GUI::GUI() = default;
 
     void GUI::init() {
         sf::RenderWindow window(sf::VideoMode(gui::GUI::COMPONENT_SIZE * 2, gui::GUI::COMPONENT_SIZE), "Ant Colony!");
-        sf::View view = window.getDefaultView();
-        view.setCenter(sf::Vector2f(gui::GUI::COMPONENT_SIZE / 2.99f, gui::GUI::COMPONENT_SIZE / 2.85f));
-        view.zoom(0.2f);
-        window.setView(view);
 
-        sf::RectangleShape sideMenu;
-        sideMenu.setFillColor(sf::Color::White);
-        sideMenu.setSize(sf::Vector2f(gui::GUI::COMPONENT_SIZE, gui::GUI::COMPONENT_SIZE));
-        sideMenu.setPosition(sf::Vector2f(gui::GUI::COMPONENT_SIZE, 0));
+        sf::View view_default{window.getDefaultView()};
+        view_default.setCenter(sf::Vector2f(gui::GUI::COMPONENT_SIZE / 2.99f, gui::GUI::COMPONENT_SIZE / 2.85f));
+        view_default.zoom(0.2f);
+
+        sf::View view_infos{};
+        sf::RectangleShape onglet_infos(sf::Vector2f(150, 90));
+        onglet_infos.setFillColor(sf::Color::White);
+        onglet_infos.setPosition(5, 5);
+        sf::RectangleShape bordure_infos(sf::Vector2f(160, 100));
+        bordure_infos.setFillColor(sf::Color::Black);
+        bordure_infos.setPosition(0, 0);
+
+
+        sf::Font font_text_infos{};
+        if (!font_text_infos.loadFromFile("../app/assets/PPAgrandir-WideMedium.ttf")) {
+            std::cout << "Erreur lors du chargement de la police PPAgrandir-WideMedium.ttf !\n";
+            exit(1);
+        }
 
         this->textureFourmiOuvriere.loadFromFile("../app/assets/ouvriere.png");
         this->textureFourmiSoldat.loadFromFile("../app/assets/soldat.png");
@@ -40,41 +52,42 @@ namespace gui {
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                view.zoom(1.01f);
-                window.setView(view);
+                view_default.zoom(1.01f);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-                view.zoom(0.99f);
-                window.setView(view);
+                view_default.zoom(0.99f);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-                view.move(0, -0.5);
-                window.setView(view);
+                view_default.move(0, -0.5);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                view.move(0, 0.5);
-                window.setView(view);
+                view_default.move(0, 0.5);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-                view.move(-0.5, 0);
-                window.setView(view);
+                view_default.move(-0.5, 0);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                view.move(0.5, 0);
-                window.setView(view);
+                view_default.move(0.5, 0);
             }
 
             window.setFramerateLimit(30);
             window.clear();
-            this->render(&window);
+            window.setView(view_default);
+            this->render(window);
+
+            window.setView(view_infos);
+            window.draw(bordure_infos);
+            window.draw(onglet_infos);
+            this->affiche_infos(window, font_text_infos);
+
             window.display();
         }
     }
 
-    void GUI::render(sf::RenderWindow *win) {
+    void GUI::render(sf::RenderWindow &win) const {
         sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
-        
+
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
                 sim::carte::Case *caseXY = sim->get_carte()->get_case(i, j);
@@ -99,12 +112,12 @@ namespace gui {
                 if (c != sim::carte::TypeCase::VIDE) {
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    win->draw(sprite);
+                    win.draw(sprite);
                 } else if (caseXY->is_explore()) {
                     sprite.setTexture(this->textureExplore);
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    win->draw(sprite);
+                    win.draw(sprite);
                 }
 
 
@@ -138,9 +151,31 @@ namespace gui {
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     sprite_fourmi.setTexture(this->textureFourmiEclaireur);
-                    win->draw(sprite_fourmi);
+                    win.draw(sprite_fourmi);
                 }
             }
         }
+    }
+
+    void GUI::affiche_infos(sf::RenderWindow &win, sf::Font &font) const {
+        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+        sf::Text quant_jours{};
+        quant_jours.setFont(font);
+        quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
+        quant_jours.setCharacterSize(20);
+        quant_jours.setPosition(sf::Vector2f(10, 10));
+        quant_jours.setFillColor(sf::Color::Black);
+        quant_jours.setScale(1.0f, 1.5f);
+
+        sf::Text quant_fourmis{};
+        quant_fourmis.setFont(font);
+        quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
+        quant_fourmis.setCharacterSize(20);
+        quant_fourmis.setPosition(sf::Vector2f(10, 50));
+        quant_fourmis.setFillColor(sf::Color::Black);
+        quant_fourmis.setScale(1.0f, 1.5f);
+
+        win.draw(quant_jours);
+        win.draw(quant_fourmis);
     }
 }

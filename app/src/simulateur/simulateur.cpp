@@ -23,6 +23,14 @@ namespace sim {
         Simulateur::get_simulateur()->simulation();
     }
 
+    int Simulateur::get_jours() const {
+        return this->nb_jours;
+    }
+
+    int Simulateur::get_nombre_fourmis() {
+        return this->colonie.get_fourmis()->size();
+    }
+
     sim::carte::Carte *Simulateur::get_carte() {
         return &this->carte;
     }
@@ -42,7 +50,6 @@ namespace sim {
     void Simulateur::simulation() {
         this->simu_active = true;
 
-        int nb_heures{0};
         bool premier_pas = true;
         while (this->simu_active) {
             // GESTION DE LA REINE.
@@ -52,11 +59,11 @@ namespace sim {
                 this->simu_active = false;
                 std::cout << "Fin de la simulation, la reine est morte !" << std::endl;
                 std::cout << "Nombre de fourmis : " << this->colonie.get_fourmis()->size() << std::endl;
-                std::cout << "Nombre de jours : " << nb_heures / 24 << std::endl;
+                std::cout << "Nombre de jours : " << this->nb_jours << std::endl;
                 break;
             }
 
-            if (nb_heures % sim::consts::NB_TOURS_PAR_JOUR == 0) {
+            if (this->nb_heures % sim::consts::NB_TOURS_PAR_JOUR == 0) {
                 this->colonie.get_reine()->vieillir();
                 this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE_REINE);
 
@@ -66,10 +73,11 @@ namespace sim {
             }
 
             // GESTION DES AUTRES FOURMIS.
-            this->gere_fourmis_pas_simu(nb_heures);
+            this->gere_fourmis_pas_simu(this->nb_heures);
             this->gere_pheromones();
 
-            ++nb_heures;
+            ++this->nb_heures;
+            this->nb_jours = this->nb_heures / sim::consts::NB_TOURS_PAR_JOUR;
 
             std::this_thread::sleep_for(std::chrono::milliseconds(20));
         }
