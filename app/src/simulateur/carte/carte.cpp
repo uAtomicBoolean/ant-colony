@@ -1,5 +1,6 @@
 #include <random>
 #include <iostream>
+#include <algorithm>
 #include "carte.h"
 #include "case.h"
 #include "simulateur.h"
@@ -117,6 +118,31 @@ namespace sim::carte {
             return false;
         }
         return false;
+    }
+
+    std::vector<sim::carte::Case *> Carte::get_cases_voisines_eclaireur(sim::carte::Case *case_centrale) {
+        std::vector<sim::carte::Case *> cases_voisines{};
+        bool contient_case_inexploree{false};
+
+        sim::types::position_t pos_cc{case_centrale->get_position()};
+        for (int y{pos_cc.y - 1}; y <= pos_cc.y + 1; ++y) {
+            for (int x{pos_cc.x - 1}; x <= pos_cc.x + 1; ++x) {
+                if (x == pos_cc.x && y == pos_cc.y || x < 0 || y < 0 || x >= sim::consts::DIMENSION_CARTE_X ||
+                    y >= sim::consts::DIMENSION_CARTE_Y)
+                    continue;
+                sim::carte::Case *current_case{this->get_case(x, y)};
+                if (current_case->get_type() == sim::carte::TypeCase::OBSTACLE) continue;
+                if (!current_case->is_explore()) contient_case_inexploree = true;
+                cases_voisines.push_back(current_case);
+            }
+        }
+
+        if (contient_case_inexploree) {
+            cases_voisines.erase(std::remove_if(cases_voisines.begin(), cases_voisines.end(), [](sim::carte::Case *c) {
+                return c->is_explore();
+            }), cases_voisines.end());
+        }
+        return cases_voisines;
     }
 
     sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check) {

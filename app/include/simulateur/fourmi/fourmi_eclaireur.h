@@ -13,9 +13,8 @@ namespace sim::fourmi {
     protected:
 
     public:
-        void explorer();
-
         void deplacer() override;
     };
 }
+
 #endif //ANT_COLONY_FOURMI_ECLAIREUR_H
