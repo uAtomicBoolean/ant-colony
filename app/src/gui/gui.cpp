@@ -91,6 +91,7 @@ namespace gui {
 
             window.setFramerateLimit(30);
             window.clear();
+
             window.setView(view_default);
             this->render(window, sim);
 
@@ -138,7 +139,6 @@ namespace gui {
                     win.draw(sprite);
                 }
 
-
                 if (nb_fourmis != 0 && c != sim::carte::TypeCase::COLONIE) {
                     sf::Sprite sprite_fourmi{};
 
@@ -159,8 +159,6 @@ namespace gui {
                             case sim::fourmi::ESCLAVAGISTE:
                                 sprite_fourmi.setTexture(this->textureFourmiEsclavagiste);
                                 break;
-                            case sim::fourmi::REINE:
-                                break;
                         }
                     } else {
                         sprite_fourmi.setTexture(this->textureGroupe);
@@ -169,6 +167,7 @@ namespace gui {
                     sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     sprite_fourmi.setTexture(this->textureFourmiEclaireur);
+                    win.draw(sprite_fourmi);
                 }
             }
         }
