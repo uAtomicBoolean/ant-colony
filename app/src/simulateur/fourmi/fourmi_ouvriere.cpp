@@ -2,7 +2,7 @@
 
 namespace sim::fourmi {
     void FourmiOuvriere::deplacer() {
-        // TODO
+        if (this->type != TypeFourmi::OUVRIERE) return;
     }
 
     void FourmiOuvriere::depose_pheromone() {

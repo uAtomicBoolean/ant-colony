@@ -1,14 +1,11 @@
-#include "carte.h"
 #include "simulateur.h"
 #include "fourmi_eclaireur.h"
 #include <random>
-#include <iostream>
 
 namespace sim::fourmi {
     void FourmiEclaireur::deplacer() {
-        if (this->type == TypeFourmi::SOLDAT) {
-            std::cout << "Je suis un SOLDAT !\n";
-        }
+        if (this->type != TypeFourmi::ECLAIREUR) return;
+        
         sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
         std::vector<sim::carte::Case *> cases_voisines{
                 sim->get_carte()->get_cases_voisines_eclaireur(this->get_case_actuelle())};
