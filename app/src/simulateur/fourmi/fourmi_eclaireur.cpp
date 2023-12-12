@@ -10,6 +10,8 @@ namespace sim::fourmi {
         std::vector<sim::carte::Case *> cases_voisines{
                 sim->get_carte()->get_cases_voisines_eclaireur(this->get_case_actuelle())};
 
+        if (cases_voisines.empty()) return;
+
         std::mt19937 gen(std::random_device{}());
         std::uniform_int_distribution<> distrib(0, static_cast<int>(cases_voisines.size()) - 1);
 

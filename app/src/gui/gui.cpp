@@ -95,7 +95,12 @@ namespace gui {
             window.setView(view_default);
             this->render(window, sim);
 
+            // Mise a jour des informations.
             window.setView(view_infos);
+
+            quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
+            quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
+
             window.draw(bordure_infos);
             window.draw(onglet_infos);
             window.draw(quant_jours);

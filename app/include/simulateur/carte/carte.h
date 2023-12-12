@@ -26,6 +26,8 @@ namespace sim::carte {
 
         std::vector<sim::carte::Case *> get_cases_voisines_eclaireur(sim::carte::Case *case_centrale);
 
+        std::vector<sim::carte::Case *> get_case_voisine_exploree(sim::carte::Case *case_centrale);
+
         static bool check_case(sim::carte::Case *case_to_check);
 
         static sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check);
