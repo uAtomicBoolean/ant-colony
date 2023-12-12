@@ -26,10 +26,11 @@ namespace sim::fourmi {
             switch (iterator->second) {
                 case 1:
                     sim->get_colonie()->get_fourmis()->push_back(
-                            new FourmiOuvriere(case_depart, sim::fourmi::TypeFourmi::ECLAIREUR));
+                            new FourmiOuvriere(case_depart, sim::fourmi::TypeFourmi::OUVRIERE));
                     break;
                 case 2:
-                    sim->get_colonie()->get_fourmis()->push_back(new FourmiSoldat(case_depart, sim::fourmi::TypeFourmi::ECLAIREUR));
+                    sim->get_colonie()->get_fourmis()->push_back(
+                            new FourmiSoldat(case_depart, sim::fourmi::TypeFourmi::SOLDAT));
                     break;
                 case 3:
                     sim->get_colonie()->get_fourmis()->push_back(

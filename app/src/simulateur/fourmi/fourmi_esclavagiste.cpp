@@ -2,7 +2,7 @@
 
 namespace sim::fourmi {
     void FourmiEsclavagiste::deplacer() {
-        if (this->type != TypeFourmi::ESCLAVAGISTE) return;
+        // TODO
     }
 
     void FourmiEsclavagiste::voler() {

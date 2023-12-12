@@ -1,8 +1,9 @@
 #include "fourmi_ouvriere.h"
 
+
 namespace sim::fourmi {
     void FourmiOuvriere::deplacer() {
-        if (this->type != TypeFourmi::OUVRIERE) return;
+        // TODO
     }
 
     void FourmiOuvriere::depose_pheromone() {
