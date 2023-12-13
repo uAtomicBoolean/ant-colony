@@ -1,4 +1,5 @@
 #include <random>
+#include <algorithm>
 #include "simulateur.h"
 #include "fourmi_ouvriere.h"
 
@@ -11,8 +12,9 @@ namespace sim::fourmi {
     void FourmiOuvriere::deplacer() {
         if (this->type != TypeFourmi::OUVRIERE) return;
 
-        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
         if (this->est_chargee) {
+            sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+            
             this->get_case_actuelle()->update_nb_fourmis(-1);
             this->chemin.pop_back();
             sim::carte::Case *case_actu{this->get_case_actuelle()};
@@ -30,8 +32,7 @@ namespace sim::fourmi {
             // La dose de phéromone doit diminiuer au fur et a mesure que la fourmi se rapproche de la colonie.
 
         } else {
-            std::vector<sim::carte::Case *> cases_voisines{
-                    sim->get_carte()->get_case_voisine_ouvriere(this->get_case_actuelle())};
+            std::vector<sim::carte::Case *> cases_voisines{this->get_cases_voisines()};
 
             if (cases_voisines.empty()) return;
 
@@ -70,5 +71,35 @@ namespace sim::fourmi {
 
     void FourmiOuvriere::depose_nourriture() {
 
+    }
+
+    std::vector<sim::carte::Case *> FourmiOuvriere::get_cases_voisines() {
+        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+
+        std::vector<sim::carte::Case *> cases_voisines{};
+        bool contient_nourriture{false};
+
+        sim::types::position_t pos_cc{this->get_case_actuelle()->get_position()};
+        for (int y{pos_cc.y - 1}; y <= pos_cc.y + 1; ++y) {
+            for (int x{pos_cc.x - 1}; x <= pos_cc.x + 1; ++x) {
+                if (x == pos_cc.x && y == pos_cc.y || x < 0 || y < 0 || x >= sim::consts::DIMENSION_CARTE_X ||
+                    y >= sim::consts::DIMENSION_CARTE_Y)
+                    continue;
+                sim::carte::Case *case_iter{sim->get_carte()->get_case(x, y)};
+                if (case_iter->get_type() == sim::carte::TypeCase::OBSTACLE ||
+                    case_iter->get_nb_fourmis() == sim::consts::CAPACITE_FOURMI_MAX_CASE ||
+                    !case_iter->is_explore())
+                    continue;
+                if (case_iter->get_type() == sim::carte::TypeCase::NOURRITURE) contient_nourriture = true;
+                cases_voisines.push_back(case_iter);
+            }
+        }
+
+        if (contient_nourriture) {
+            cases_voisines.erase(std::remove_if(cases_voisines.begin(), cases_voisines.end(), [](sim::carte::Case *c) {
+                return c->get_type() == sim::carte::TypeCase::NOURRITURE;
+            }), cases_voisines.end());
+        }
+        return cases_voisines;
     }
 }

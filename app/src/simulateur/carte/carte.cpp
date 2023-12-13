@@ -124,32 +124,6 @@ namespace sim::carte {
     }
 
 
-    std::vector<sim::carte::Case *> Carte::get_case_voisine_ouvriere(sim::carte::Case *case_centrale) {
-        std::vector<sim::carte::Case *> cases_voisines{};
-        bool contient_nourriture{false};
-
-        sim::types::position_t pos_cc{case_centrale->get_position()};
-        for (int y{pos_cc.y - 1}; y <= pos_cc.y + 1; ++y) {
-            for (int x{pos_cc.x - 1}; x <= pos_cc.x + 1; ++x) {
-                if (x == pos_cc.x && y == pos_cc.y || x < 0 || y < 0 || x >= sim::consts::DIMENSION_CARTE_X ||
-                    y >= sim::consts::DIMENSION_CARTE_Y)
-                    continue;
-                sim::carte::Case *current_case{this->get_case(x, y)};
-                if (!check_case(current_case, false)) continue;
-                if (current_case->get_type() == sim::carte::TypeCase::NOURRITURE) contient_nourriture = true;
-                cases_voisines.push_back(current_case);
-            }
-        }
-
-        if (contient_nourriture) {
-            cases_voisines.erase(std::remove_if(cases_voisines.begin(), cases_voisines.end(), [](sim::carte::Case *c) {
-                return c->get_type() == sim::carte::TypeCase::NOURRITURE;
-            }), cases_voisines.end());
-        }
-        return cases_voisines;
-    }
-
-
     sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check) {
         Carte *carte = sim::Simulateur::get_simulateur()->get_carte();
         // random from 1 to 8

@@ -26,9 +26,7 @@ namespace sim::fourmi {
         std::vector<sim::carte::Case *> cases_voisines{};
         bool contient_case_inexploree{false};
 
-        sim::carte::Case *case_actu{this->get_case_actuelle()};
-
-        sim::types::position_t pos_cc{case_actu->get_position()};
+        sim::types::position_t pos_cc{this->get_case_actuelle()->get_position()};
         for (int y{pos_cc.y - 1}; y <= pos_cc.y + 1; ++y) {
             for (int x{pos_cc.x - 1}; x <= pos_cc.x + 1; ++x) {
                 if (x == pos_cc.x && y == pos_cc.y || x < 0 || y < 0 || x >= sim::consts::DIMENSION_CARTE_X ||

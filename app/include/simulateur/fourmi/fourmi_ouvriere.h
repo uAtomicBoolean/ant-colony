@@ -22,6 +22,8 @@ namespace sim::fourmi {
 
         void deplacer() override;
 
+        std::vector<sim::carte::Case *> get_cases_voisines() override;
+
         void depose_pheromone();
 
         void prendre_nourriture();
