@@ -28,8 +28,8 @@ namespace gui {
         sf::Texture textureNourriture{};
         sf::Texture textureExplore{};
 
-        sf::RectangleShape onglet_infos{sf::Vector2f(150, 150)};
-        sf::RectangleShape bordure_infos{sf::Vector2f(160, 160)};
+        sf::RectangleShape onglet_infos{sf::Vector2f(150, 90)};
+        sf::RectangleShape bordure_infos{sf::Vector2f(160, 100)};
 
         sf::Font font_textes{};
 
