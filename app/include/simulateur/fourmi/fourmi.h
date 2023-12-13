@@ -35,6 +35,8 @@ namespace sim::fourmi {
 
         virtual void deplacer();
 
+        virtual std::vector<sim::carte::Case *> get_cases_voisines();
+
         void vieillir();
 
         sim::carte::Case *get_case_actuelle();

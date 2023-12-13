@@ -117,7 +117,7 @@ namespace sim::carte {
         if (case_to_check->get_type() == TypeCase::OBSTACLE) {
             return false;
         }
-        if(check_explore && !case_to_check->is_explore()) {
+        if (check_explore && !case_to_check->is_explore()) {
             return false;
         }
         return true;
@@ -134,7 +134,7 @@ namespace sim::carte {
                     y >= sim::consts::DIMENSION_CARTE_Y)
                     continue;
                 sim::carte::Case *current_case{this->get_case(x, y)};
-                if (current_case->get_type() == sim::carte::TypeCase::OBSTACLE) continue;
+                if (!check_case(current_case, true)) continue;
                 if (!current_case->is_explore()) contient_case_inexploree = true;
                 cases_voisines.push_back(current_case);
             }
@@ -149,7 +149,7 @@ namespace sim::carte {
     }
 
 
-    std::vector<sim::carte::Case *> Carte::get_case_voisine_exploree(sim::carte::Case *case_centrale) {
+    std::vector<sim::carte::Case *> Carte::get_case_voisine_ouvriere(sim::carte::Case *case_centrale) {
         std::vector<sim::carte::Case *> cases_voisines{};
         bool contient_nourriture{false};
 
@@ -160,9 +160,7 @@ namespace sim::carte {
                     y >= sim::consts::DIMENSION_CARTE_Y)
                     continue;
                 sim::carte::Case *current_case{this->get_case(x, y)};
-                if (current_case->get_type() == sim::carte::TypeCase::OBSTACLE ||
-                    current_case->get_type() == sim::carte::TypeCase::VIDE)
-                    continue;
+                if (!check_case(current_case, false)) continue;
                 if (current_case->get_type() == sim::carte::TypeCase::NOURRITURE) contient_nourriture = true;
                 cases_voisines.push_back(current_case);
             }

@@ -30,6 +30,10 @@ namespace sim::carte {
         this->quant_nourriture = quant_nour;
     }
 
+    int Case::get_quant_nourriture() const {
+        return this->quant_nourriture;
+    }
+
     TypeCase Case::get_type() {
         return this->type;
     }

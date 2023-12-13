@@ -44,4 +44,8 @@ namespace sim::fourmi {
     void Fourmi::deplacer() {
         // To override
     }
+
+    std::vector<sim::carte::Case *> Fourmi::get_cases_voisines() {
+        // To override
+    }
 }

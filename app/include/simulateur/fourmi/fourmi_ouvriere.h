@@ -14,14 +14,15 @@ namespace sim::fourmi {
 
     private:
         float reserve_pheromone{sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX};
-        bool est_chargee{};
+        bool est_chargee{false};
+        double charge{};
 
     public:
+        double get_charge() const;
+
         void deplacer() override;
 
         void depose_pheromone();
-
-        void chercher_nourriture();
 
         void prendre_nourriture();
 

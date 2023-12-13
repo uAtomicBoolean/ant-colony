@@ -92,16 +92,21 @@ namespace sim {
         for (int k{0}; k < fourmis->size(); ++k) {
             auto fourmi = fourmis->at(k);
 
-            // TODO gérer la mort des ouvrieres qui laisse tomber de la nourriture.
 
             // GESTION DE L'AGE DES FOURMIS.
             if (nouveau_jour) fourmi->vieillir();
 
             if (fourmi->get_age() > sim::consts::AGE_MAX) {
-                sim::carte::Case *cur_case = fourmi->get_case_actuelle();
-                cur_case->update_nb_fourmis(-1);
-                fourmis->erase(fourmis->begin() + k);
+                sim::carte::Case *case_actu = fourmi->get_case_actuelle();
 
+                if (fourmi->get_type() == sim::fourmi::TypeFourmi::OUVRIERE) {
+                    sim::fourmi::FourmiOuvriere *ouvriere{dynamic_cast<fourmi::FourmiOuvriere *>(fourmi)};
+                    case_actu->set_quant_nourriture(ouvriere->get_charge());
+                    case_actu->set_type(sim::carte::TypeCase::NOURRITURE);
+                }
+
+                case_actu->update_nb_fourmis(-1);
+                fourmis->erase(fourmis->begin() + k);
                 delete fourmi;
                 continue;
             }

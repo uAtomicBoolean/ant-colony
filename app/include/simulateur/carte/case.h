@@ -42,6 +42,8 @@ namespace sim::carte {
 
         void set_quant_nourriture(double quant_nour);
 
+        int get_quant_nourriture() const;
+
         TypeCase get_type();
 
         sim::types::position_t get_position();
