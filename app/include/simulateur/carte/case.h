@@ -47,8 +47,6 @@ namespace sim::carte {
         sim::types::position_t get_position();
 
         void set_explore(bool b);
-
-        void set_nb_fourmis(int i);
     };
 };
 

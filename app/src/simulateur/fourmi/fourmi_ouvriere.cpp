@@ -21,9 +21,9 @@ namespace sim::fourmi {
 
         // TODO Gérer le retour à la colonie si on a de la nourriture.
 
-        this->get_case_actuelle()->set_nb_fourmis(-1);
+        this->get_case_actuelle()->update_nb_fourmis(-1);
         this->chemin.push_back(cases_voisines.at(distrib(gen)));
-        this->get_case_actuelle()->set_nb_fourmis(1);
+        this->get_case_actuelle()->update_nb_fourmis(1);
         this->get_case_actuelle()->set_explore(true);
 
     }

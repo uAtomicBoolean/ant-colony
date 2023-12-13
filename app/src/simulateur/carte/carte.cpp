@@ -112,12 +112,10 @@ namespace sim::carte {
     }
 
     bool Carte::check_case(sim::carte::Case *case_to_check) {
-        if (case_to_check->get_type() == TypeCase::VIDE) {
-            return true;
-        } else if (case_to_check->get_type() == TypeCase::OBSTACLE) {
+        if (case_to_check->get_type() == TypeCase::OBSTACLE) {
             return false;
         }
-        return false;
+        return true;
     }
 
     std::vector<sim::carte::Case *> Carte::get_cases_voisines_eclaireur(sim::carte::Case *case_centrale) {
