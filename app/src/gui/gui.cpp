@@ -40,28 +40,28 @@ namespace gui {
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                view.zoom(1.01f);
+                view.zoom(1.03f);
                 window.setView(view);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-                view.zoom(0.99f);
+                view.zoom(0.97f);
                 window.setView(view);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-                view.move(0, -0.5);
+                view.move(0, -1.5);
                 window.setView(view);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                view.move(0, 0.5);
+                view.move(0, 1.5);
                 window.setView(view);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-                view.move(-0.5, 0);
+                view.move(-1.5, 0);
                 window.setView(view);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                view.move(0.5, 0);
+                view.move(1.5, 0);
                 window.setView(view);
             }
 
