@@ -87,11 +87,9 @@ namespace sim {
         std::vector<sim::fourmi::Fourmi *> *fourmis{this->colonie.get_fourmis()};
 
         bool nouveau_jour = heures % sim::consts::NB_TOURS_PAR_JOUR == 0;
-        int nb_jours = heures / sim::consts::NB_TOURS_PAR_JOUR;
 
         for (int k{0}; k < fourmis->size(); ++k) {
             auto fourmi = fourmis->at(k);
-
 
             // GESTION DE L'AGE DES FOURMIS.
             if (nouveau_jour) fourmi->vieillir();
@@ -121,7 +119,7 @@ namespace sim {
                 this->colonie.consomme_nourriture(sim::consts::CONSO_NOURRITURE);
             }
 
-            if (fourmi->get_duree_juvenile() < nb_jours) {
+            if (!fourmi->est_juvenile()) {
                 fourmi->deplacer();
             }
         }

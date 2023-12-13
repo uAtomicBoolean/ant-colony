@@ -29,6 +29,8 @@ namespace sim::fourmi {
 
         int get_duree_juvenile() const;
 
+        bool est_juvenile();
+
         int get_age() const;
 
         TypeFourmi get_type() const;

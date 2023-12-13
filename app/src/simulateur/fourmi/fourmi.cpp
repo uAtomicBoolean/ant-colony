@@ -34,8 +34,8 @@ namespace sim::fourmi {
         return this->chemin.back();
     }
 
-    int Fourmi::get_duree_juvenile() const {
-        return this->duree_juvenile;
+    bool Fourmi::est_juvenile() {
+        return this->age <= this->duree_juvenile;
     }
 
     void Fourmi::vieillir() {
