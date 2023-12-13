@@ -8,15 +8,12 @@
 
 namespace gui {
     class GUI {
-    public:
-        GUI();
-
-        // Variables
-        bool is_rendering = false;
-
+    private:
         // Constants
-        static const int COMPONENT_SIZE = 600;
-        static const int SPRITE_SIZE = COMPONENT_SIZE / sim::consts::DIMENSION_CARTE_X;
+        static const int COMPONENT_SIZE{600};
+        static const int SPRITE_SIZE{COMPONENT_SIZE / sim::consts::DIMENSION_CARTE_X};
+        static const int FONT_SIZE{14};
+        inline static const std::string FONT_NAME{"../app/assets/arial.ttf"};
 
         // Textures
         sf::Texture textureFourmiOuvriere{};
@@ -31,11 +28,27 @@ namespace gui {
         sf::Texture textureNourriture{};
         sf::Texture textureExplore{};
 
-        // Functions
+        sf::RectangleShape onglet_infos{sf::Vector2f(150, 150)};
+        sf::RectangleShape bordure_infos{sf::Vector2f(160, 160)};
+
+        sf::Font font_textes{};
+
+        sf::Text quant_jours{};
+        sf::Text quant_fourmis{};
+        sf::Text quant_nourriture{};
+
+    public:
+        GUI();
+
         void init();
+
+        void build_textes(sim::Simulateur *sim);
+
+        void update_textes(sim::Simulateur *sim);
 
         void render(sf::RenderWindow &win, sim::Simulateur *sim) const;
 
+        void draw_onglet_infos(sf::RenderWindow *win);
     };
 }
 

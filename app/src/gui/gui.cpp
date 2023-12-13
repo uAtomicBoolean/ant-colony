@@ -3,13 +3,17 @@
 #include "case.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include <sstream>
+#include <iomanip>
 
 namespace gui {
     GUI::GUI() = default;
 
     void GUI::init() {
-        sf::RenderWindow window(sf::VideoMode(gui::GUI::COMPONENT_SIZE * 2, gui::GUI::COMPONENT_SIZE), "Ant Colony!");
+        sf::RenderWindow window(
+                sf::VideoMode(gui::GUI::COMPONENT_SIZE * 2, gui::GUI::COMPONENT_SIZE),
+                "Ant Colony!"
+        );
         sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
 
 
@@ -17,36 +21,16 @@ namespace gui {
         view_default.setCenter(sf::Vector2f(gui::GUI::COMPONENT_SIZE / 2.99f, gui::GUI::COMPONENT_SIZE / 2.85f));
         view_default.zoom(0.2f);
 
+        // Onglet contenant les informations de la simulation.
         sf::View view_infos{};
-        sf::RectangleShape onglet_infos(sf::Vector2f(150, 90));
-        onglet_infos.setFillColor(sf::Color::White);
-        onglet_infos.setPosition(5, 5);
 
-        sf::RectangleShape bordure_infos(sf::Vector2f(160, 100));
-        bordure_infos.setFillColor(sf::Color::Black);
-        bordure_infos.setPosition(0, 0);
-
-        sf::Font font_text_infos{};
-        if (!font_text_infos.loadFromFile("../app/assets/PPAgrandir-WideMedium.ttf")) {
-            std::cout << "Erreur lors du chargement de la police PPAgrandir-WideMedium.ttf !\n";
+        if (!this->font_textes.loadFromFile(GUI::FONT_NAME)) {
+            std::cout << "Erreur lors du chargement de la police !\n";
             exit(1);
         }
 
-        sf::Text quant_jours{};
-        quant_jours.setFont(font_text_infos);
-        quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
-        quant_jours.setCharacterSize(20);
-        quant_jours.setPosition(sf::Vector2f(10, 10));
-        quant_jours.setFillColor(sf::Color::Black);
-        quant_jours.setScale(1.0f, 1.5f);
+        this->build_textes(sim);
 
-        sf::Text quant_fourmis{};
-        quant_fourmis.setFont(font_text_infos);
-        quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
-        quant_fourmis.setCharacterSize(20);
-        quant_fourmis.setPosition(sf::Vector2f(10, 50));
-        quant_fourmis.setFillColor(sf::Color::Black);
-        quant_fourmis.setScale(1.0f, 1.5f);
 
         this->textureFourmiOuvriere.loadFromFile("../app/assets/ouvriere.png");
         this->textureFourmiSoldat.loadFromFile("../app/assets/soldat.png");
@@ -98,13 +82,8 @@ namespace gui {
             // Mise a jour des informations.
             window.setView(view_infos);
 
-            quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
-            quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
-
-            window.draw(bordure_infos);
-            window.draw(onglet_infos);
-            window.draw(quant_jours);
-            window.draw(quant_fourmis);
+            this->update_textes(sim);
+            this->draw_onglet_infos(&window);
 
             window.display();
         }
@@ -176,6 +155,52 @@ namespace gui {
                 }
             }
         }
+    }
+
+    void GUI::build_textes(sim::Simulateur *sim) {
+        this->onglet_infos.setFillColor(sf::Color::White);
+        this->onglet_infos.setPosition(5, 5);
+
+        this->bordure_infos.setFillColor(sf::Color::Black);
+        this->bordure_infos.setPosition(0, 0);
+
+        this->quant_jours.setFont(this->font_textes);
+        this->quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
+        this->quant_jours.setCharacterSize(GUI::FONT_SIZE);
+        this->quant_jours.setPosition(sf::Vector2f(10, 10));
+        this->quant_jours.setFillColor(sf::Color::Black);
+        this->quant_jours.setScale(1.0f, 1.5f);
+
+        this->quant_fourmis.setFont(this->font_textes);
+        this->quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
+        this->quant_fourmis.setCharacterSize(GUI::FONT_SIZE);
+        this->quant_fourmis.setPosition(sf::Vector2f(10, 35));
+        this->quant_fourmis.setFillColor(sf::Color::Black);
+        this->quant_fourmis.setScale(1.0f, 1.5f);
+
+        this->quant_nourriture.setFont(this->font_textes);
+        this->quant_nourriture.setString("Nourriture : " + std::to_string(sim->get_colonie()->get_stock_nourriture()));
+        this->quant_nourriture.setCharacterSize(GUI::FONT_SIZE);
+        this->quant_nourriture.setPosition(sf::Vector2f(10, 60));
+        this->quant_nourriture.setFillColor(sf::Color::Black);
+        this->quant_nourriture.setScale(1.0f, 1.5f);
+    }
+
+    void GUI::update_textes(sim::Simulateur *sim) {
+        this->quant_jours.setString("Jour : " + std::to_string(sim->get_jours()));
+        this->quant_fourmis.setString("Fourmis : " + std::to_string(sim->get_nombre_fourmis()));
+
+        std::stringstream stream_nourriture{};
+        stream_nourriture << std::fixed << std::setprecision(3) << sim->get_colonie()->get_stock_nourriture();
+        this->quant_nourriture.setString("Nourriture : " + stream_nourriture.str());
+    }
+
+    void GUI::draw_onglet_infos(sf::RenderWindow *win) {
+        win->draw(this->bordure_infos);
+        win->draw(this->onglet_infos);
+        win->draw(this->quant_jours);
+        win->draw(this->quant_fourmis);
+        win->draw(this->quant_nourriture);
     }
 
 }
