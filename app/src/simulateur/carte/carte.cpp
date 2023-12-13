@@ -111,10 +111,13 @@ namespace sim::carte {
         return &this->cases[x][y];
     }
 
-    bool Carte::check_case(sim::carte::Case *case_to_check) {
+    bool Carte::check_case(sim::carte::Case *case_to_check, bool check_explore) {
         if (case_to_check == nullptr) return false;
         if (case_to_check->get_nb_fourmis() >= sim::consts::CAPACITE_FOURMI_MAX_CASE) return false;
         if (case_to_check->get_type() == TypeCase::OBSTACLE) {
+            return false;
+        }
+        if(check_explore && !case_to_check->is_explore()) {
             return false;
         }
         return true;
