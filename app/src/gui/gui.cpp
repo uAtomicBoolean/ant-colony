@@ -70,23 +70,23 @@ namespace gui {
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                view_default.zoom(1.01f);
+                view_default.zoom(1.03f);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-                view_default.zoom(0.99f);
+                view_default.zoom(0.97f);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-                view_default.move(0, -0.5);
+                view_default.move(0, -1.5);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                view_default.move(0, 0.5);
+                view_default.move(0, 1.5);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-                view_default.move(-0.5, 0);
+                view_default.move(-1.5, 0);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                view_default.move(0.5, 0);
+                view_default.move(1.5, 0);
             }
 
             window.setFramerateLimit(30);
