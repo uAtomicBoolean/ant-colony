@@ -1,5 +1,6 @@
 #include "fourmi.h"
 #include "constantes.h"
+#include "simulateur.h"
 
 
 namespace sim::fourmi {
@@ -47,5 +48,6 @@ namespace sim::fourmi {
 
     std::vector<sim::carte::Case *> Fourmi::get_cases_voisines() {
         // To override
+        return std::vector<sim::carte::Case *>();
     }
 }
