@@ -21,8 +21,7 @@ namespace sim::fourmi {
             // "Reset" complet de la fourmi quand elle arrive a la colonie.
             if (case_actu->get_type() == sim::carte::TypeCase::COLONIE) this->depose_nourriture();
 
-            // TODO déponse des phéromones sur le chemin du retour.
-            // La dose de phéromone doit diminiuer au fur et a mesure que la fourmi se rapproche de la colonie.
+            // TODO Gestion des phéromonse sur le chemin du retour.
 
         } else {
             // Deplacement en recherche de nourriture.
@@ -49,6 +48,8 @@ namespace sim::fourmi {
     }
 
     void FourmiOuvriere::depose_pheromone() {
+        // TODO
+        // La dose de phéromone doit diminiuer au fur et a mesure que la fourmi se rapproche de la colonie.
     }
 
     void FourmiOuvriere::prendre_nourriture(sim::carte::Case *case_a) {
