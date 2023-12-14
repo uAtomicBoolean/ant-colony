@@ -28,7 +28,7 @@ namespace sim {
     }
 
     int Simulateur::get_nombre_fourmis() {
-        return this->colonie.get_fourmis()->size();
+        return static_cast<int>(this->colonie.get_fourmis()->size());
     }
 
     sim::carte::Carte *Simulateur::get_carte() {

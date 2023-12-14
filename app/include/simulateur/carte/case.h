@@ -38,15 +38,15 @@ namespace sim::carte {
 
         void set_type(TypeCase type);
 
-        void set_position(sim::types::position_t pos);
+        void set_position(int x, int y);
 
         void set_quant_nourriture(double quant_nour);
+
+        sim::types::position_t get_position() const;
 
         int get_quant_nourriture() const;
 
         TypeCase get_type();
-
-        sim::types::position_t get_position();
 
         void set_explore(bool b);
     };

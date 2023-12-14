@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "fourmi.h"
 #include "constantes.h"
 #include "simulateur.h"
@@ -48,6 +49,17 @@ namespace sim::fourmi {
 
     std::vector<sim::carte::Case *> Fourmi::get_cases_voisines() {
         // To override
-        return std::vector<sim::carte::Case *>();
+        return {};
+    }
+
+    bool Fourmi::case_dans_histo(std::vector<sim::carte::Case *> *chemin, sim::types::position_t pos_case) {
+        auto start{sim::consts::TAILLE_HISTO_CASES >= chemin->size()
+                   ? chemin->begin()
+                   : chemin->end() - sim::consts::TAILLE_HISTO_CASES};
+        return std::all_of(start, chemin->end(),
+                           [&pos_case](sim::carte::Case *case_histo) {
+                               return case_histo->get_position().x == pos_case.x &&
+                                      case_histo->get_position().y == pos_case.y;
+                           });
     }
 }

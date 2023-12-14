@@ -71,23 +71,21 @@ namespace sim::carte {
         for (int y{0}; y < sim::consts::DIMENSION_CARTE_Y; ++y) {
             for (int x{0}; x < sim::consts::DIMENSION_CARTE_X; ++x) {
                 sim::carte::Case *current_case{this->get_case(x, y)};
-                current_case->set_position(sim::types::position_t{x, y});
+                current_case->set_position(x, y);
 
                 if (current_case->get_type() != TypeCase::VIDE) continue;
 
-                sim::types::position_t pos_case{x, y};
                 float proba{distribution(gen)};
 
                 if (proba < sim::consts::PROBA_OBSTACLE) {
                     float proba_obstacle{distribution(gen)};
                     auto iterator = sim::consts::PROBA_TAILLE_OBSTACLE.lower_bound(proba_obstacle);
                     if (iterator != sim::consts::PROBA_TAILLE_OBSTACLE.end())
-                        this->placer_obstacle(pos_case, iterator->second);
+                        this->placer_obstacle(current_case->get_position(), iterator->second);
 
                 } else if (proba >= sim::consts::PROBA_OBSTACLE &&
                            proba < sim::consts::PROBA_OBSTACLE + sim::consts::PROBA_NOURRITURE) {
                     current_case->set_type(TypeCase::NOURRITURE);
-                    current_case->set_position(pos_case);
                     current_case->set_quant_nourriture(sim::consts::NOURRITURE_DISPO);
                 }
             }

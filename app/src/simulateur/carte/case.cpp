@@ -11,6 +11,10 @@ namespace sim::carte {
     }
 
     void Case::update_nb_fourmis(int increment) {
+        if (this->nb_fourmis <= 0 && increment < 0) {
+            this->nb_fourmis = 0;
+            return;
+        }
         this->nb_fourmis += increment;
     }
 
@@ -22,12 +26,16 @@ namespace sim::carte {
         this->type = type_case;
     }
 
-    void Case::set_position(sim::types::position_t pos) {
-        this->position = pos;
+    void Case::set_position(int x, int y) {
+        this->position = {x, y};
     }
 
     void Case::set_quant_nourriture(double quant_nour) {
         this->quant_nourriture = quant_nour;
+    }
+
+    sim::types::position_t Case::get_position() const {
+        return this->position;
     }
 
     int Case::get_quant_nourriture() const {
@@ -36,11 +44,6 @@ namespace sim::carte {
 
     TypeCase Case::get_type() {
         return this->type;
-    }
-
-
-    sim::types::position_t Case::get_position() {
-        return this->position;
     }
 
     void Case::set_explore(bool b) {

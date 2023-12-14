@@ -22,7 +22,6 @@ namespace sim::consts {
     const double POURCENT_CONSO_NOURRITURE_REINE = .01f; // 1% par jour
     const double CONSO_NOURRITURE = TAILLE_UNITE_NOURRITURE * POURCEN_CONSO_NOURRITURE;
     const double CONSO_NOURRITURE_REINE = TAILLE_UNITE_NOURRITURE * POURCENT_CONSO_NOURRITURE_REINE;
-    const int PONTE = 2; // 2 par jour
 
     const double PROBA_NOURRITURE = .02f;
     /**
@@ -49,6 +48,7 @@ namespace sim::consts {
     const int DUREE_JUVENILE_OUVRIERE = 15;
     const int DUREE_JUVENILE_ECLAIREUR = 2;
 
+    const int PONTE = 2; // 2 par jour
     const std::map<int, int> PROBA_PONTE_FOURMIS = {
             {79.f, 1},  // Ouvriere
             {94.f, 2},  // Soldat
@@ -57,6 +57,9 @@ namespace sim::consts {
 
     const int DUREE_RONDE_SOLDAT = 100; // 100 jours
     const int DUREE_VIE_ESCLAVAGISTE = 10; // 10 jours
+
+    // Nombre de cases a regarder dans le chemin d'une fourmi lorsque'elle se deplace pour eviter de tourner en rond.
+    const int TAILLE_HISTO_CASES = 30;
 
     const int PHEROMONE_MAX_CASE = 1000; // 1000 unités de phéromones par case
     const int TAUX_EVAPORATION_PHEROMONE = 5; // par tour
