@@ -40,7 +40,6 @@ namespace sim::fourmi {
                     continue;
 
                 sim::carte::Case *case_iter{sim->get_carte()->get_case(x, y)};
-                sim::types::position_t case_pos{case_iter->get_position()};
 
                 if (case_iter->get_type() == sim::carte::TypeCase::OBSTACLE ||
                     case_iter->get_nb_fourmis() == sim::consts::CAPACITE_FOURMI_MAX_CASE)

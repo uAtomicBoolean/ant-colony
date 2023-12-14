@@ -26,7 +26,7 @@ namespace sim::fourmi {
 
         void depose_pheromone();
 
-        void prendre_nourriture();
+        void prendre_nourriture(sim::carte::Case *case_a);
 
         void depose_nourriture();
     };
