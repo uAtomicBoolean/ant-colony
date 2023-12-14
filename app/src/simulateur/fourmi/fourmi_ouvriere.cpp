@@ -48,8 +48,7 @@ namespace sim::fourmi {
     }
 
     void FourmiOuvriere::depose_pheromone() {
-        // TODO
-        // La dose de phéromone doit diminiuer au fur et a mesure que la fourmi se rapproche de la colonie.
+        // TODO La dose de phéromone doit diminuer au fur et a mesure que la fourmi se rapproche de la colonie.
     }
 
     void FourmiOuvriere::prendre_nourriture(sim::carte::Case *case_a) {
