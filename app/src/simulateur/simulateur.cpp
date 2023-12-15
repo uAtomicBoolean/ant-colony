@@ -60,7 +60,6 @@ namespace sim {
                 std::cout << "Fin de la simulation, la reine est morte !" << std::endl;
                 std::cout << "Nombre de fourmis : " << this->colonie.get_fourmis()->size() << std::endl;
                 std::cout << "Nombre de jours : " << this->nb_jours << std::endl;
-                this->colonie.ajoute_nourriture(-999);
                 break;
             }
 

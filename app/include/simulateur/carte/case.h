@@ -19,6 +19,7 @@ namespace sim::carte {
         int nb_fourmis{0};
         bool est_explore{};
         double quant_nourriture{};
+        double quant_pheromone{};
 
         TypeCase type{};
         sim::types::position_t position{};
@@ -42,9 +43,13 @@ namespace sim::carte {
 
         void set_quant_nourriture(double quant_nour);
 
+        void increment_pheromone(double quant);
+
         sim::types::position_t get_position() const;
 
-        int get_quant_nourriture() const;
+        double get_quant_nourriture() const;
+
+        double get_quant_pheromone() const;
 
         TypeCase get_type();
 

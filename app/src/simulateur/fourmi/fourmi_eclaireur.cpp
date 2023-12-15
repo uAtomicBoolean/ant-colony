@@ -14,7 +14,7 @@ namespace sim::fourmi {
         if (cases_voisines.empty()) {
             this->check_histo_cases = false;
             return;
-        }
+        } else if (!this->check_histo_cases) this->check_histo_cases = true;
 
         std::mt19937 gen(std::random_device{}());
         std::uniform_int_distribution<> distrib(0, static_cast<int>(cases_voisines.size()) - 1);
@@ -23,12 +23,11 @@ namespace sim::fourmi {
         this->chemin.push_back(cases_voisines.at(distrib(gen)));
         this->get_case_actuelle()->update_nb_fourmis(1);
         this->get_case_actuelle()->set_explore(true);
-
-        if (!this->check_histo_cases) this->check_histo_cases = true;
     }
 
     std::vector<sim::carte::Case *> FourmiEclaireur::get_cases_voisines() {
         sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+
         std::vector<sim::carte::Case *> cases_voisines{};
         bool contient_case_inexploree{false};
 
@@ -55,16 +54,17 @@ namespace sim::fourmi {
                 if (this->check_histo_cases &&
                     Fourmi::case_dans_histo(&this->chemin, case_iter->get_position()))
                     continue;
-                if (!case_iter->is_explore()) contient_case_inexploree = true;
-                cases_voisines.push_back(case_iter);
+
+                if (!case_iter->is_explore()) {
+                    if (!contient_case_inexploree) cases_voisines.clear();
+                    contient_case_inexploree = true;
+                    cases_voisines.push_back(case_iter);
+                }
+
+                if (!contient_case_inexploree) cases_voisines.push_back(case_iter);
             }
         }
 
-        if (contient_case_inexploree) {
-            cases_voisines.erase(std::remove_if(cases_voisines.begin(), cases_voisines.end(), [](sim::carte::Case *c) {
-                return c->is_explore();
-            }), cases_voisines.end());
-        }
         return cases_voisines;
     }
 }

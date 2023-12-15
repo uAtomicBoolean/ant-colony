@@ -10,7 +10,7 @@ namespace sim::consts {
 
     const int DIMENSION_CARTE_X = 211; // 211 cases
     const int DIMENSION_CARTE_Y = 201; // 201 cases
-    const int NOURRITURE_DEPART = 2; // 2 unités de nourriture
+    const int NOURRITURE_DEPART = 20; // 2 unités de nourriture
     const int NB_TOURS_PAR_JOUR = 24; // 24 tours pour faire un jour
 
     const int CAPACITE_FOURMI_MAX_CASE = 12; // 12 fourmis par case
@@ -61,7 +61,9 @@ namespace sim::consts {
     // Nombre de cases a regarder dans le chemin d'une fourmi lorsque'elle se deplace pour eviter de tourner en rond.
     const int TAILLE_HISTO_CASES = 30;
 
-    const int PHEROMONE_MAX_CASE = 1000; // 1000 unités de phéromones par case
+    // Une valeur permettant de calculer la quantite de pheromones a deposer sur une case.
+    const int MAX_DIST_PHEROMONE = 150;
+    const int PHEROMONE_MAX_CASE = 50; // 1000 unités de phéromones par case
     const int TAUX_EVAPORATION_PHEROMONE = 5; // par tour
     const double TAUX_DE_DIFFUSION_PHEROMONE = .2; // par tour
     const int CAPACITE_FOURMI_PHEROMONE_MAX = 500; // 500 unités de phéromones par fourmi

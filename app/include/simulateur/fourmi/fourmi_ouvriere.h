@@ -17,15 +17,15 @@ namespace sim::fourmi {
         bool est_chargee{false};
         double charge{};
 
+        double multiplier_pheromone{-1};
+
     public:
         double get_charge() const;
 
         void deplacer() override;
 
         std::vector<sim::carte::Case *> get_cases_voisines() override;
-
-        void depose_pheromone();
-
+        
         void prendre_nourriture(sim::carte::Case *case_a);
 
         void depose_nourriture();

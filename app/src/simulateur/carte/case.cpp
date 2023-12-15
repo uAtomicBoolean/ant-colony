@@ -34,12 +34,20 @@ namespace sim::carte {
         this->quant_nourriture = quant_nour;
     }
 
+    void Case::increment_pheromone(double quant) {
+        this->quant_pheromone += quant;
+    }
+
     sim::types::position_t Case::get_position() const {
         return this->position;
     }
 
-    int Case::get_quant_nourriture() const {
+    double Case::get_quant_nourriture() const {
         return this->quant_nourriture;
+    }
+
+    double Case::get_quant_pheromone() const {
+        return this->quant_pheromone;
     }
 
     TypeCase Case::get_type() {
