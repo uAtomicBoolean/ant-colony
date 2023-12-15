@@ -128,6 +128,8 @@ namespace gui {
 
                     auto pos = sim::types::position_t{i, j};
                     auto fourmi = sim->get_colonie()->get_fourmi(pos);
+                    sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
+                    sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     if (nb_fourmis == 1 && fourmi != nullptr) {
                         // On ignore la reine car elle n'est jamais affichee.
                         switch (fourmi->get_type()) {
@@ -148,9 +150,6 @@ namespace gui {
                         sprite_fourmi.setTexture(this->textureGroupe);
                     }
 
-                    sprite_fourmi.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
-                    sprite_fourmi.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    sprite_fourmi.setTexture(this->textureFourmiEclaireur);
                     win.draw(sprite_fourmi);
                 }
             }
