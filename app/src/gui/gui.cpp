@@ -98,6 +98,14 @@ namespace gui {
                 sf::Sprite sprite;
                 int nb_fourmis = caseXY->get_nb_fourmis();
 
+                if (caseXY->is_explore()) {
+                    sf::Sprite sprite_explore{};
+                    sprite_explore.setTexture(this->textureExplore);
+                    sprite_explore.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
+                    sprite_explore.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
+                    win.draw(sprite_explore);
+                }
+
                 switch (c) {
                     case sim::carte::OBSTACLE:
                         sprite.setTexture(this->textureObstacle);
@@ -113,11 +121,6 @@ namespace gui {
                 }
 
                 if (c != sim::carte::TypeCase::VIDE) {
-                    sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
-                    sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
-                    win.draw(sprite);
-                } else if (caseXY->is_explore()) {
-                    sprite.setTexture(this->textureExplore);
                     sprite.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     win.draw(sprite);
