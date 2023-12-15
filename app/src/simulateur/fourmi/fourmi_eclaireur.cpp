@@ -41,11 +41,16 @@ namespace sim::fourmi {
 
                 sim::carte::Case *case_iter{sim->get_carte()->get_case(x, y)};
 
+                // Les cases de nourritures sont decouvertes meme si elles ne sont qu'a cote du chemin de l'eclaireuse.
+                if (case_iter->get_type() == sim::carte::TypeCase::NOURRITURE) {
+                    case_iter->set_explore(true);
+                };
                 if (case_iter->get_type() == sim::carte::TypeCase::OBSTACLE ||
-                    case_iter->get_nb_fourmis() == sim::consts::CAPACITE_FOURMI_MAX_CASE)
+                    case_iter->get_nb_fourmis() == sim::consts::CAPACITE_FOURMI_MAX_CASE) {
                     continue;
+                }
 
-                // Verifie si la case n'est pas une case deja exploree.
+                // Verifie si la case n'est pas une case deja visitee (exploree ou non).
                 // Cette verif est realisee uniquement a la fin de la boucle car elle est demande plus de ressources.
                 if (this->check_histo_cases &&
                     Fourmi::case_dans_histo(&this->chemin, case_iter->get_position()))
