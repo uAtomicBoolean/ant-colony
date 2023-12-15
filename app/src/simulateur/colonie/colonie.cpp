@@ -17,6 +17,7 @@ namespace sim::colonie {
 
     void Colonie::ajoute_nourriture(double ajout) {
         this->stock_nourriture += ajout;
+        if (this->stock_nourriture < 0) this->stock_nourriture = 0;
     }
 
     void Colonie::consomme_nourriture(double conso) {
