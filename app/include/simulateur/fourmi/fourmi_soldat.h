@@ -16,6 +16,8 @@ namespace sim::fourmi {
     public:
         void deplacer() override;
 
+        std::vector<sim::carte::Case *> get_cases_voisines() override;
+
         void attaquer(sim::fourmi::FourmiEsclavagiste *fourmi_esclavagiste);
 
         void incremente_duree_ronde();

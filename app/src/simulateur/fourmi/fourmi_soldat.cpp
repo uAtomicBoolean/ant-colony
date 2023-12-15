@@ -6,59 +6,90 @@
 
 namespace sim::fourmi {
     void FourmiSoldat::deplacer() {
+        if (this->type != TypeFourmi::SOLDAT) return;
 
-        /*// Si la fourmi doit retourner à la colonie, on la fait revenir
-        if(this->get_retour_colonie()) {
-            if(this->chemin.empty() || this->get_case_actuelle()->get_type() == carte::TypeCase::COLONIE) {
-                this->set_retour_colonie(false);
-                this->duree_ronde = 0;
-                return;
-            }
+        std::cout << this->retour_colonie << std::endl;
+        // Retour a la colonie.
+        if (this->retour_colonie) {
+            std::cout << "deplacement retour colonie" << std::endl;
+
+            // TODO Faire en sorte que les fourmis mettent moins de temps pour retourner a la colonie.
+            //  Deux options :
+            //      - faire une ligne droite vers la colonie
+            //      - réduire le chemin en évitant toutes les boucles et le bordel dans les positions.
+            this->get_case_actuelle()->update_nb_fourmis(-1);
             this->chemin.pop_back();
-            return;
-        }
-        else {
-            this->incremente_duree_ronde();
-        }
+            sim::carte::Case *case_actu{this->get_case_actuelle()};
+            case_actu->update_nb_fourmis(1);
 
-        bool a_fini = false;
-        while (!a_fini) {
-            std::cout << this->get_case_actuelle()->get_position().x << " " << this->get_case_actuelle()->get_position().y << std::endl;
-            sim::carte::Case *case_actuelle{this->get_case_actuelle()};
-
-            // Si sur cette case il y a une fourmi esclavagiste, on attaque
-            if (case_actuelle->get_nb_fourmis() > 1) {
+            // Implémenter attaquer si fourmi esclavagiste
+            if (this->get_case_actuelle()->get_nb_fourmis() > 1) {
                 sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
                 std::vector<sim::fourmi::FourmiEsclavagiste *> *fourmis_esclavagistes{sim->get_fourmis_esclavagistes()};
                 for (auto &fourmi_esclavagiste: *fourmis_esclavagistes) {
-                    if (fourmi_esclavagiste->get_case_actuelle()->get_position().x == case_actuelle->get_position().x &&
-                        fourmi_esclavagiste->get_case_actuelle()->get_position().y == case_actuelle->get_position().y) {
-                        std::cout << "attaque" << std::endl;
+                    if (fourmi_esclavagiste->get_case_actuelle()->get_position().x == this->get_case_actuelle()->get_position().x &&
+                        fourmi_esclavagiste->get_case_actuelle()->get_position().y == this->get_case_actuelle()->get_position().y) {
                         FourmiSoldat::attaquer(fourmi_esclavagiste);
-                        a_fini = true;
                         break;
                     }
                 }
             }
+        } else {
+            std::cout << "deplacement exploration" << std::endl;
+            // Deplacement
+            std::vector<sim::carte::Case *> cases_voisines{this->get_cases_voisines()};
 
-            if (a_fini) {
-                break;
+            if (cases_voisines.empty()) {
+                this->check_histo_cases = false;
+                return;
             }
+            this->check_histo_cases = true;
 
-            sim::carte::Case *case_voisine = sim::carte::Carte::get_case_voisine8d(case_actuelle);
-            std::cout << "case voisine : " << case_voisine->get_position().x << " " << case_voisine->get_position().y << std::endl;
 
-            // Dans le cas où la case voisine est une case valide, et que le soldat n'est pas en combat, il se déplace
-            bool est_valide = sim::carte::Carte::check_case(case_voisine) && case_voisine->is_explore();
-            if (est_valide) {
-                // Si elle est valide, on se déplace
-                this->chemin.push_back(case_voisine);
-                a_fini = true;
-                case_actuelle->set_nb_fourmis(-1);
-                case_voisine->set_nb_fourmis(1);
-                std::cout << "case valide" << std::endl;
+            std::mt19937 gen(std::random_device{}());
+            std::uniform_int_distribution<> distrib(0, static_cast<int>(cases_voisines.size()) - 1);
+
+            this->get_case_actuelle()->update_nb_fourmis(-1);
+            this->chemin.push_back(cases_voisines.at(distrib(gen)));
+
+            sim::carte::Case *case_act{this->get_case_actuelle()};
+            case_act->update_nb_fourmis(1);
+        }
+
+        // "Reset" complet de la fourmi quand elle arrive a la colonie.
+        if (this->get_case_actuelle()->get_type() == sim::carte::TypeCase::COLONIE)
+            this->set_retour_colonie(false);
+        else
+            this->incremente_duree_ronde();
+    }
+
+    std::vector<sim::carte::Case *> FourmiSoldat::get_cases_voisines() {
+        sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
+        std::vector<sim::carte::Case *> cases_voisines{};
+
+        sim::carte::Case *case_actu{this->get_case_actuelle()};
+
+        sim::types::position_t pos_cc{case_actu->get_position()};
+        for (int y{pos_cc.y - 1}; y <= pos_cc.y + 1; ++y) {
+            for (int x{pos_cc.x - 1}; x <= pos_cc.x + 1; ++x) {
+                if (x == pos_cc.x && y == pos_cc.y || x < 0 || y < 0 || x >= sim::consts::DIMENSION_CARTE_X ||
+                    y >= sim::consts::DIMENSION_CARTE_Y)
+                    continue;
+
+                sim::carte::Case *case_iter{sim->get_carte()->get_case(x, y)};
+                if (case_iter->get_type() == sim::carte::TypeCase::OBSTACLE ||
+                    case_iter->get_nb_fourmis() == sim::consts::CAPACITE_FOURMI_MAX_CASE ||
+                    !sim::carte::Carte::check_case(case_iter, true))
+                    continue;
+
+                if (this->check_histo_cases &&
+                    Fourmi::case_dans_histo(&this->chemin, case_iter->get_position()))
+                    continue;
+
+                cases_voisines.push_back(case_iter);
             }
-        }*/
+        }
+        return cases_voisines;
     }
 
     void FourmiSoldat::attaquer(sim::fourmi::FourmiEsclavagiste *fourmi_esclavagiste) {
@@ -74,14 +105,11 @@ namespace sim::fourmi {
     }
 
     void FourmiSoldat::incremente_duree_ronde() {
-        if (this->duree_ronde == sim::consts::DUREE_RONDE_SOLDAT - 1) {
-            this->aller_vers_colonie();
+        ++this->duree_ronde;
+        if (this->duree_ronde == sim::consts::DUREE_RONDE_SOLDAT) {
+            this->set_retour_colonie(true);
+            this->duree_ronde = 0;
         }
-        this->duree_ronde++;
-    }
-
-    void FourmiSoldat::aller_vers_colonie() {
-        this->set_retour_colonie(true);
     }
 
     bool FourmiSoldat::get_retour_colonie() {
