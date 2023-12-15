@@ -21,12 +21,14 @@ namespace gui {
         sf::Texture textureFourmiEclaireur{};
         sf::Texture textureFourmiReine{};
         sf::Texture textureFourmiEsclavagiste{};
+        sf::Texture textureFourmiDebug{};
         sf::Texture textureGroupe{};
         sf::Texture textureVide{};
         sf::Texture textureObstacle{};
         sf::Texture textureColonie{};
         sf::Texture textureNourriture{};
         sf::Texture textureExplore{};
+        sf::Texture texturePheromone{};
 
         sf::RectangleShape onglet_infos{sf::Vector2f(150, 90)};
         sf::RectangleShape bordure_infos{sf::Vector2f(160, 100)};

@@ -37,12 +37,14 @@ namespace gui {
         this->textureFourmiEclaireur.loadFromFile("../app/assets/eclaireur.png");
         this->textureFourmiReine.loadFromFile("../app/assets/reine.png");
         this->textureFourmiEsclavagiste.loadFromFile("../app/assets/esclavagiste.png");
+        this->textureFourmiDebug.loadFromFile("../app/assets/debug.png");
         this->textureGroupe.loadFromFile("../app/assets/groupe.png");
         this->textureVide.loadFromFile("../app/assets/vide.png");
         this->textureObstacle.loadFromFile("../app/assets/obstacle.png");
         this->textureColonie.loadFromFile("../app/assets/colonie.png");
         this->textureNourriture.loadFromFile("../app/assets/nourriture.png");
         this->textureExplore.loadFromFile("../app/assets/explore.png");
+        this->texturePheromone.loadFromFile("../app/assets/pheromone.png");
 
         while (window.isOpen()) {
             sf::Event event{};
@@ -91,6 +93,7 @@ namespace gui {
 
     void GUI::render(sf::RenderWindow &win, sim::Simulateur *sim) const {
 
+        bool debug = false;
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
                 sim::carte::Case *caseXY = sim->get_carte()->get_case(i, j);
@@ -104,6 +107,18 @@ namespace gui {
                     sprite_explore.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
                     sprite_explore.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
                     win.draw(sprite_explore);
+                    if (caseXY->get_quant_pheromone() > 0) {
+                        sf::Sprite sprite_pheromone{};
+                        int alpha{
+                                static_cast<int>((caseXY->get_quant_pheromone() / 128) *
+                                                 sim::consts::PHEROMONE_MAX_CASE)};
+                        if (alpha < 128) alpha = 128;
+                        sprite_pheromone.setPosition(sf::Vector2f(i * SPRITE_SIZE, j * SPRITE_SIZE));
+                        sprite_pheromone.setColor(sf::Color(255, 255, 255, alpha));
+                        sprite_pheromone.setTexture(this->texturePheromone);
+                        sprite_pheromone.setScale(sf::Vector2f(SPRITE_SIZE / 1000.f, SPRITE_SIZE / 1000.f));
+                        win.draw(sprite_pheromone);
+                    }
                 }
 
                 switch (c) {
@@ -140,7 +155,12 @@ namespace gui {
                                 sprite_fourmi.setTexture(this->textureFourmiOuvriere);
                                 break;
                             case sim::fourmi::SOLDAT:
-                                sprite_fourmi.setTexture(this->textureFourmiSoldat);
+                                if (!debug) {
+                                    sprite_fourmi.setTexture(this->textureFourmiDebug);
+                                } else {
+                                    sprite_fourmi.setTexture(this->textureFourmiSoldat);
+                                }
+                                debug = true;
                                 break;
                             case sim::fourmi::ECLAIREUR:
                                 sprite_fourmi.setTexture(this->textureFourmiEclaireur);
