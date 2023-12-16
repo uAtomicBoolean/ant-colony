@@ -20,7 +20,7 @@ namespace gui {
         sf::Texture textureFourmiSoldat{};
         sf::Texture textureFourmiEclaireur{};
         sf::Texture textureFourmiReine{};
-        sf::Texture textureFourmiEsclavagiste{};
+        sf::Texture textureFourmiAnarchiste{};
         sf::Texture textureFourmiDebug{};
         sf::Texture textureGroupe{};
         sf::Texture textureVide{};

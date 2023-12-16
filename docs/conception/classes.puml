@@ -53,15 +53,15 @@ namespace simulateur {
 '		PROBA_REINE_POND_ECLAIREUR = 5
 '
 '		DUREE_RONDE_SOLDAT = 100 // 100 jours
-'		DUREE_VIE_ESCLAVAGISTE = 10 // 10 jours
+'		DUREE_VIE_ANARCHISTE = 10 // 10 jours
 '
 '		PHEROMONE_MAX_CASE = 1000 // 1000 unités de phéromones par case
 '		TAUX_EVAPORATION_PHEROMONE = 5% par tour
 '		TAUX_DE_DIFFUSION_PHEROMONE = 0.2% par tour
 '		CAPACITE_FOURMI_PHEROMONE_MAX = 500 // 500 unités de phéromones par fourmi
 '
-'		PROBA_FOURMI_ESCLAVAGISTE_MIN = 5 // 5 jours
-'		PROBA_FOURMI_ESCLAVAGISTE_MAX = 10 // 10 jours
+'		PROBA_FOURMI_ANARCHISTE_MIN = 5 // 5 jours
+'		PROBA_FOURMI_ANARCHISTE_MAX = 10 // 10 jours
 '	}
 	namespace carte {
 		class Carte {
@@ -140,7 +140,7 @@ namespace simulateur {
 			+ verifier_duree_ronde() : void
 			// Elles doivent retourner à la colonie tous les 100 jours
 		}
-		class Esclavagiste {
+		class Anarchiste {
 			+ transport_nourriture : int
 			+ transport_larve : int
 			+ voler() : void
@@ -150,7 +150,7 @@ namespace simulateur {
 		Ouvriere <|-- Fourmi
 		Eclaireur <|-- Fourmi
 		Soldat <|-- Fourmi
-		Esclavagiste <|-- Fourmi
+		Anarchiste <|-- Fourmi
 
 	}
 	Simulateur "1" *-- "1" simulateur.colonie.Colonie
