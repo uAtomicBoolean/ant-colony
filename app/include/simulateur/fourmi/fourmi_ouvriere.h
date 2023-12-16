@@ -13,11 +13,21 @@ namespace sim::fourmi {
         using Fourmi::Fourmi;
 
     private:
-        float reserve_pheromone{sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX};
+        double reserve_pheromone{sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX};
         bool est_chargee{false};
         double charge{};
-
         double multiplier_pheromone{-1};
+        TypeMoveOuvriere type_move{TypeMoveOuvriere::NORMAL};
+
+        void move_to_case(sim::carte::Case *new_case);
+
+        void deplacement_nourriture(std::vector<sim::carte::Case *> *cases_voisines);
+
+        void deplacement_pheromone();
+
+        void deplacement_normal(std::vector<sim::carte::Case *> *cases_voisines);
+
+        void deplacement_retour();
 
     public:
         double get_charge() const;
@@ -25,7 +35,7 @@ namespace sim::fourmi {
         void deplacer() override;
 
         std::vector<sim::carte::Case *> get_cases_voisines() override;
-        
+
         void prendre_nourriture(sim::carte::Case *case_a);
 
         void depose_nourriture();

@@ -15,6 +15,12 @@ namespace sim::fourmi {
         ESCLAVAGISTE,
     };
 
+    enum TypeMoveOuvriere {
+        NORMAL,
+        PHEROMONE,
+        NOURRITURE,
+    };
+
     class Fourmi {
     protected:
         int age{};

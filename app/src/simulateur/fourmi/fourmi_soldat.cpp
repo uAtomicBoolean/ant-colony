@@ -1,4 +1,3 @@
-#include <iostream>
 #include "fourmi_soldat.h"
 #include "carte.h"
 #include "simulateur.h"
@@ -8,15 +7,8 @@ namespace sim::fourmi {
     void FourmiSoldat::deplacer() {
         if (this->type != TypeFourmi::SOLDAT) return;
 
-        std::cout << this->retour_colonie << std::endl;
         // Retour a la colonie.
         if (this->retour_colonie) {
-            std::cout << "deplacement retour colonie" << std::endl;
-
-            // TODO Faire en sorte que les fourmis mettent moins de temps pour retourner a la colonie.
-            //  Deux options :
-            //      - faire une ligne droite vers la colonie
-            //      - réduire le chemin en évitant toutes les boucles et le bordel dans les positions.
             this->get_case_actuelle()->update_nb_fourmis(-1);
             this->chemin.pop_back();
             sim::carte::Case *case_actu{this->get_case_actuelle()};
@@ -27,15 +19,16 @@ namespace sim::fourmi {
                 sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
                 std::vector<sim::fourmi::FourmiEsclavagiste *> *fourmis_esclavagistes{sim->get_fourmis_esclavagistes()};
                 for (auto &fourmi_esclavagiste: *fourmis_esclavagistes) {
-                    if (fourmi_esclavagiste->get_case_actuelle()->get_position().x == this->get_case_actuelle()->get_position().x &&
-                        fourmi_esclavagiste->get_case_actuelle()->get_position().y == this->get_case_actuelle()->get_position().y) {
+                    if (fourmi_esclavagiste->get_case_actuelle()->get_position().x ==
+                        this->get_case_actuelle()->get_position().x &&
+                        fourmi_esclavagiste->get_case_actuelle()->get_position().y ==
+                        this->get_case_actuelle()->get_position().y) {
                         FourmiSoldat::attaquer(fourmi_esclavagiste);
                         break;
                     }
                 }
             }
         } else {
-            std::cout << "deplacement exploration" << std::endl;
             // Deplacement
             std::vector<sim::carte::Case *> cases_voisines{this->get_cases_voisines()};
 
