@@ -23,7 +23,7 @@ namespace sim::fourmi {
 
         void deplacement_nourriture(std::vector<sim::carte::Case *> *cases_voisines);
 
-        void deplacement_pheromone();
+        void deplacement_pheromone(std::vector<sim::carte::Case *> *cases_voisines);
 
         void deplacement_normal(std::vector<sim::carte::Case *> *cases_voisines);
 

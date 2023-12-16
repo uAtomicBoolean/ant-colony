@@ -1,9 +1,13 @@
+#include <cmath>
 #include "case.h"
+#include "constantes.h"
 
 
 namespace sim::carte {
     Case::Case() {
         this->type = TypeCase::VIDE;
+
+
     }
 
     int Case::get_nb_fourmis() const {
@@ -28,6 +32,11 @@ namespace sim::carte {
 
     void Case::set_position(int x, int y) {
         this->position = {x, y};
+
+        // Calcule de la distance par rapport a la position de la colonie.
+        this->distance_colonie = std::sqrt(
+                std::pow(x - sim::consts::POS_COLONY_X, 2)
+                + std::pow(y - sim::consts::POS_COLONY_Y, 2));
     }
 
     void Case::set_quant_nourriture(double quant_nour) {
@@ -40,6 +49,10 @@ namespace sim::carte {
 
     sim::types::position_t Case::get_position() const {
         return this->position;
+    }
+
+    double Case::get_dist_colonie() const {
+        return this->distance_colonie;
     }
 
     double Case::get_quant_nourriture() const {

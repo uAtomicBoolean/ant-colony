@@ -6,10 +6,6 @@
 
 
 namespace sim::fourmi {
-    double calc_distance_colonie(sim::types::position_t pos_case, sim::types::position_t pos_colonie) {
-        return std::sqrt(std::pow(pos_case.x - pos_colonie.x, 2) + std::pow(pos_case.y - pos_colonie.y, 2));
-    }
-
     void FourmiOuvriere::move_to_case(sim::carte::Case *new_case) {
         this->get_case_actuelle()->update_nb_fourmis(-1);
         this->chemin.push_back(new_case);
@@ -17,36 +13,32 @@ namespace sim::fourmi {
     }
 
     void FourmiOuvriere::deplacement_normal(std::vector<sim::carte::Case *> *cases_voisines) {
-        /*if (cases_voisines.empty()) {
+        if (cases_voisines->empty()) {
             this->check_histo_cases = false;
             return;
         }
-        this->check_histo_cases = true;*/
-        double proba_total = 0.0;
-        sim::types::position_t pos_colonie{
-                sim::Simulateur::get_simulateur()->get_colonie()->get_cases_colonie()->at(0)->get_position()};
-        for (const sim::carte::Case *case_t: *cases_voisines) {
-            double distance = calc_distance_colonie(case_t->get_position(), pos_colonie);
-            double proba = 1.0 / (1.0 + std::exp(-distance));
-            proba_total += proba;
+        this->check_histo_cases = true;
+
+        double somme_distances{0};
+        for (const sim::carte::Case *case_a: *cases_voisines) {
+            somme_distances += case_a->get_dist_colonie();
         }
 
-
-        double choix = static_cast<double>(std::rand()) / RAND_MAX;
-        double proba_cumulative = 0.0;
-        sim::carte::Case *choix_case{};
-        for (sim::carte::Case *case_t: *cases_voisines) {
-            double distance = calc_distance_colonie(case_t->get_position(), pos_colonie);
-            double proba = 1.0 / (1.0 + std::exp(-distance));
-            proba_cumulative += proba / proba_total;
-
-            if (choix <= proba_cumulative) {
-                choix_case = case_t;
-                break;
-            }
+        std::map<double, sim::carte::Case *> probas_cases{};
+        double somme_probas{0};
+        for (sim::carte::Case *case_a: *cases_voisines) {
+            double proba_case{(case_a->get_dist_colonie() * 100) / somme_distances};
+            probas_cases[proba_case + somme_probas] = case_a;
+            somme_probas += proba_case;
         }
 
-        this->move_to_case(choix_case);
+        // Choix de la case.
+        std::mt19937 gen(std::random_device{}());
+        std::uniform_real_distribution<float> distrib(0.f, 100.f);
+        float proba_choix{distrib(gen)};
+        auto iterator = probas_cases.lower_bound(proba_choix);
+        if (iterator != probas_cases.end())
+            this->move_to_case(iterator->second);
     }
 
     void FourmiOuvriere::deplacement_nourriture(std::vector<sim::carte::Case *> *cases_voisines) {
@@ -54,8 +46,27 @@ namespace sim::fourmi {
         this->prendre_nourriture(this->get_case_actuelle());
     }
 
-    void FourmiOuvriere::deplacement_pheromone() {
-        // TODO
+    void FourmiOuvriere::deplacement_pheromone(std::vector<sim::carte::Case *> *cases_voisines) {
+        double somme_pheromones{0};
+        for (const sim::carte::Case *case_a: *cases_voisines) {
+            somme_pheromones += case_a->get_quant_pheromone();
+        }
+
+        std::map<double, sim::carte::Case *> probas_cases{};
+        double somme_probas{0};
+        for (sim::carte::Case *case_a: *cases_voisines) {
+            double proba_case{(case_a->get_quant_pheromone() * 100) / somme_pheromones};
+            probas_cases[proba_case + somme_probas] = case_a;
+            somme_probas += proba_case;
+        }
+
+        // Choix de la case.
+        std::mt19937 gen(std::random_device{}());
+        std::uniform_real_distribution<float> distrib(0.f, 100.f);
+        float proba_choix{distrib(gen)};
+        auto iterator = probas_cases.lower_bound(proba_choix);
+        if (iterator != probas_cases.end())
+            this->move_to_case(iterator->second);
     }
 
     void FourmiOuvriere::deplacement_retour() {
@@ -91,17 +102,12 @@ namespace sim::fourmi {
         if (this->est_chargee) {
             this->deplacement_retour();
         } else {
-            // TODO Gérer le choix de la case en fonction des pheromones (quand il y en a).
-
-            // Deplacement en recherche de nourriture.
             std::vector<sim::carte::Case *> cases_voisines{this->get_cases_voisines()};
-
             if (this->type_move == TypeMoveOuvriere::PHEROMONE) {
-                this->deplacement_pheromone();
-            } else {
-                if (this->type_move == TypeMoveOuvriere::NOURRITURE) this->deplacement_nourriture(&cases_voisines);
-                else this->deplacement_normal(&cases_voisines);
-            }
+                this->deplacement_pheromone(&cases_voisines);
+            } else if (this->type_move == TypeMoveOuvriere::NOURRITURE) this->deplacement_nourriture(&cases_voisines);
+            else this->deplacement_normal(&cases_voisines);
+
         }
     }
 
@@ -162,9 +168,9 @@ namespace sim::fourmi {
                     cases_voisines.push_back(case_iter);
                     contient_pheromone = false;
                 } else {
-                    /*if (this->check_histo_cases &&
-                        Fourmi::case_dans_histo(&this->chemin, case_iter->get_position()))
-                        continue;*/
+                    if (this->check_histo_cases) {
+                        // TODO Enlever les cases qui sont dans l'historique.
+                    }
                     cases_voisines.push_back(case_iter);
                 }
             }
@@ -179,8 +185,8 @@ namespace sim::fourmi {
                     cases_voisines.begin(),
                     cases_voisines.end(),
                     [pos_colonie](const sim::carte::Case *c1, const sim::carte::Case *c2) {
-                        const double dist1{calc_distance_colonie(pos_colonie, c1->get_position())};
-                        const double dist2{calc_distance_colonie(pos_colonie, c2->get_position())};
+                        const double dist1{c1->get_dist_colonie()};
+                        const double dist2{c2->get_dist_colonie()};
                         return dist1 < dist2;
                     });
             this->type_move = TypeMoveOuvriere::NORMAL;

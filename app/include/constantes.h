@@ -10,6 +10,9 @@ namespace sim::consts {
 
     const int DIMENSION_CARTE_X = 211; // 211 cases
     const int DIMENSION_CARTE_Y = 201; // 201 cases
+    const int POS_COLONY_X = DIMENSION_CARTE_X / 2;
+    const int POS_COLONY_Y = DIMENSION_CARTE_Y / 2;
+
     const int NOURRITURE_DEPART = 20; // 2 unités de nourriture
     const int NB_TOURS_PAR_JOUR = 24; // 24 tours pour faire un jour
 
@@ -37,12 +40,12 @@ namespace sim::consts {
 
     const float PROBA_OBSTACLE = 5.f; // 30% de la surface totale de la carte
     const std::map<int, int> PROBA_TAILLE_OBSTACLE = {
-            {49.f, 1},
-            {79.f, 2},
-            {89.f, 3},
-            {94.f, 4},
-            {98.f, 5},
-            {99.f, 6},
+            {50.f,  1},
+            {80.f,  2},
+            {90.f,  3},
+            {95.f,  4},
+            {99.f,  5},
+            {100.f, 6},
     };
 
     const int DUREE_JUVENILE_OUVRIERE = 15;

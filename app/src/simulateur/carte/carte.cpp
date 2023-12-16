@@ -92,17 +92,11 @@ namespace sim::carte {
         }
 
 
-        int case_col_x = sim::consts::DIMENSION_CARTE_X / 2;
-        int case_col_y = sim::consts::DIMENSION_CARTE_Y / 2;
-        this->get_case(case_col_x, case_col_y)->set_type(TypeCase::COLONIE);
+        this->get_case(sim::consts::POS_COLONY_X, sim::consts::POS_COLONY_Y)->set_type(TypeCase::COLONIE);
         sim::Simulateur::get_simulateur()->get_colonie()
-                ->add_case_colonie(this->get_case(case_col_x, case_col_y));
+                ->add_case_colonie(this->get_case(sim::consts::POS_COLONY_X, sim::consts::POS_COLONY_Y));
 
         this->placer_gros_stocks_nourriture();
-    }
-
-    sim::carte::Case **Carte::get_cases() {
-        return nullptr;
     }
 
     sim::carte::Case *Carte::get_case(int x, int y) {
@@ -141,35 +135,6 @@ namespace sim::carte {
             case 4:
                 return sim::Simulateur::get_simulateur()->get_carte()->get_case(case_to_check->get_position().x,
                                                                                 case_to_check->get_position().y + 1);
-            default:
-                return nullptr;
-        }
-    }
-
-
-    sim::carte::Case *Carte::get_case_voisine8d(sim::carte::Case *case_to_check) {
-        Carte *carte = sim::Simulateur::get_simulateur()->get_carte();
-        // random from 1 to 8
-        std::mt19937 gen(std::random_device{}());
-        std::uniform_int_distribution<> distrib(1, 8);
-        int direction = distrib(gen);
-        switch (direction) {
-            case 1:
-                return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y);
-            case 2:
-                return carte->get_case(case_to_check->get_position().x, case_to_check->get_position().y - 1);
-            case 3:
-                return carte->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y);
-            case 4:
-                return carte->get_case(case_to_check->get_position().x, case_to_check->get_position().y + 1);
-            case 5:
-                return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y - 1);
-            case 6:
-                return carte->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y - 1);
-            case 7:
-                return carte->get_case(case_to_check->get_position().x + 1, case_to_check->get_position().y + 1);
-            case 8:
-                return carte->get_case(case_to_check->get_position().x - 1, case_to_check->get_position().y + 1);
             default:
                 return nullptr;
         }

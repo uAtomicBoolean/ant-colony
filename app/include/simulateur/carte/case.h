@@ -20,6 +20,7 @@ namespace sim::carte {
         bool est_explore{};
         double quant_nourriture{};
         double quant_pheromone{};
+        double distance_colonie{};
 
         TypeCase type{};
         sim::types::position_t position{};
@@ -46,6 +47,8 @@ namespace sim::carte {
         void increment_pheromone(double quant);
 
         sim::types::position_t get_position() const;
+
+        double get_dist_colonie() const;
 
         double get_quant_nourriture() const;
 

@@ -18,17 +18,11 @@ namespace sim::carte {
         void placer_gros_stocks_nourriture();
 
     public:
-        sim::carte::Case **get_cases();
-
         sim::carte::Case *get_case(int x, int y);
 
         void genere_carte();
 
         static bool check_case(sim::carte::Case *case_to_check, bool check_case);
-
-        static sim::carte::Case *get_case_voisine4d(sim::carte::Case *case_to_check);
-
-        static sim::carte::Case *get_case_voisine8d(sim::carte::Case *case_to_check);
     };
 }
 
