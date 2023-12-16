@@ -17,7 +17,6 @@ namespace sim {
         bool simu_active{};
         sim::carte::Carte carte{};
         sim::colonie::Colonie colonie{};
-        std::vector<sim::fourmi::FourmiAnarchiste *> fourmis_anarchistes{};
 
         Simulateur();
 
@@ -46,8 +45,6 @@ namespace sim {
         void gere_fourmis_pas_simu(int heures);
 
         void gere_pheromones();
-
-        std::vector<sim::fourmi::FourmiAnarchiste *> *get_fourmis_anarchistes();
     };
 }
 

@@ -18,7 +18,7 @@ namespace sim::fourmi {
 
         std::vector<sim::carte::Case *> get_cases_voisines() override;
 
-        void attaquer(sim::fourmi::FourmiAnarchiste *fourmi_anarchiste);
+        void attaquer(sim::fourmi::Fourmi *fourmi);
 
         void incremente_duree_ronde();
 

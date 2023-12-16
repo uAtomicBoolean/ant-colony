@@ -10,6 +10,7 @@ namespace sim::fourmi {
         using Fourmi::Fourmi;
 
     public:
+        int proba_anarchiste{10};
         /**
          * Pond deux fourmis.
          * @param premiere_ponte Si premiere ponte, alors la premiere fourmi est une eclaireuse.

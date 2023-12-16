@@ -128,8 +128,4 @@ namespace sim {
     void Simulateur::gere_pheromones() {
         // TODO
     }
-
-    std::vector<sim::fourmi::FourmiAnarchiste *> *Simulateur::get_fourmis_anarchistes() {
-        return &this->fourmis_anarchistes;
-    }
 }
