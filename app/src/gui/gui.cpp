@@ -36,7 +36,7 @@ namespace gui {
         this->textureFourmiSoldat.loadFromFile("../app/assets/soldat.png");
         this->textureFourmiEclaireur.loadFromFile("../app/assets/eclaireur.png");
         this->textureFourmiReine.loadFromFile("../app/assets/reine.png");
-        this->textureFourmiEsclavagiste.loadFromFile("../app/assets/esclavagiste.png");
+        this->textureFourmiAnarchiste.loadFromFile("../app/assets/esclavagiste.png");
         this->textureFourmiDebug.loadFromFile("../app/assets/debug.png");
         this->textureGroupe.loadFromFile("../app/assets/groupe.png");
         this->textureVide.loadFromFile("../app/assets/vide.png");
@@ -165,8 +165,8 @@ namespace gui {
                             case sim::fourmi::ECLAIREUR:
                                 sprite_fourmi.setTexture(this->textureFourmiEclaireur);
                                 break;
-                            case sim::fourmi::ESCLAVAGISTE:
-                                sprite_fourmi.setTexture(this->textureFourmiEsclavagiste);
+                            case sim::fourmi::ANARCHISTE:
+                                sprite_fourmi.setTexture(this->textureFourmiAnarchiste);
                                 break;
                         }
                     } else {

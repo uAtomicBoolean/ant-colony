@@ -1,11 +1,11 @@
-#ifndef ANT_COLONY_FOURMI_ESCLAVAGISTE_H
-#define ANT_COLONY_FOURMI_ESCLAVAGISTE_H
+#ifndef ANT_COLONY_FOURMI_ANARCHISTE_H
+#define ANT_COLONY_FOURMI_ANARCHISTE_H
 
 #include "fourmi.h"
 
 
 namespace sim::fourmi {
-    class FourmiEsclavagiste : public sim::fourmi::Fourmi {
+    class FourmiAnarchiste : public sim::fourmi::Fourmi {
         // On utilise le constructeur de Fourmi.
         using Fourmi::Fourmi;
 
@@ -20,4 +20,4 @@ namespace sim::fourmi {
 }
 
 
-#endif //ANT_COLONY_FOURMI_ESCLAVAGISTE_H
+#endif //ANT_COLONY_FOURMI_ANARCHISTE_H

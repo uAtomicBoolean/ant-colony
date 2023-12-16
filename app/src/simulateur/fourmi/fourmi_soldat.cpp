@@ -14,16 +14,16 @@ namespace sim::fourmi {
             sim::carte::Case *case_actu{this->get_case_actuelle()};
             case_actu->update_nb_fourmis(1);
 
-            // Implémenter attaquer si fourmi esclavagiste
+            // Implémenter attaquer si fourmi anarchiste
             if (this->get_case_actuelle()->get_nb_fourmis() > 1) {
                 sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
-                std::vector<sim::fourmi::FourmiEsclavagiste *> *fourmis_esclavagistes{sim->get_fourmis_esclavagistes()};
-                for (auto &fourmi_esclavagiste: *fourmis_esclavagistes) {
-                    if (fourmi_esclavagiste->get_case_actuelle()->get_position().x ==
+                std::vector<sim::fourmi::FourmiAnarchiste *> *fourmis_anarchistes{sim->get_fourmis_anarchistes()};
+                for (auto &fourmi_anarchiste: *fourmis_anarchistes) {
+                    if (fourmi_anarchiste->get_case_actuelle()->get_position().x ==
                         this->get_case_actuelle()->get_position().x &&
-                        fourmi_esclavagiste->get_case_actuelle()->get_position().y ==
+                        fourmi_anarchiste->get_case_actuelle()->get_position().y ==
                         this->get_case_actuelle()->get_position().y) {
-                        FourmiSoldat::attaquer(fourmi_esclavagiste);
+                        FourmiSoldat::attaquer(fourmi_anarchiste);
                         break;
                     }
                 }
@@ -85,13 +85,13 @@ namespace sim::fourmi {
         return cases_voisines;
     }
 
-    void FourmiSoldat::attaquer(sim::fourmi::FourmiEsclavagiste *fourmi_esclavagiste) {
-        // Supprimer la fourmi esclavagiste
+    void FourmiSoldat::attaquer(sim::fourmi::FourmiAnarchiste *fourmi_anarchiste) {
+        // Supprimer la fourmi anarchiste
         sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
-        std::vector<sim::fourmi::FourmiEsclavagiste *> *fourmis_esclavagistes{sim->get_fourmis_esclavagistes()};
-        for (auto it = fourmis_esclavagistes->begin(); it != fourmis_esclavagistes->end(); ++it) {
-            if (*it == fourmi_esclavagiste) {
-                fourmis_esclavagistes->erase(it);
+        std::vector<sim::fourmi::FourmiAnarchiste *> *fourmis_anarchistes{sim->get_fourmis_anarchistes()};
+        for (auto it = fourmis_anarchistes->begin(); it != fourmis_anarchistes->end(); ++it) {
+            if (*it == fourmi_anarchiste) {
+                fourmis_anarchistes->erase(it);
                 break;
             }
         }

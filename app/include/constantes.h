@@ -59,7 +59,7 @@ namespace sim::consts {
     };
 
     const int DUREE_RONDE_SOLDAT = 100; // 100 jours
-    const int DUREE_VIE_ESCLAVAGISTE = 10; // 10 jours
+    const int DUREE_VIE_ANARCHISTE = 10; // 10 jours
 
     // Nombre de cases a regarder dans le chemin d'une fourmi lorsque'elle se deplace pour eviter de tourner en rond.
     const int TAILLE_HISTO_CASES = 30;
@@ -71,8 +71,8 @@ namespace sim::consts {
     const double TAUX_DE_DIFFUSION_PHEROMONE = .2; // par tour
     const int CAPACITE_FOURMI_PHEROMONE_MAX = 500; // 500 unités de phéromones par fourmi
 
-    const int PROBA_FOURMI_ESCLAVAGISTE_MIN = 5; // 5 jours
-    const int PROBA_FOURMI_ESCLAVAGISTE_MAX = 10; // 10 jours
+    const int PROBA_FOURMI_ANARCHISTE_MIN = 5; // 5 jours
+    const int PROBA_FOURMI_ANARCHISTE_MAX = 10; // 10 jours
 }
 
 #endif //ANT_COLONY_CONSTANTES_H

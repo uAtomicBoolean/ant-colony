@@ -2,7 +2,7 @@
 #define ANT_COLONY_FOURMI_SOLDAT_H
 
 #include "fourmi.h"
-#include "fourmi_esclavagiste.h"
+#include "fourmi_anarchiste.h"
 
 
 namespace sim::fourmi {
@@ -18,7 +18,7 @@ namespace sim::fourmi {
 
         std::vector<sim::carte::Case *> get_cases_voisines() override;
 
-        void attaquer(sim::fourmi::FourmiEsclavagiste *fourmi_esclavagiste);
+        void attaquer(sim::fourmi::FourmiAnarchiste *fourmi_anarchiste);
 
         void incremente_duree_ronde();
 

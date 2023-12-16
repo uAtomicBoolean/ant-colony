@@ -129,7 +129,7 @@ namespace sim {
         // TODO
     }
 
-    std::vector<sim::fourmi::FourmiEsclavagiste *> *Simulateur::get_fourmis_esclavagistes() {
-        return &this->fourmis_esclavagistes;
+    std::vector<sim::fourmi::FourmiAnarchiste *> *Simulateur::get_fourmis_anarchistes() {
+        return &this->fourmis_anarchistes;
     }
 }

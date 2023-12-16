@@ -13,7 +13,7 @@ add_executable(ant_colony app/main.cpp
         app/src/simulateur/carte/carte.cpp
         app/src/simulateur/colonie/colonie.cpp
         app/include/simulateur/colonie/colonie.h
-        app/include/simulateur/fourmi/fourmi_esclavagiste.h
+        app/include/simulateur/fourmi/fourmi_anarchiste.h
         app/include/simulateur/fourmi/fourmi_soldat.h
         app/include/simulateur/fourmi/fourmi_eclaireur.h
         app/include/simulateur/fourmi/fourmi_ouvriere.h
@@ -21,7 +21,7 @@ add_executable(ant_colony app/main.cpp
         app/src/simulateur/fourmi/fourmi_soldat.cpp
         app/src/simulateur/fourmi/fourmi_reine.cpp
         app/src/simulateur/fourmi/fourmi_ouvriere.cpp
-        app/src/simulateur/fourmi/fourmi_esclavagiste.cpp
+        app/src/simulateur/fourmi/fourmi_anarchiste.cpp
         app/src/simulateur/fourmi/fourmi_eclaireur.cpp
         app/src/simulateur/carte/case.cpp
         app/include/simulateur/carte/case.h

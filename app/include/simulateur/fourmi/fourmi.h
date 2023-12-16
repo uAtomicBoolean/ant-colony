@@ -12,7 +12,7 @@ namespace sim::fourmi {
         OUVRIERE,
         SOLDAT,
         ECLAIREUR,
-        ESCLAVAGISTE,
+        ANARCHISTE,
     };
 
     enum TypeMoveOuvriere {
