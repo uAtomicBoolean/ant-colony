@@ -10,7 +10,6 @@ namespace sim::fourmi {
         using Fourmi::Fourmi;
 
     private:
-        int transport_nourriture{};
         int transport_larve{};
 
     public:
