@@ -47,6 +47,10 @@ namespace sim::fourmi {
     }
 
     void FourmiOuvriere::deplacement_pheromone(std::vector<sim::carte::Case *> *cases_voisines) {
+        // TODO Debugger ce deplacement pour voir pourquoi il ne fonctionne pas.
+        //  Les probas des phéromones sont potentiellement trop similaires.
+        //  Sinon, c'est peut être la fonction get_cases_voisines qui ne fonctionne pas dans le cas des phéromones.
+
         double somme_pheromones{0};
         for (const sim::carte::Case *case_a: *cases_voisines) {
             somme_pheromones += case_a->get_quant_pheromone();
@@ -168,9 +172,8 @@ namespace sim::fourmi {
                     cases_voisines.push_back(case_iter);
                     contient_pheromone = false;
                 } else {
-                    if (this->check_histo_cases) {
-                        // TODO Enlever les cases qui sont dans l'historique.
-                    }
+                    if (this->check_histo_cases && Fourmi::case_dans_histo(&this->chemin, case_iter->get_position()))
+                        continue;
                     cases_voisines.push_back(case_iter);
                 }
             }

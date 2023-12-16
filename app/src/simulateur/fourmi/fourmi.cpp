@@ -53,13 +53,14 @@ namespace sim::fourmi {
     }
 
     bool Fourmi::case_dans_histo(std::vector<sim::carte::Case *> *chemin, sim::types::position_t pos_case) {
-        auto start{sim::consts::TAILLE_HISTO_CASES >= chemin->size()
-                   ? chemin->begin()
-                   : chemin->end() - sim::consts::TAILLE_HISTO_CASES};
-        return std::all_of(start, chemin->end(),
-                           [&pos_case](sim::carte::Case *case_histo) {
-                               return case_histo->get_position().x == pos_case.x &&
-                                      case_histo->get_position().y == pos_case.y;
-                           });
+        int limit{chemin->size() >= sim::consts::TAILLE_HISTO_CASES
+                  ? sim::consts::TAILLE_HISTO_CASES
+                  : static_cast<int>(chemin->size())};
+
+        for (int i{static_cast<int>(chemin->size()) - limit}; i < chemin->size(); ++i) {
+            if (chemin->at(i)->get_position().x == pos_case.x && chemin->at(i)->get_position().y == pos_case.y)
+                return true;
+        }
+        return false;
     }
 }
