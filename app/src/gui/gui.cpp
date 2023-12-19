@@ -93,7 +93,7 @@ namespace gui {
 
     void GUI::render(sf::RenderWindow &win, sim::Simulateur *sim) const {
 
-        bool debug = false;
+//        bool debug = false;
         for (int i = 0; i < sim::consts::DIMENSION_CARTE_X; i++) {
             for (int j = 0; j < sim::consts::DIMENSION_CARTE_Y; j++) {
                 sim::carte::Case *caseXY = sim->get_carte()->get_case(i, j);
@@ -155,12 +155,12 @@ namespace gui {
                                 sprite_fourmi.setTexture(this->textureFourmiOuvriere);
                                 break;
                             case sim::fourmi::SOLDAT:
-                                if (!debug) {
-                                    sprite_fourmi.setTexture(this->textureFourmiDebug);
-                                } else {
+//                                if (!debug) {
+//                                    sprite_fourmi.setTexture(this->textureFourmiDebug);
+//                                } else {
                                     sprite_fourmi.setTexture(this->textureFourmiSoldat);
-                                }
-                                debug = true;
+//                                }
+//                                debug = true;
                                 break;
                             case sim::fourmi::ECLAIREUR:
                                 sprite_fourmi.setTexture(this->textureFourmiEclaireur);

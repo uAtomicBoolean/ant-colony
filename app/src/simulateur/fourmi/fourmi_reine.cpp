@@ -1,6 +1,7 @@
 #include <random>
 #include "simulateur.h"
 #include "fourmi_reine.h"
+#include <iostream>
 
 
 namespace sim::fourmi {
@@ -20,13 +21,24 @@ namespace sim::fourmi {
             }
 
             float proba_fourmi{distrib(gen)};
+
             auto iterator = sim::consts::PROBA_PONTE_FOURMIS.lower_bound(proba_fourmi);
             if (iterator == sim::consts::PROBA_PONTE_FOURMIS.end()) continue;
+
+            if(proba_anarchiste <= 0) {
+                sim->get_colonie()->get_fourmis()->push_back(
+                        new FourmiAnarchiste(case_depart, sim::fourmi::TypeFourmi::ANARCHISTE));
+                std::mt19937 gen(std::random_device{}());
+                std::uniform_real_distribution<int> distrib(consts::PROBA_FOURMI_ANARCHISTE_MIN, consts::PROBA_FOURMI_ANARCHISTE_MAX);
+                proba_anarchiste = distrib(gen);
+                continue;
+            }
 
             switch (iterator->second) {
                 case 1:
                     sim->get_colonie()->get_fourmis()->push_back(
                             new FourmiOuvriere(case_depart, sim::fourmi::TypeFourmi::OUVRIERE));
+                    proba_anarchiste -= 1;
                     break;
                 case 2:
                     sim->get_colonie()->get_fourmis()->push_back(

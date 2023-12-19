@@ -17,13 +17,13 @@ namespace sim::fourmi {
             // Implémenter attaquer si fourmi anarchiste
             if (this->get_case_actuelle()->get_nb_fourmis() > 1) {
                 sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
-                std::vector<sim::fourmi::FourmiAnarchiste *> *fourmis_anarchistes{sim->get_fourmis_anarchistes()};
-                for (auto &fourmi_anarchiste: *fourmis_anarchistes) {
-                    if (fourmi_anarchiste->get_case_actuelle()->get_position().x ==
+                for (auto &fourmi: *sim->get_colonie()->get_fourmis()) {
+                    if(fourmi->get_type() != sim::fourmi::TypeFourmi::ANARCHISTE) continue;
+                    if (fourmi->get_case_actuelle()->get_position().x ==
                         this->get_case_actuelle()->get_position().x &&
-                        fourmi_anarchiste->get_case_actuelle()->get_position().y ==
+                        fourmi->get_case_actuelle()->get_position().y ==
                         this->get_case_actuelle()->get_position().y) {
-                        FourmiSoldat::attaquer(fourmi_anarchiste);
+                        FourmiSoldat::attaquer(fourmi);
                         break;
                     }
                 }
@@ -85,13 +85,17 @@ namespace sim::fourmi {
         return cases_voisines;
     }
 
-    void FourmiSoldat::attaquer(sim::fourmi::FourmiAnarchiste *fourmi_anarchiste) {
+    void FourmiSoldat::attaquer(sim::fourmi::Fourmi *fourmi) {
         // Supprimer la fourmi anarchiste
         sim::Simulateur *sim{sim::Simulateur::get_simulateur()};
-        std::vector<sim::fourmi::FourmiAnarchiste *> *fourmis_anarchistes{sim->get_fourmis_anarchistes()};
-        for (auto it = fourmis_anarchistes->begin(); it != fourmis_anarchistes->end(); ++it) {
-            if (*it == fourmi_anarchiste) {
-                fourmis_anarchistes->erase(it);
+        for (auto it = sim->get_colonie()->get_fourmis()->begin();
+             it != sim->get_colonie()->get_fourmis()->end(); ++it) {
+            if ((*it)->get_type() != sim::fourmi::TypeFourmi::ANARCHISTE) continue;
+            if ((*it)->get_case_actuelle()->get_position().x ==
+                fourmi->get_case_actuelle()->get_position().x &&
+                (*it)->get_case_actuelle()->get_position().y ==
+                fourmi->get_case_actuelle()->get_position().y) {
+                sim->get_colonie()->get_fourmis()->erase(it);
                 break;
             }
         }
