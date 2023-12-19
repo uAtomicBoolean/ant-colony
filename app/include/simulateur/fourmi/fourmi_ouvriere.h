@@ -16,8 +16,9 @@ namespace sim::fourmi {
         double reserve_pheromone{sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX};
         bool est_chargee{false};
         double charge{};
-        double multiplier_pheromone{-1};
         TypeMoveOuvriere type_move{TypeMoveOuvriere::NORMAL};
+
+        std::vector<sim::types::position_t> cases_pheromonees{};
 
         void move_to_case(sim::carte::Case *new_case);
 

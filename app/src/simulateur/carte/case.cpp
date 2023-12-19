@@ -34,9 +34,9 @@ namespace sim::carte {
         this->position = {x, y};
 
         // Calcule de la distance par rapport a la position de la colonie.
-        this->distance_colonie = std::sqrt(
+        this->distance_colonie = std::abs(std::sqrt(
                 std::pow(x - sim::consts::POS_COLONY_X, 2)
-                + std::pow(y - sim::consts::POS_COLONY_Y, 2));
+                + std::pow(y - sim::consts::POS_COLONY_Y, 2)));
     }
 
     void Case::set_quant_nourriture(double quant_nour) {

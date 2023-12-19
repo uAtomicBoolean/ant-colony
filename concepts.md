@@ -1,4 +1,4 @@
-- [ ] Surcharge des fonctions
+- [x] Surcharge des fonctions
 - [ ] Entrées / Sorties
 - [x] Références
 - [x] Constance
@@ -16,7 +16,7 @@
 - [ ] Membres amis : friend
 - [x] Constructeur
 - [ ] Destructeur
-- [ ] Surcharge d’opérateurs
+- [x] Surcharge d’opérateurs
 - [ ] Conversion utilisateur
 - [ ] Fonctions amies versus fonctions membres
 - [ ] Fonctions inline
@@ -34,6 +34,6 @@
 - [x] Généricité : Patrons de fonction
 - [ ] Généricité : Patrons de classe
 - [x] Flots, Entrées /Sorties, Fichiers
-- [ ] La Standard Template Library (STL)
+- [x] La Standard Template Library (STL)
 - [ ] Programmation défensive – Assertions
 - [ ] Programmation défensive – Exceptions

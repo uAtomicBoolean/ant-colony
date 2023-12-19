@@ -66,10 +66,11 @@ namespace sim::consts {
 
     // Une valeur permettant de calculer la quantite de pheromones a deposer sur une case.
     const int MAX_DIST_PHEROMONE = 150;
-    const int PHEROMONE_MAX_CASE = 50; // 1000 unités de phéromones par case
+    const int PHEROMONE_MAX_CASE = 100; // 1000 unités de phéromones par case
     const int TAUX_EVAPORATION_PHEROMONE = 5; // par tour
     const double TAUX_DE_DIFFUSION_PHEROMONE = .2; // par tour
     const int CAPACITE_FOURMI_PHEROMONE_MAX = 500; // 500 unités de phéromones par fourmi
+    const double PERCENT_PHERO_PAR_CASE = 0.05;
 
     const int PROBA_FOURMI_ANARCHISTE_MIN = 5; // 5 jours
     const int PROBA_FOURMI_ANARCHISTE_MAX = 10; // 10 jours

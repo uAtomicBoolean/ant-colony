@@ -1,6 +1,6 @@
 #include <random>
-#include <algorithm>
 #include <iostream>
+#include <algorithm>
 #include "simulateur.h"
 #include "fourmi_ouvriere.h"
 
@@ -47,39 +47,19 @@ namespace sim::fourmi {
     }
 
     void FourmiOuvriere::deplacement_pheromone(std::vector<sim::carte::Case *> *cases_voisines) {
-        // TODO Debugger ce deplacement pour voir pourquoi il ne fonctionne pas.
-        //  Les probas des phéromones sont potentiellement trop similaires.
-        //  Sinon, c'est peut être la fonction get_cases_voisines qui ne fonctionne pas dans le cas des phéromones.
-
-        double somme_pheromones{0};
-        for (const sim::carte::Case *case_a: *cases_voisines) {
-            somme_pheromones += case_a->get_quant_pheromone();
-        }
-
-        std::map<double, sim::carte::Case *> probas_cases{};
-        double somme_probas{0};
+        double max_pheromones{0};
+        sim::carte::Case *max_case{nullptr};
         for (sim::carte::Case *case_a: *cases_voisines) {
-            double proba_case{(case_a->get_quant_pheromone() * 100) / somme_pheromones};
-            probas_cases[proba_case + somme_probas] = case_a;
-            somme_probas += proba_case;
+            if (case_a->get_quant_pheromone() > max_pheromones) {
+                max_pheromones = case_a->get_quant_pheromone();
+                max_case = case_a;
+            }
         }
 
-        // Choix de la case.
-        std::mt19937 gen(std::random_device{}());
-        std::uniform_real_distribution<float> distrib(0.f, 100.f);
-        float proba_choix{distrib(gen)};
-        auto iterator = probas_cases.lower_bound(proba_choix);
-        if (iterator != probas_cases.end())
-            this->move_to_case(iterator->second);
+        this->move_to_case(max_case);
     }
 
     void FourmiOuvriere::deplacement_retour() {
-        if (this->multiplier_pheromone < 0) {
-            double middle_value{
-                    sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX / static_cast<double>(this->chemin.size())};
-            this->multiplier_pheromone = middle_value / (static_cast<double>(this->chemin.size()) / 2);
-        }
-
         this->get_case_actuelle()->update_nb_fourmis(-1);
         this->chemin.pop_back();
         sim::carte::Case *case_actu{this->get_case_actuelle()};
@@ -88,9 +68,14 @@ namespace sim::fourmi {
         // "Reset" complet de la fourmi quand elle arrive a la colonie.
         if (case_actu->get_type() == sim::carte::TypeCase::COLONIE)
             this->depose_nourriture();
-        else {
-            double dose_pheromones{this->multiplier_pheromone * static_cast<double>(this->chemin.size())};
+        else if (std::find(
+                this->cases_pheromonees.begin(),
+                this->cases_pheromonees.end(),
+                case_actu->get_position()) == this->cases_pheromonees.end()) {
+            // On ne depose des pheromones que si la case n'a pas deje ete pheromonee.
+            double dose_pheromones{this->reserve_pheromone * sim::consts::PERCENT_PHERO_PAR_CASE};
             case_actu->increment_pheromone(dose_pheromones);
+            this->cases_pheromonees.push_back(case_actu->get_position());
             this->reserve_pheromone -= dose_pheromones;
         }
     }
@@ -111,7 +96,6 @@ namespace sim::fourmi {
                 this->deplacement_pheromone(&cases_voisines);
             } else if (this->type_move == TypeMoveOuvriere::NOURRITURE) this->deplacement_nourriture(&cases_voisines);
             else this->deplacement_normal(&cases_voisines);
-
         }
     }
 
@@ -133,10 +117,9 @@ namespace sim::fourmi {
         sim::Simulateur::get_simulateur()->get_colonie()->ajoute_nourriture(this->charge);
         this->charge = 0;
         this->est_chargee = false;
-        this->multiplier_pheromone = -1;
         this->reserve_pheromone = 500;
-        this->multiplier_pheromone = -1;
         this->reserve_pheromone = sim::consts::CAPACITE_FOURMI_PHEROMONE_MAX;
+        this->cases_pheromonees.clear();
     }
 
     std::vector<sim::carte::Case *> FourmiOuvriere::get_cases_voisines() {
@@ -181,19 +164,7 @@ namespace sim::fourmi {
 
         if (contient_nourriture) this->type_move = TypeMoveOuvriere::NOURRITURE;
         else if (contient_pheromone) this->type_move = TypeMoveOuvriere::PHEROMONE;
-        else {
-            // Tri des cases par distance de la colonie.
-            sim::types::position_t pos_colonie{sim->get_colonie()->get_cases_colonie()->at(0)->get_position()};
-            std::sort(
-                    cases_voisines.begin(),
-                    cases_voisines.end(),
-                    [pos_colonie](const sim::carte::Case *c1, const sim::carte::Case *c2) {
-                        const double dist1{c1->get_dist_colonie()};
-                        const double dist2{c2->get_dist_colonie()};
-                        return dist1 < dist2;
-                    });
-            this->type_move = TypeMoveOuvriere::NORMAL;
-        }
+        else this->type_move = TypeMoveOuvriere::NORMAL;
         return cases_voisines;
     }
 }
