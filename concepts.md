@@ -1,13 +1,13 @@
 - [x] Surcharge des fonctions
-- [ ] Entrées / Sorties
+- [x] Entrées / Sorties
 - [x] Références
 - [x] Constance
 - [ ] Opérateur de résolution de portée
 - [x] Espaces de noms
 - [x] Fichiers d’en-têtes et espaces de noms
-- [ ] Portée
+- [x] Portée
 - [ ] Gestion mémoire : Allocation
-- [ ] Gestion mémoire : Libération
+- [x] Gestion mémoire : Libération
 - [x] Classes et objets
 - [x] Membres & partage
 - [x] Accès aux Membres & Portée
@@ -24,10 +24,10 @@
 - [ ] Constructeur, initialisation, affectation et allocation dynamique
 - [x] Classes dérivées – Héritage simple
 - [x] Héritage et constructeur
-- [ ] Conversion classes de base <-> classes dérivées
-- [ ] Dérivation et protection
+- [x] Conversion classes de base <-> classes dérivées
+- [x] Dérivation et protection
 - [x] Vers le polymorphisme
-- [ ] Liaison retardée, fonctions virtuelles
+- [x] Liaison retardée, fonctions virtuelles
 - [x] Classes abstraites et fonctions virtuelles pures
 - [ ] Type des objets et conversion explicite
 - [ ] Héritage multiple
