@@ -1,0 +1,165 @@
+@startuml Diagramme de classes
+
+class Main {
+    + Simulateur simulateur
+    + GUI gui
+    + main() : void
+	+ update() // Envoi this à gui.window.render(*simulateur)
+}
+
+namespace gui {
+    class GUI {
+		+ init() : void
+        + render : void
+	}
+}
+
+namespace simulateur {
+    class Simulateur {
+        + Colonie colonie
+        + Carte carte
+    }
+'	class Constantes {
+'		DIMENSION_CARTE_X = 211 // 211 cases
+'		DIMENSION_CARTE_Y = 201 // 201 cases
+'		NOURRITURE_DEPART = 2 // 2 unités de nourriture
+'		NB_TOURS_PAR_JOUR = 24 // 24 tours pour faire un jour
+'
+'		CAPACITE_FOURMI_MAX_FOURMILIERE = 100 // 100 fourmis par fourmilière
+'		CAPACITE_FOURMI_MAX_CASE = 12 // 12 fourmis par case
+'
+'		AGE_MAX = 1 // 1 an
+'		AGE_MAX_REINE = 10 // 10 ans
+'		CONSOMMATION_NOURRITURE = 0.1 // 0.1% par jour
+'		CONSOMMATION_NOURRITURE_REINE = 1 // 1% par jour
+'		PONDAGE = 2 // 2 par jour
+'
+'		PROBA_NOURRITURE = 0.02
+'		NOURRITURE_DISPO = 10 // 10 unités de nourriture
+'
+'		BIG_STOCK_NOURRITURE = 2
+'		// Nombre de stocks de nourriture de 20k * 5 cases pour former 100k unités de nourriture
+'
+'		PROBA_OBSTACLE = 30 // 30% de la surface totale de la carte
+'		PROBA_OBSTACLE_TAILLE_1 = 50 // 50% de chances de tomber sur un obstacle de taille 1
+'		PROBA_OBSTACLE_TAILLE_2 = 30
+'		PROBA_OBSTACLE_TAILLE_3 = 10
+'		PROBA_OBSTACLE_TAILLE_4 = 5
+'		PROBA_OBSTACLE_TAILLE_5 = 4
+'		PROBA_OBSTACLE_TAILLE_6 = 1
+'
+'		PROBA_REINE_POND_OUVRIERE = 80 // 80% de chances de pondre une ouvrière
+'		PROBA_REINE_POND_SOLDAT = 15
+'		PROBA_REINE_POND_ECLAIREUR = 5
+'
+'		DUREE_RONDE_SOLDAT = 100 // 100 jours
+'		DUREE_VIE_ANARCHISTE = 10 // 10 jours
+'
+'		PHEROMONE_MAX_CASE = 1000 // 1000 unités de phéromones par case
+'		TAUX_EVAPORATION_PHEROMONE = 5% par tour
+'		TAUX_DE_DIFFUSION_PHEROMONE = 0.2% par tour
+'		CAPACITE_FOURMI_PHEROMONE_MAX = 500 // 500 unités de phéromones par fourmi
+'
+'		PROBA_FOURMI_ANARCHISTE_MIN = 5 // 5 jours
+'		PROBA_FOURMI_ANARCHISTE_MAX = 10 // 10 jours
+'	}
+	namespace carte {
+		class Carte {
+			+ taille : int
+			+ cases : case[][]
+			+ carte()
+			+ get_taille() : int
+			+ get_cases() : case
+			+ get_case(int x, int y) : case
+		}
+		class Case {
+			+ type : typeCase
+			+ position : position
+			+ est_explore : bool
+			+ fourmis: *fourmi[]
+			+ case()
+			+ get_type() : typeCase
+			+ get_position() : position
+		}
+		enum typeCase {
+			VIDE
+			NOURRITURE
+			OBSTACLE
+			COLONIE
+		}
+
+		Carte "1" *-- "1..*" Case
+	}
+
+	namespace colonie {
+		class Colonie {
+			+ colonie(nourriture : float, position : position)
+			+ position : position
+			+ nourriture : float
+			+ fourmis : fourmi[]
+			+ get_position() : position
+			+ get_nourriture() : int
+			+ get_fourmis() : fourmi[]
+			+ get_fourmi(int i) : fourmi
+			+ ajouter_fourmi(fourmi f) : void
+			+ supprimer_fourmi(int i) : void
+			+ supprimer_fourmi(fourmi f) : void
+			+ ajouter_nourriture(int n) : void
+			+ supprimer_nourriture(int n) : void
+			+ nourrir_colonie() : void			
+			// Nourrir les fourmis chaque jour, nourrir la reine en premier
+		}
+	}
+
+	namespace fourmi {
+		class Fourmi {
+			+ age : int
+			+ position : position
+			+ case: *case
+			~ deplacer() : void (virtual)
+		}
+		class Reine {
+			+ pondre() : void
+		}
+		class Ouvriere {
+			+ chemin_colonie : position[]
+			+ reserve_pheromone : float
+			+ est_chargee : bool
+			+ chercher_nourriture() : void
+			+ depose_pheromone() : void
+			+ prendre_nourriture() : void
+			+ deposer_nourriture() : void
+		}
+		class Eclaireur {
+			+ explorer() : void
+		}
+		class Soldat {
+			+ retour_colonie : bool
+			+ protege_reine : bool
+			+ attaquer() : void
+			+ verifier_duree_ronde() : void
+			// Elles doivent retourner à la colonie tous les 100 jours
+		}
+		class Anarchiste {
+			+ transport_nourriture : int
+			+ transport_larve : int
+			+ voler() : void
+		}
+
+		Reine <|-- Fourmi
+		Ouvriere <|-- Fourmi
+		Eclaireur <|-- Fourmi
+		Soldat <|-- Fourmi
+		Anarchiste <|-- Fourmi
+
+	}
+	Simulateur "1" *-- "1" simulateur.colonie.Colonie
+	Simulateur "1" *-- "1" simulateur.carte.Carte
+	simulateur.colonie.Colonie "1" *-- "1..*" simulateur.fourmi.Fourmi
+	simulateur.fourmi.Fourmi "1" -- "1" simulateur.carte.Case
+}
+
+Main "1" *-- "1" simulateur.Simulateur
+Main "1" *-- "1" gui.GUI
+
+@enduml

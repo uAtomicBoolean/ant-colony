@@ -1,0 +1,39 @@
+- [x] Surcharge des fonctions
+- [x] Entrées / Sorties
+- [x] Références
+- [x] Constance
+- [ ] Opérateur de résolution de portée
+- [x] Espaces de noms
+- [x] Fichiers d’en-têtes et espaces de noms
+- [x] Portée
+- [ ] Gestion mémoire : Allocation
+- [x] Gestion mémoire : Libération
+- [x] Classes et objets
+- [x] Membres & partage
+- [x] Accès aux Membres & Portée
+- [x] Membres & Protection
+- [x] Fonction membre : accès & pointeur this
+- [ ] Membres amis : friend
+- [x] Constructeur
+- [ ] Destructeur
+- [x] Surcharge d’opérateurs
+- [ ] Conversion utilisateur
+- [ ] Fonctions amies versus fonctions membres
+- [ ] Fonctions inline
+- [x] Constructeur, initialisation, affectation
+- [ ] Constructeur, initialisation, affectation et allocation dynamique
+- [x] Classes dérivées – Héritage simple
+- [x] Héritage et constructeur
+- [x] Conversion classes de base <-> classes dérivées
+- [x] Dérivation et protection
+- [x] Vers le polymorphisme
+- [x] Liaison retardée, fonctions virtuelles
+- [x] Classes abstraites et fonctions virtuelles pures
+- [ ] Type des objets et conversion explicite
+- [ ] Héritage multiple
+- [x] Généricité : Patrons de fonction
+- [ ] Généricité : Patrons de classe
+- [x] Flots, Entrées /Sorties, Fichiers
+- [x] La Standard Template Library (STL)
+- [ ] Programmation défensive – Assertions
+- [ ] Programmation défensive – Exceptions
