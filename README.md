@@ -1,3 +1,3 @@
 # ant-colony
 
-Projet de simulation de colonis de fourmis.
+This school project realised with @LotharieSlayer simulates the life of an ant colony.  
