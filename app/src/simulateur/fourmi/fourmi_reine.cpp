@@ -29,7 +29,7 @@ namespace sim::fourmi {
                 sim->get_colonie()->get_fourmis()->push_back(
                         new FourmiAnarchiste(case_depart, sim::fourmi::TypeFourmi::ANARCHISTE));
                 std::mt19937 gen(std::random_device{}());
-                std::uniform_real_distribution<int> distrib(consts::PROBA_FOURMI_ANARCHISTE_MIN, consts::PROBA_FOURMI_ANARCHISTE_MAX);
+                std::uniform_real_distribution<float> distrib(consts::PROBA_FOURMI_ANARCHISTE_MIN, consts::PROBA_FOURMI_ANARCHISTE_MAX);
                 proba_anarchiste = distrib(gen);
                 continue;
             }
